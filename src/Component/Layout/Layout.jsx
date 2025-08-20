@@ -4,11 +4,10 @@ import Footer from "../Footer/Footer";
 import Navbars from "../Navbar/Navbar";
 import "./Layout.css";
 
-export default function Layout() {
+const Layout=()=> {
   return (
     <>
       <div className="layou_main container-fluid">
-        
         <div>
           <Navbars />
         </div>
@@ -18,3 +17,5 @@ export default function Layout() {
     </>
   );
 }
+
+export default Layout;

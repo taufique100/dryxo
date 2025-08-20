@@ -1,9 +1,15 @@
 import React from "react";
 import "./App.css";
 import { Route, Router, Routes } from "react-router-dom";
-import About from "./Pages/About/About";
 import Home from "./Pages/Home/Home";
 import Layout from "./Component/Layout/Layout";
+import Contact from "./Pages/Contact/Contact";
+import About from "./Pages/About/About";
+import Products from "./Pages/Products/Products";
+import Media from "./Pages/Media/Media";
+import Blogs from "./Pages/Blogs/Blogs";
+import Pad_ATM from "./Pages/Pad_ATM/Pad_ATM";
+import Chanel_Partner from "./Pages/Chanel_Partner/Chanel_Partner";
 
 function App() {
   return (
@@ -11,9 +17,14 @@ function App() {
       <div className="app">
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index path="about" element={<About />} />
             <Route path="home" element={<Home />} />
-            {/* <Route path="contact" element={<Contact />} /> */}
+            <Route path="products" element={<Products />} />
+            <Route path="media" element={<Media />} />
+            <Route path="blog" element={<Blogs />} />
+            <Route path="pad_atm" element={<Pad_ATM />} />
+            <Route path="about" element={<About />} />
+            <Route path="chanel_partner" element={<Chanel_Partner />} />
+            <Route path="contact" element={<Contact />} />
           </Route>
         </Routes>
       </div>

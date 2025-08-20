@@ -1,0 +1,40 @@
+.footer-section {
+  background: #e6f5ee;
+  padding: 50px 20px 20px;
+  color: #333;
+  position: relative;
+}
+
+.footer-logo .logo-img {
+  width: 140px;
+  margin-bottom: 15px;
+}
+
+.footer-links li {
+  margin: 5px 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.footer-links li:hover {
+  color: #0d6efd;
+  padding-left: 5px;
+}
+
+.social-icons a {
+  display: inline-block;
+  margin: 0 8px;
+  font-size: 20px;
+  color: #333;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  color: #0d6efd;
+  transform: scale(1.1);
+}
+
+hr {
+  margin: 20px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}

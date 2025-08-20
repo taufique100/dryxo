@@ -2,23 +2,55 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import './Navbar.css'
+import logo from '../../assets/logo.png'
 
 const Navbars = () => {
   return (
     <>
-      <Navbar expand="lg" className="bg-body-tertiary bg-none">
-        <Container className="w-100">
-          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+      <Navbar
+        expand="lg"
+        bg="dark"
+        variant="dark"
+        sticky="top"
+        className="shadow-sm"
+      >
+        <Container>
+          {/* Brand Logo */}
+          <Navbar.Brand as={NavLink} to="/home" className="fw-bold fs-4">
+            <img className="nav-logo" src={logo} alt="logo" />
+          </Navbar.Brand>
+
+          {/* Toggle Button */}
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
+          {/* Nav Links */}
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link as={Link} to="/home">
+            <Nav className="ms-auto">
+              <Nav.Link as={NavLink} to="/home" end>
                 Home
               </Nav.Link>
-              <Nav.Link as={Link} to="/About">
+              <Nav.Link as={NavLink} to="/products">
+                Products
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/media">
+                Media
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/blog">
+                Blog
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/pad_atm">
+                Pad ATM
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/about">
                 About
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/chanel_partner">
+                Chanel Partner
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/contact">
+                Contact Us
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
@@ -29,3 +61,9 @@ const Navbars = () => {
 };
 
 export default Navbars;
+
+
+
+
+
+
