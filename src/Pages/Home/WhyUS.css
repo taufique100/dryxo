@@ -1,0 +1,39 @@
+.whyus-section {
+  width: 100%;
+  min-height: 100vh;
+}
+
+
+
+.why-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.name{
+    margin-top: 20%;
+   
+}
+.dryxo{
+     background: -webkit-linear-gradient(180deg, #FF4500 50%, #F9B43E);
+       background-clip: text;
+    -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   font-weight: 800;
+   font-size: 40px;
+}
+.why-title{
+   background: -webkit-linear-gradient(180deg, #FF4500 50%, #F9B43E);
+       background-clip: text;
+    -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   font-weight: 800;
+   font-size: 60px;
+}
+
+.learnmore{
+  background: -webkit-linear-gradient(180deg, #FF4500 50%, #F9B43E);
+    border: none;
+    height: 20%;
+   width: 20%;
+}

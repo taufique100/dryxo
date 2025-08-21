@@ -18,7 +18,7 @@ import video from "../../assets/about-video.mp4";
 
 const About = () => {
   return (
-    <div className="about-page">
+    <div  id="about" className="about-page">
       {/* WHO WE ARE */}
       <section className="who-we-are py-5">
         <div className="container text-center">

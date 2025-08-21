@@ -1,0 +1,10 @@
+.slider-img {
+  height: 400px;   /* Adjust size */
+  object-fit: cover;
+}
+
+/* .carousel-caption {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 15px;
+  border-radius: 10px;
+} */
