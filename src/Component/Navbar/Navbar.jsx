@@ -14,7 +14,7 @@ const Navbars = () => {
         bg="dark"
         variant="dark"
         sticky="top"
-        className="shadow-sm"
+        className="bg-dark shadow-sm"
       >
         <Container>
           {/* Brand Logo */}

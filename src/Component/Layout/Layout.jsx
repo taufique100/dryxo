@@ -4,10 +4,10 @@ import Footer from "../Footer/Footer";
 import Navbars from "../Navbar/Navbar";
 import "./Layout.css";
 
-const Layout=()=> {
+const Layout = () => {
   return (
     <>
-      <div className="layou_main container-fluid">
+      <div className="layou_main container-fluid px-0">
         <div>
           <Navbars />
         </div>
@@ -16,6 +16,6 @@ const Layout=()=> {
       </div>
     </>
   );
-}
+};
 
 export default Layout;

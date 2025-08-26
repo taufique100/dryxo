@@ -1,0 +1,16 @@
+input::placeholder {
+  color: rgb(190, 189, 189);
+}
+
+.theme_bg {
+  background-color: #d28611 !important;
+}
+
+.bg-dark{
+ .custom-color {
+  background-color: #69727D !important;
+  border-color: #69727D !important;
+  color: white !important; /* for text contrast */
+}
+
+}

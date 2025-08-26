@@ -52,7 +52,9 @@ const Contact = () => {
           {/* Right Side - Contact Info */}
           <Col md={6} className="d-flex flex-column justify-content-center">
             <div className="d-flex align-items-start mb-4">
-              <div className="bg-dark text-white p-3 rounded-circle me-3">
+              <div
+                className="text-white p-3 rounded-circle me-3"
+                style={{ backgroundColor: "#69727D", borderColor: "#69727D" }}>
                 <FaMapMarkerAlt size={24} />
               </div>
               <div>
@@ -64,7 +66,10 @@ const Contact = () => {
             </div>
 
             <div className="d-flex align-items-start mb-4">
-              <div className="bg-dark text-white p-3 rounded-circle me-3">
+              <div
+                className=" text-white p-3 rounded-circle me-3"
+                style={{ backgroundColor: "#69727D", borderColor: "#69727D" }}
+              >
                 <FaPhoneAlt size={24} />
               </div>
               <div>
@@ -74,7 +79,10 @@ const Contact = () => {
             </div>
 
             <div className="d-flex align-items-start">
-              <div className="bg-dark text-white p-3 rounded-circle me-3">
+              <div
+                className="text-white p-3 rounded-circle me-3"
+                style={{ backgroundColor: "#69727D", borderColor: "#69727D" }}
+              >
                 <FaEnvelope size={24} />
               </div>
               <div>

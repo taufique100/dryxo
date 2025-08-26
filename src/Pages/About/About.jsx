@@ -1,9 +1,4 @@
-// 
-
-
-
-
-
+//
 
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -15,10 +10,13 @@ import irfan from "../../assets/irfan.jpg";
 import samina from "../../assets/samina.jpg";
 import product from "../../assets/dryxo1product-1.png";
 import video from "../../assets/about-video.mp4";
+import { useLocation } from "react-router-dom";
 
 const About = () => {
+  const location = useLocation();
+  console.log("location", location);
   return (
-    <div  id="about" className="about-page">
+    <div id="about" className="about-page">
       {/* WHO WE ARE */}
       <section className="who-we-are py-5">
         <div className="container text-center">

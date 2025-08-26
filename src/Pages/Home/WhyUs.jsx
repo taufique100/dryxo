@@ -1,8 +1,16 @@
 import React from "react";
 import "./WhyUs.css";
-
+import pad1 from "../../assets/pad1.jpg";
+import pad2 from "../../assets/padmul.jpg";
+// import Button from "../../Component/Form/Button";
+import { useNavigate } from "react-router-dom";
 
 const WhyUs = () => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    console.log("clicked...!");
+    navigate("/about", { state: { data: [1, 2, 34, 5] } });
+  };
   return (
     <section className="container py-5 whyus-section w-100 ">
       <div className="row align-items-center">
@@ -70,9 +78,12 @@ const WhyUs = () => {
           </p>
           <div className="learn-more">
             <a href="">
-              <button className="learnmore ">Learn more</button>
+              <button onClick={handleClick} className="learnmore theme_bg">
+                Learn more
+              </button>
             </a>
           </div>
+          {/* <Button text={"Learn More"} onClick={handleClick} /> */}
         </div>
       </div>
     </section>
