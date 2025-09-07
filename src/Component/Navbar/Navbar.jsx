@@ -19,15 +19,15 @@ const Navbars = () => {
         <Container>
           {/* Brand Logo */}
           <Navbar.Brand as={NavLink} to="/home" className="fw-bold fs-4">
-            <img className="nav-logo" src={logo} alt="logo" />
+            <img className="nav-logo" src={logo} alt="logo" height={80} />
           </Navbar.Brand>
 
           {/* Toggle Button */}
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
           {/* Nav Links */}
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto">
+          <Navbar.Collapse id="basic-navbar-nav" className="flex gap-5">
+            <Nav className=" bg-dark ms-auto">
               <Nav.Link as={NavLink} to="/home" end>
                 Home
               </Nav.Link>

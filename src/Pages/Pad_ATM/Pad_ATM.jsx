@@ -1,5 +1,6 @@
 import React from 'react'
 import "./Pad_ATM.css"
+import Slider from './Slider';
 
 
 const Pad_ATM = () => {
@@ -57,6 +58,9 @@ const Pad_ATM = () => {
           </div>
         </div>
       </div>
+      
+      <Slider />
+
     </>
   );
 }

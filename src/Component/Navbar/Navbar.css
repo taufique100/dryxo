@@ -10,10 +10,8 @@
 }
 
 .navbar-nav .nav-link.active {
+  text-decoration: underline;
   font-weight: bold;
   color: #fc5d0df7;
 }
 
-.nav-logo{
-    height: 50px;
-}

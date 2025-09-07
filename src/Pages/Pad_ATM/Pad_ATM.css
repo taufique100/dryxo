@@ -31,7 +31,7 @@
 
 .writing{
     margin-top: 20px;
-    padding:0 100px;
+    padding: 0% 100px;
     font-weight: 500;
 }
 
@@ -42,4 +42,17 @@
     padding: 6px 10px;
     white-space: normal;
   }
+  .writing{
+    padding: 0px 30px;
+  }
+
+  .PAD{
+    font-size: 50px;
+}
+
+.padatm-header {
+  background: hsla(324, 90%, 45%, 0.788); 
+  height: 200px;
+  text-align: center;
+}
 }
