@@ -12,7 +12,7 @@ const WhyUs = () => {
     navigate("/about", { state: { data: [1, 2, 34, 5] } });
   };
   return (
-    <section className="container py-5 whyus-section w-100 ">
+    <section className="container py-5 whyus-section w-100 mt-5 ">
       <div className="row align-items-center">
         {/* Left Side - Images */}
         <div className="col-md-6 text-center">

@@ -8,9 +8,10 @@
   font-size: 2rem;
   font-weight: 700;
   text-transform: uppercase;
-  color: #222;
   position: relative;
   display: inline-block;
+   color: #ff4500;
+
 }
 
 .section-title::after {
@@ -23,6 +24,23 @@
   border-radius: 2px;
 }
 
+
+
+.gradient-box {
+  background: linear-gradient(90deg, #ffa733, #ff4500);
+  color: #fff;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+
+.custom-line {
+  border: none;
+  border-top: 2px solid #ff2f00;
+  margin: 0;
+}
 
 .text-orange {
   color: #ff6600;

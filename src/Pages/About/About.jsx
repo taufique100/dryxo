@@ -17,47 +17,42 @@ const About = () => {
   console.log("location", location);
   return (
     <div id="about" className="about-page">
-      {/* WHO WE ARE */}
       <section className="who-we-are py-5">
         <div className="container text-center">
           <h2 className="section-title mb-4">WHO WE ARE</h2>
-          {/* <p className="lead">
-            At <span className="brand">DRYXO</span>, we are driven by a mission
-            to revolutionize menstrual care in India by providing innovative,
-            eco-friendly and accessible products that empower women with comfort
-            and dignity.
-          </p> */}
-          <p>
-            At DRYXO, we are driven by a mission to revolutionize menstrual care
-            in India. With over 35.5 crore menstruating women in the country,
-            many still lack access to high-quality, comfortable sanitary
-            products. We believe that safe, hygienic, and sustainable menstrual
-            care is every woman’s right. That’s why DRYXO was founded in 2024,
-            to provide products that offer unmatched comfort, health benefits,
-            and eco-friendliness.
-          </p>
-          <p>
-            Feel Dry, Feel Free isn’t just our motto—it’s our commitment to
-            making menstruation a natural, empowering part of every woman’s
-            life. With us, menstruation becomes a natural part of life to
-            embrace with pride, comfort, and confidence. You can live the life
-            you want, without any conditions. Choose DRYXO, the best organic
-            sanitary pads brand crafted with 100% natural cotton. Gentle on your
-            skin and kind to the planet, DRYXO offers unmatched comfort,
-            protection, and sustainability.
-          </p>
-          <p>Make the switch today for a healthier period experience!</p>
-          <h3>
-            If you check the health of a woman, you check the health of the
-            society
-          </h3>
-          <p>
-            The essence of womanhood should be nurtured by every woman who is a
-            mother, daughter, wife, or sister. The essence of womanhood is about
-            reawakening authentic feminine care during the menstruation phase at
-            its best for every woman. Let us celebrate the essence of womanhood
-            with dryxo for problem-free menstruation for all women.
-          </p>
+          <div className="para text-start">
+            <p>
+              At DRYXO, we are driven by a mission to revolutionize menstrual
+              care in India. With over 35.5 crore menstruating women in the
+              country, many still lack access to high-quality, comfortable
+              sanitary products. We believe that safe, hygienic, and sustainable
+              menstrual care is every woman’s right. That’s why DRYXO was
+              founded in 2024, to provide products that offer unmatched comfort,
+              health benefits, and eco-friendliness.
+            </p>
+            <p>
+              <b>Feel Dry, Feel Free</b> isn’t just our motto—it’s our
+              commitment to making menstruation a natural, empowering part of
+              every woman’s life. With us, menstruation becomes a natural part
+              of life to embrace with pride, comfort, and confidence. You can
+              live the life you want, without any conditions. Choose{" "}
+              <b> DRYXO,</b> the best organic sanitary pads brand crafted with
+              100% natural cotton. Gentle on your skin and kind to the planet,
+              DRYXO offers unmatched comfort, protection, and sustainability.
+            </p>
+            <p>Make the switch today for a healthier period experience!</p>
+            <h5 className="text-center">
+              If you check the health of a woman, you check the health of the
+              society
+            </h5>
+            <p>
+              The essence of womanhood should be nurtured by every woman who is
+              a mother, daughter, wife, or sister. The essence of womanhood is
+              about reawakening authentic feminine care during the menstruation
+              phase at its best for every woman. Let us celebrate the essence of
+              womanhood with dryxo for problem-free menstruation for all women.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -91,12 +86,14 @@ const About = () => {
         </div>
       </section>
 
-      {/* FOUNDERS */}
       <section className="founders py-5">
         <div className="container">
-          <h3 className="section-title text-orange text-center mb-4">
-            Directer's Message
-          </h3>
+          <div className="d-flex align-items-center justify-content-center mb-4  position-relative">
+            <hr className="flex-grow-1 custom-line" />
+            <span className="gradient-box mx-3 b">Directer Message</span>
+            <hr className="flex-grow-1 custom-line" />
+          </div>
+
           <div className="row text-center">
             <div className="col-md-6 mb-4">
               <img src={irfan} alt="Founder" className="founder-img mb-3" />
@@ -139,7 +136,7 @@ const About = () => {
           <h3 className="section-title text-orange text-center mb-4">
             Our Innovative Products
           </h3>
-          <div className="row align-items-center mt-0">
+          <div className="row align-items-center mt-0 mb-0">
             <div className="col-md-7">
               <h5 className="fw-bold">Transforming Menstrual Care</h5>
               <p>

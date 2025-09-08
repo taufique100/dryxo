@@ -1,39 +1,14 @@
 import React, { useState } from "react";
 import "./Media.css";
 import st1 from "../../assets/st-1.jpg";
-import st2 from "../../assets/st-2.jpg";
-import st3 from "../../assets/st-3.jpg";
-import st4 from "../../assets/st-4.jpg";
-import st5 from "../../assets/st-5.jpg";
+import galleryItems from "./galleryItems";
 
-import sw1 from "../../assets/ws-1.jpg";
-import sw2 from "../../assets/ws-2.jpg";
-import sw3 from "../../assets/ws-3.jpg";
-import sw4 from "../../assets/ws-4.jpg";
-import sw5 from "../../assets/ws-5.jpg";
-import sw6 from "../../assets/ws-6.jpg";
-import sw7 from "../../assets/ws-7.jpg";
-import sw8 from "../../assets/ws-8.jpg";
+
 
 
 const categories = ["All", "School Students", "Social Work"];
 
-const galleryItems = [
-  { id: 1, category: "School Students", src: st1 },
-  { id: 2, category: "School Students", src: st2 },
-  { id: 3, category: "School Students", src: st3 },
-  { id: 4, category: "School Students", src: st4 },
-  { id: 5, category: "School Students", src: st5 },
-  { id: 6, category: "Social Work", src: sw1 },
-  { id: 7, category: "Social Work", src: sw2 },
-  { id: 8, category: "Social Work", src: sw3 },
-  { id: 9, category: "Social Work", src: sw4 },
-  { id: 10, category: "Social Work", src: sw5 },
-  { id: 11, category: "Social Work", src: sw6 },
-  { id: 12, category: "Social Work", src: sw7 },
-  { id: 13, category: "Social Work", src: sw8 },
- 
-];
+
 
 const Media = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -86,22 +61,22 @@ const Media = () => {
         </div>
       </div>
 
-      <div className="d-flex align-items-center justify-content-center mb-4 position-relative">
+      <div className="d-flex align-items-center justify-content-center mb-4 mt-5 position-relative">
         <hr className="flex-grow-1 custom-line" />
         <span className="gradient-box mx-3 b">Media Gallery</span>
         
       </div>
 
       <div className="d-flex justify-content-center mb-4">
-        {categories.map((cat) => (
+        {categories.map((monu) => (
           <button
-            key={cat}
+            key={monu}
             className={`btn mx-2 ${
-              activeCategory === cat ? "btn-orangered" : "btn-outline-orangered"
+              activeCategory === monu ? "btn-orangered" : "btn-outline-orangered"
             }`}
-            onClick={() => setActiveCategory(cat)}
+            onClick={() => setActiveCategory(monu)}
           >
-            {cat}
+            {monu}
           </button>
         ))}
       </div>
