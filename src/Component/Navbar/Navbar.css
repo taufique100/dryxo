@@ -4,6 +4,10 @@
   transition: 0.3s;
 }
 
+.container{
+  padding: 10px;
+}
+
 .navbar-nav .nav-link:hover {
   color: #fd350d !important; /* Bootstrap Primary Color */
   transform: scale(1.05);
@@ -15,3 +19,14 @@
   color: #fc5d0df7;
 }
 
+@media(min-width:880px) {
+  .logo{
+  margin-left: 130px;
+  padding: 0;
+}
+
+.navbars{
+  margin-right: 130px;
+}
+  
+}

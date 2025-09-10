@@ -8,7 +8,7 @@ import Sweeper2 from "../../../assets/Sweeper2.jpg";
 const Sweeper = () => {
   return (
     <>
-      <Carousel fade interval={3000} indicators={true} controls={true} className='mb-5'>
+      <Carousel fade interval={3000} indicators={true} controls={true} className='mb-5 '>
         {/* Slide 1 */}
         <Carousel.Item>
           <img

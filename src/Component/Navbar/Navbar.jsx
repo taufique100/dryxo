@@ -11,14 +11,14 @@ const Navbars = () => {
     <>
       <Navbar
         expand="lg"
-        bg="dark"
-        variant="dark"
+        bg="white"
+        variant="white"
         sticky="top"
-        className="bg-dark shadow-sm"
+        className="bg-white shadow-sm text-dark  fw-bold"
       >
-        <Container>
-          {/* Brand Logo */}
-          <Navbar.Brand as={NavLink} to="/home" className="fw-bold fs-4">
+        <Container className="container">
+          {/*  Logo */}
+          <Navbar.Brand as={NavLink} to="/home" className=" logo fw-bold fs-4">
             <img className="nav-logo" src={logo} alt="logo" height={80} />
           </Navbar.Brand>
 
@@ -26,8 +26,9 @@ const Navbars = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
           {/* Nav Links */}
-          <Navbar.Collapse id="basic-navbar-nav" className="flex gap-5">
-            <Nav className=" bg-dark ms-auto">
+          <Navbar.Collapse id="basic-navbar-nav" className=" navbars flex gap-5 ">
+            <Nav className=" bg-white ms-auto">
+              
               <Nav.Link as={NavLink} to="/home" end>
                 Home
               </Nav.Link>

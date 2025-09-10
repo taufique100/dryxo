@@ -1,0 +1,26 @@
+.safety-section {
+  padding-left: 30px;
+  padding-right: 30px;
+  background-color: rgb(158, 151, 142);
+   mix-blend-mode: multiply; 
+  background-color: transparent;
+  
+}
+
+.safety-img {
+  max-width: 80px;
+  height: auto;
+  transition: transform 0.3s ease;
+ 
+}
+
+
+@media (min-width: 992px) {
+  .safety-img {
+    max-width: 120px; 
+  }
+}
+
+.feature-card:hover .safety-img {
+  transform: scale(1.05);
+}

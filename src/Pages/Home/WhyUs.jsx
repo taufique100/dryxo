@@ -4,6 +4,7 @@ import pad1 from "../../assets/pad1.jpg";
 import pad2 from "../../assets/padmul.jpg";
 // import Button from "../../Component/Form/Button";
 import { useNavigate } from "react-router-dom";
+import Safety from "./Safety/Safety";
 
 const WhyUs = () => {
   const navigate = useNavigate();
@@ -85,6 +86,9 @@ const WhyUs = () => {
           </div>
           {/* <Button text={"Learn More"} onClick={handleClick} /> */}
         </div>
+      </div>
+      <div className="safty mt-5">
+        <Safety />
       </div>
     </section>
   );

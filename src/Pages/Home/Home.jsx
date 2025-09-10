@@ -3,7 +3,8 @@ import "./Home.css";
 import Sweeper from "./Sweeper/Sweeper";
 import WhyUs from "./WhyUs";
 import { PadProduct } from "../Products/PadProduct";
-// import Safty from "./Safty/Saft";
+
+
 
 const Home = () => {
   return (
@@ -12,7 +13,7 @@ const Home = () => {
         <Sweeper />
         <PadProduct />
         <WhyUs />
-        {/* <Safty /> */}
+       
       </div>
     </>
   );
