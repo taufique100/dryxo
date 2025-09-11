@@ -98,7 +98,7 @@ const About = () => {
             <div className="col-md-6 mb-4">
               <img src={irfan} alt="Founder" className="founder-img mb-3" />
               <h5 className="fw-bold text-orange">Mohammad Irfan Khan</h5>
-              <p className="text-muted">
+              <p className="text-muted text-start">
                 As I look back on our journey at DRYXO, I am filled with pride
                 and gratitude for the progress we’ve made. Our commitment to
                 excellence, innovation, and teamwork has brought us to new
@@ -113,7 +113,7 @@ const About = () => {
             <div className="col-md-6 mb-4">
               <img src={samina} alt="Founder" className="founder-img mb-3" />
               <h5 className="fw-bold text-orange">Samina Afroz</h5>
-              <p className="text-muted">
+              <p className="text-muted text-start">
                 In the face of challenges, we’ve not only persevered but
                 thrived, driven by our dedication to providing women with the
                 best care and comfort. Our journey has taught us the power of

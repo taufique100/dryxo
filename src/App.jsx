@@ -10,6 +10,7 @@ import Media from "./Pages/Media/Media";
 import Blogs from "./Pages/Blogs/Blogs";
 import Pad_ATM from "./Pages/Pad_ATM/Pad_ATM";
 import Chanel_Partner from "./Pages/Chanel_Partner/Chanel_Partner";
+import { BlogDetailsPage } from "./Pages/Blogs/BlogDetailsPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="products" element={<Products />} />
             <Route path="media" element={<Media />} />
             <Route path="blog" element={<Blogs />} />
+            <Route path="blog/blog-details" element={<BlogDetailsPage />} />
             <Route path="pad_atm" element={<Pad_ATM />} />
             <Route path="about" element={<About />} />
             <Route path="chanel_partner" element={<Chanel_Partner />} />

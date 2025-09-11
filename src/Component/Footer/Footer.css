@@ -17,8 +17,8 @@
 }
 
 .footer-links li:hover {
-  color: #0d6efd;
-  padding-left: 5px;
+   color: #fd350d !important;
+ 
 }
 
 .social-icons a {
@@ -30,11 +30,16 @@
 }
 
 .social-icons a:hover {
-  color: #0d6efd;
+   color: #fd350d !important;
   transform: scale(1.1);
 }
 
 hr {
   margin: 20px 0;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+p a{
+  text-decoration: none;
+  color: rgb(43, 42, 42);
 }

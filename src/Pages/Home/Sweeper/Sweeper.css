@@ -1,33 +1,29 @@
-.slider-img {
-  height: 400px;   /* Adjust size */
+/* .slider-img {
+  height: 400px;   
   object-fit: cover;
-}
-
-/* .carousel-caption {
-  background: rgba(0, 0, 0, 0.4);
-  padding: 15px;
-  border-radius: 10px;
 } */
+
+
 .slider-img {
   width: 100%;
-  height: auto;         /* image proportion maintain karega */
-  object-fit: cover;    /* image crop hogi aur full screen fill karegi */
+  height: auto;       
+  object-fit: cover;   
 }
 
 @media (max-width: 768px) {
   .slider-img {
-    height: 250px;      /* mobile par image chhoti karne ke liye */
+    height: 250px;      
   }
 }
 
 @media (min-width: 769px) and (max-width: 1200px) {
   .slider-img {
-    height: 400px;      /* tablet ke liye */
+    height: 400px;      
   }
 }
 
 @media (min-width: 1201px) {
   .slider-img {
-    height: 600px;      /* desktop par */
+    height: 600px;     
   }
 }

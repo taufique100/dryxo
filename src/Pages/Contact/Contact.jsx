@@ -54,13 +54,15 @@ const Contact = () => {
             <div className="d-flex align-items-start mb-4">
               <div
                 className="text-white p-3 rounded-circle me-3"
-                style={{ backgroundColor: "#69727D", borderColor: "#69727D" }}>
+                style={{ backgroundColor: "#69727D", borderColor: "#69727D" }}
+              >
                 <FaMapMarkerAlt size={24} />
               </div>
               <div>
                 <h5 className="fw-bold">Sharida Healthcare Pvt. Ltd</h5>
                 <p className="mb-0">
-                  B-149 Sector-63, Noida, Gautam Buddh Nagar UP 201301, India
+                  B-149, Sector-63, Noida, Gautam Buddh Nagar, Uttar Pradesh,
+                  India, Pincode:-201301
                 </p>
               </div>
             </div>
@@ -87,7 +89,7 @@ const Contact = () => {
               </div>
               <div>
                 <h5 className="fw-bold">Email Address</h5>
-                <p className="mb-0">info@dryxo.in</p>
+                <p className="mb-0">dryxo179@gmail.com</p>
               </div>
             </div>
           </Col>

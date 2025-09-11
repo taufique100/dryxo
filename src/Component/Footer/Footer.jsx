@@ -1,11 +1,24 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import {
-  FaFacebookF, FaInstagram,FaLinkedinIn,FaPhoneAlt,FaEnvelope,FaMapMarkerAlt,} from "react-icons/fa";
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaPhoneAlt,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaWhatsapp,
+} from "react-icons/fa";
 import "./Footer.css";
-import logo from '../../assets/logo.png'
+import logo from "../../assets/logo.png";
 
 const Footer = () => {
+  const handleWhatsAppRedirect = () => {
+    const url = `https://wa.me/${919693944313}?text=${encodeURIComponent(
+      "Hii, I am client."
+    )}`;
+    window.open(url, "_blank"); // open in new tab
+  };
   return (
     <footer className="footer-section">
       <Container>
@@ -43,10 +56,12 @@ const Footer = () => {
           <Col md={3} className="text-center text-md-start">
             <h5 className="fw-bold">Contact Info</h5>
             <p>
-              <FaPhoneAlt className="me-2" /> +91 93155 22533
+              <FaPhoneAlt className="me-2" />{" "}
+              <a href="tel:+91 93155 22533">+91 93155 22533</a>
             </p>
             <p>
-              <FaEnvelope className="me-2" /> dryxo179@gmail.com
+              <FaEnvelope className="me-2" />
+              <a href="mailto:dryxo179@gmail.com">dryxo179@gmail.com</a>
             </p>
             <p className="fw-bold mb-1">Sharida Healthcare Pvt. Ltd</p>
             <p>
@@ -67,6 +82,15 @@ const Footer = () => {
               </a>
               <a href="https://linkedin.com" target="_blank" rel="noreferrer">
                 <FaLinkedinIn />
+              </a>
+
+              <a
+                href="https://wa.me/9693944313"
+                target="_blank"
+                rel="noreferrer"
+                onClick={handleWhatsAppRedirect}
+              >
+                <FaWhatsapp />
               </a>
             </div>
           </Col>

@@ -3,12 +3,7 @@ import "./Media.css";
 import st1 from "../../assets/st-1.jpg";
 import galleryItems from "./galleryItems";
 
-
-
-
-const categories = ["All", "School Students", "Social Work"];
-
-
+const btnList = ["All", "School Students", "Social Work"];
 
 const Media = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -64,15 +59,16 @@ const Media = () => {
       <div className="d-flex align-items-center justify-content-center mb-4 mt-5 position-relative">
         <hr className="flex-grow-1 custom-line" />
         <span className="gradient-box mx-3 b">Media Gallery</span>
-        
       </div>
 
       <div className="d-flex justify-content-center mb-4">
-        {categories.map((monu) => (
+        {btnList.map((monu, idx) => (
           <button
             key={monu}
-            className={`btn mx-2 ${
-              activeCategory === monu ? "btn-orangered" : "btn-outline-orangered"
+            className={`btn mx-2 ${idx === 0 && "px-4"} ${
+              activeCategory === monu
+                ? "btn-orangered"
+                : "btn-outline-orangered"
             }`}
             onClick={() => setActiveCategory(monu)}
           >
@@ -82,12 +78,12 @@ const Media = () => {
       </div>
 
       <div className="row">
-        {filteredItems.map((item) => (
-          <div key={item.id} className="col-12 col-sm-6 col-md-4 mb-4">
+        {filteredItems.map((item, idx) => (
+          <div key={idx} className="col-12 col-sm-6 col-md-4 mb-4">
             <div className="card border-0 shadow-sm">
               <img
-                src={item.src}
-                alt={`Gallery ${item.id}`}
+                src={item?.src}
+                alt={`Gallery ${item?.id}`}
                 className="card-img-top rounded"
               />
             </div>
