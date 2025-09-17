@@ -1,0 +1,93 @@
+.blog-fullscreen {
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  /* background: #fff; */
+  color: #222;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.7;
+}
+
+/* Back button */
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: fixed;
+  top: 10px;
+  left: 15px;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 100;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+.back-button:hover {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+/* Banner */
+.blog-banner {
+  width: 95%;
+  height: 450px;
+  overflow: hidden;
+}
+.blog-banner img {
+ margin-left: 7%;
+  width: 95%;
+  height: 450px;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  overflow: hidden;
+  background: #f9f9f9;
+}
+
+/* Content */
+.blog-article {
+  margin:0 7%;
+ 
+}
+
+.blog-meta {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 15px;
+}
+.category {
+  font-weight: bold;
+  color: #007bff;
+}
+.date {
+  color: #555;
+}
+
+.blog-title {
+  font-size: 34px;
+  font-weight: bold;
+  margin: 15px 0;
+  line-height: 1.3;
+}
+
+.blog-description {
+  font-size: 18px;
+  color: #444;
+  margin-bottom: 30px;
+}
+
+.blog-body {
+  font-size: 17px;
+  color: #333;
+  padding-bottom: 60px;
+}
+.blog-body h2 {
+  margin-top: 30px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
