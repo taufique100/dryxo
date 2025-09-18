@@ -3,6 +3,7 @@ import "./Products.css";
 import banner from "../../assets/productBanner.jpg"
 import { PadProduct } from './PadProduct';
 
+
 const Products = () => {
   return (
     <>
@@ -13,6 +14,7 @@ const Products = () => {
         <h2 className="head mb-5">Dryxo Sanitary Pad</h2>
       </div>
       <PadProduct />
+      
       <div className="feature mb-5">
         <h2 className="title mb-3">PRODUCT FEATURES</h2>
         <p className='mb-5'>

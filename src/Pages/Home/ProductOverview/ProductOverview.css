@@ -1,0 +1,39 @@
+.products-section {
+  position: relative;
+}
+
+.section-bg-title {
+  font-size: 5rem;
+  font-weight: 800;
+  color: rgba(0, 0, 0, 0.05);
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 20px;
+  z-index: 0;
+}
+
+.section-title {
+  position: relative;
+  z-index: 1;
+}
+
+.title-underline {
+  width: 80px;
+  height: 2px;
+  margin: 10px auto;
+  background-color: black;
+}
+
+.product-slide-img {
+  max-height: 250px;
+  object-fit: contain;
+  background: transparent !important; 
+  box-shadow: none !important;      
+  padding: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-slide-img:hover {
+  transform: scale(1.08);
+}

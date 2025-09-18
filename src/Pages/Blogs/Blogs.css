@@ -36,3 +36,15 @@
 .blog-actions .comment-btn:hover {
   color: #e23b3b; 
 }
+
+.read-more-btn {
+  border: 1px solid orangered;
+  color: orangered;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.read-more-btn:hover {
+  background: orangered;
+  color: #fff;
+}

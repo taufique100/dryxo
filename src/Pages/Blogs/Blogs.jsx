@@ -55,9 +55,16 @@ const Blogs = () => {
                   </div>
 
                   {/* Read More Button */}
-                  <button
+                  {/* <button
                     onClick={() => redirectBlogDetailsPage(blog.id)}
                     className="btn btn-outline-primary btn-sm"
+                  >
+                    Read More →
+                  </button> */}
+
+                  <button
+                    onClick={() => redirectBlogDetailsPage(blog.id)}
+                    className="btn btn-sm read-more-btn"
                   >
                     Read More →
                   </button>
