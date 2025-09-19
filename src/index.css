@@ -1,0 +1,19 @@
+*{
+    font-family: "Poppins", sans-serif;
+}
+
+h1{
+    font-size: 30px !important;
+    font-weight: 600 !important;
+    color: #ff4400 !important;
+}
+
+.bg-white{
+    color: #f6ffff !important;
+}
+
+@media screen and (max-width:576px) {
+    h1{
+        font-size: 24px !important;
+    }
+}

@@ -8,10 +8,12 @@ const Layout = () => {
   return (
     <>
       <div className="layou_main container-fluid px-0">
-        <div>
+        <div className="header_position">
           <Navbars />
         </div>
-        <Outlet />
+        <div className="outlet_wrapper">
+          <Outlet />
+        </div>
         <Footer />
       </div>
     </>

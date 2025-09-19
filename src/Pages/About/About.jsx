@@ -2,7 +2,6 @@
 
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./About.css";
 
 // Assets
 import mission from "../../assets/mission.jpg";
@@ -11,6 +10,7 @@ import samina from "../../assets/samina.jpg";
 import product from "../../assets/dryxo1product-1.png";
 import video from "../../assets/about-video.mp4";
 import { useLocation } from "react-router-dom";
+import "./About.css";
 
 const About = () => {
   const location = useLocation();

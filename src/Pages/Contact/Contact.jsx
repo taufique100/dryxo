@@ -6,9 +6,9 @@ const Contact = () => {
   return (
     <section className="py-5 bg-light">
       <Container>
-        <h2 className="text-center text-uppercase mb-4 fw-bold text-primary">
+        <h1 className="text-center text-uppercase mb-4">
           Drop Us A Message
-        </h2>
+        </h1>
         <Row className="g-4">
           {/* Left Side - Form */}
           <Col md={6}>

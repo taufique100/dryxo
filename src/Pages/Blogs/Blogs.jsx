@@ -17,11 +17,11 @@ const Blogs = () => {
 
   return (
     <div className="container my-1">
-      <h2 className="text-center mb-4">Latest Blogs</h2>
+      <h1 className="text-center mb-4">Latest Blogs</h1>
       <div className="row">
         {blogContent.map((blog) => (
           <div key={blog.id} className="col-md-4 mb-4">
-            <div className="card blog-card h-100 shadow-sm">
+            <div className="card blog-card h-100">
               {/* Blog Image */}
               <div className="blog-img-wrapper">
                 <img
@@ -32,16 +32,17 @@ const Blogs = () => {
               </div>
 
               {/* Card Content */}
-              <div className="card-body d-flex flex-column">
-                <h5 className="card-title">{blog.title}</h5>
+              <div className="card-body d-flex flex-column justify-content-between">
+                <div>
+                  <h5 className="card-title">{blog.title}</h5>
+                  {/* Meta Info */}
+                  <p className="text-muted small mb-2">
+                    <IoPersonSharp /> {blog.category} · {blog.date} <br />
+                    <RiMenu2Fill /> Blog
+                  </p>
 
-                {/* Meta Info */}
-                <p className="text-muted small mb-2">
-                  <IoPersonSharp /> {blog.category} · {blog.date} <br />
-                  <RiMenu2Fill /> Blog
-                </p>
-
-                <p className="card-text">{blog.description}</p>
+                  <p className="card-text">{blog.description}</p>
+                </div>
 
                 {/* Like & Comment */}
                 <div className="d-flex justify-content-between align-items-center mt-3">

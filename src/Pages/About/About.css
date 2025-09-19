@@ -71,9 +71,9 @@ video {
 }
 
 
-p {
+.about-page p {
   line-height: 1.7;
-  font-size: 1rem;
+  font-size: 14px;
   color: #555;
 }
 

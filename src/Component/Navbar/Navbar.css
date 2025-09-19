@@ -64,3 +64,14 @@
 .nav-logo {
   width: 150px;
 }
+
+.navbar-nav a{
+  font-weight: 500;
+  font-size: 14px;
+}
+
+@media screen and (max-width:576px) {
+  .nav-logo {
+    width: 95px;
+  }
+}
