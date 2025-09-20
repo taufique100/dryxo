@@ -1,5 +1,8 @@
 
 import blog1 from "../../assets/mission.jpg";
+import blog2 from "../../assets/padsBlogs1.jpg";
+import blog3 from "../../assets/padsBlogs.jpg";
+
 
 export const blogContent = [
   {
@@ -48,7 +51,7 @@ export const blogContent = [
   },
   {
     id: 2,
-    image: blog1,
+    image: blog2,
     title: "Types of Sanitary Pads",
     description:
       "Discover the different types of sanitary pads available and how to choose the right one for your body and lifestyle.",
@@ -74,7 +77,7 @@ export const blogContent = [
   },
   {
     id: 3,
-    image: blog1,
+    image: blog3,
     title: "Breaking the Stigma Around Menstrual Hygiene",
     description:
       "Let’s talk about breaking myths, spreading awareness, and creating a healthier future for women everywhere.",

@@ -72,6 +72,7 @@ const ProductOverview = () => {
           ))}
         </Carousel>
       </div>
+      <hr className="hr"/>
     </div>
   );
 };

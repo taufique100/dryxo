@@ -37,3 +37,8 @@
 .product-slide-img:hover {
   transform: scale(1.08);
 }
+
+.hr{
+  background: black;
+  margin-bottom: 0;
+}

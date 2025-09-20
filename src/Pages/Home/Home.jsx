@@ -5,6 +5,7 @@ import WhyUs from "./WhyUs";
 import { PadProduct } from "../Products/PadProduct";
 import Mainslider from "./Mainslider/Mainslider";
 import ProductOverview from "./ProductOverview/ProductOverview";
+import ProductFeature from "./ProductFeature/ProductFeature";
 
 
 
@@ -17,6 +18,7 @@ const Home = () => {
         <WhyUs />
         <Mainslider/>
         <ProductOverview />
+        <ProductFeature/>
       </div>
     </>
   );

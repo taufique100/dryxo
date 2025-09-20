@@ -6,7 +6,8 @@ const Contact = () => {
   return (
     <section className="py-5 bg-light">
       <Container>
-        <h1 className="text-center text-uppercase mb-4">
+        <h1
+          className="text-center text-uppercase mb-4 ">
           Drop Us A Message
         </h1>
         <Row className="g-4">
@@ -18,18 +19,34 @@ const Contact = () => {
                 <Form>
                   <Row className="mb-3">
                     <Col>
-                      <Form.Control type="text" placeholder="Name" />
+                      <Form.Control
+                        type="text"
+                        placeholder="Name"
+                        style={{ padding: "4px 8px" }}
+                      />
                     </Col>
                     <Col>
-                      <Form.Control type="text" placeholder="Phone No" />
+                      <Form.Control
+                        type="text"
+                        placeholder="Phone No"
+                        style={{ padding: "4px 8px" }}
+                      />
                     </Col>
                   </Row>
                   <Row className="mb-3">
                     <Col>
-                      <Form.Control type="email" placeholder="Email" />
+                      <Form.Control
+                        type="email"
+                        placeholder="Email"
+                        style={{ padding: "4px 8px" }}
+                      />
                     </Col>
                     <Col>
-                      <Form.Control type="text" placeholder="Subject" />
+                      <Form.Control
+                        type="text"
+                        placeholder="Subject"
+                        style={{ padding: "4px 8px" }}
+                      />
                     </Col>
                   </Row>
                   <Form.Group className="mb-3">
@@ -37,10 +54,16 @@ const Contact = () => {
                       as="textarea"
                       rows={4}
                       placeholder="Message"
+                      style={{ padding: "4px 8px" }}
                     />
                   </Form.Group>
                   <div className="text-center">
-                    <Button variant="primary" className="px-4 fw-bold">
+                    <Button
+                      style={{
+                        backgroundColor: "#fd350d ",
+                        borderColor: "#e23b3b",
+                      }}
+                    >
                       Send
                     </Button>
                   </div>
@@ -100,4 +123,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
