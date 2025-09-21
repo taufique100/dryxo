@@ -6,6 +6,7 @@ import { PadProduct } from "../Products/PadProduct";
 import Mainslider from "./Mainslider/Mainslider";
 import ProductOverview from "./ProductOverview/ProductOverview";
 import ProductFeature from "./ProductFeature/ProductFeature";
+import PadHome from "./PadHome/PadHome";
 
 
 
@@ -19,6 +20,7 @@ const Home = () => {
         <Mainslider/>
         <ProductOverview />
         <ProductFeature/>
+        <PadHome />
       </div>
     </>
   );

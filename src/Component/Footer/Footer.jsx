@@ -85,7 +85,7 @@ const Footer = () => {
               </a>
 
               <a
-                href="https://wa.me/9693944313"
+                href="https://wa.me/9315522533"
                 target="_blank"
                 rel="noreferrer"
                 onClick={handleWhatsAppRedirect}
