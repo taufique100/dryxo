@@ -7,6 +7,7 @@ import Mainslider from "./Mainslider/Mainslider";
 import ProductOverview from "./ProductOverview/ProductOverview";
 import ProductFeature from "./ProductFeature/ProductFeature";
 import PadHome from "./PadHome/PadHome";
+import Sayri from "./Sayri/Sayri";
 
 
 
@@ -21,6 +22,7 @@ const Home = () => {
         <ProductOverview />
         <ProductFeature/>
         <PadHome />
+        <Sayri />
       </div>
     </>
   );
