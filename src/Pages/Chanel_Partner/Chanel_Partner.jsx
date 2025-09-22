@@ -6,7 +6,7 @@ import join from "../../assets/join.jpg";
 const Chanel_Partner = () => {
   return (
     <div className="partner-page">
-      <div className="container my-5">
+      <div className="container channerpartner_container my-5">
         <div className="row align-items-start">
           {/* Image */}
           <div className="col-md-5 text-center">
