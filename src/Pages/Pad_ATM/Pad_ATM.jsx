@@ -9,7 +9,7 @@ const Pad_ATM = () => {
     <>
       <div className="main">
         <div className="padatm-header d-flex justify-content-center align-items-center">
-          <h1 className="PAD text-white fw-bold">Pad ATM</h1>
+          <h1 className="PAD  fw-bold">Pad ATM</h1>
         </div>
         <div className="heading">
           <div className="d-flex align-items-center justify-content-center text-center">

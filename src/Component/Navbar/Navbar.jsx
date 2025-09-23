@@ -5,10 +5,14 @@ import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
+import ContactBar from "../ContactBar/ContactBar";
 
 const Navbars = () => {
   return (
     <>
+    <div className="contactbaer">
+      <ContactBar />
+    </div>
       <Navbar
         expand="lg"
         bg="white"

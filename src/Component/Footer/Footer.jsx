@@ -14,7 +14,7 @@ import logo from "../../assets/logo.png";
 
 const Footer = () => {
   const handleWhatsAppRedirect = () => {
-    const url = `https://wa.me/${919693944313}?text=${encodeURIComponent(
+    const url = `https://wa.me/${919315522533}?text=${encodeURIComponent(
       "Hii, I am client."
     )}`;
     window.open(url, "_blank"); // open in new tab
@@ -74,10 +74,18 @@ const Footer = () => {
           <Col md={3} className="text-center text-md-start">
             <h5 className="fw-bold">Say hello on our socials</h5>
             <div className="social-icons mt-3">
-              <a href="https://instagram.com" target="_blank" rel="noreferrer">
+              <a
+                href="https://www.instagram.com/dryxo100?igsh=MWp6cGkzaDdrMG9ycw=="
+                target="_blank"
+                rel="noreferrer"
+              >
                 <FaInstagram />
               </a>
-              <a href="https://facebook.com" target="_blank" rel="noreferrer">
+              <a
+                href="https://www.facebook.com/share/1CZPmRk2nm/"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <FaFacebookF />
               </a>
               <a href="https://linkedin.com" target="_blank" rel="noreferrer">
@@ -85,7 +93,7 @@ const Footer = () => {
               </a>
 
               <a
-                href="https://wa.me/9315522533"
+                href="https://wa.me/919315522533"
                 target="_blank"
                 rel="noreferrer"
                 onClick={handleWhatsAppRedirect}

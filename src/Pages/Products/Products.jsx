@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Products.css";
-import banner from "../../assets/productBanner.jpg"
+import banner from "../../assets/product1.jpg"
 import { PadProduct } from './PadProduct';
 
 

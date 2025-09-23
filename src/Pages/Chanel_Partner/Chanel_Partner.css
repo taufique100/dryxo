@@ -1,5 +1,3 @@
-
-
 /* Content */
 .section-title {
   font-size: 1.8rem;
@@ -46,38 +44,70 @@
   border-radius: 3px;
 }
 
-/* Form */
 .form-section {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 60px;
+  background: linear-gradient(100deg, #ecebea, #e1d9d5);
+  padding: 10px 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(255, 90, 0, 0.15);
 }
 
 .form-title {
-  font-size: 1.6rem;
-  font-weight: 600;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fa4301;
+  margin-bottom: 10px;
 }
 
 .form-subtitle {
-  font-size: 0.95rem;
-  color: #666;
-  margin-top: 8px;
-  margin-bottom: 20px;
-  border-bottom: 1px dashed #000;
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 30px;
+  border-bottom: 2px dashed #fa4301;
   display: inline-block;
-  padding-bottom: 5px;
+  padding-bottom: 6px;
 }
 
+/* Input Fields */
 .form-control {
-  border-radius: 6px;
-  padding: 12px;
-}
-
-.btn-dark {
-  border-radius: 25px;
+  border-radius: 12px;
+  padding: 14px 16px;
+  border: 1px solid #ffd0b8;
   transition: all 0.3s ease;
+  background-color: #fff;
 }
 
-.btn-dark:hover {
-  background: #ff7300;
+.form-control:focus {
+  border-color: #fa4301;
+  box-shadow: 0 0 8px rgba(250, 67, 1, 0.3);
+}
+
+/* Textarea */
+textarea.form-control {
+  resize: none;
+  min-height: 120px;
+}
+
+/* Submit Button */
+.btn {
+  background: linear-gradient(90deg, #fa4301, #ff6600);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 30px;
+  padding: 12px 40px;
   border: none;
+  transition: all 0.4s ease;
+  box-shadow: 0 6px 15px rgba(250, 67, 1, 0.3);
+}
+
+.btn:hover {
+  background: linear-gradient(90deg, #ff6600, #fa4301);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(250, 67, 1, 0.4);
+}
+
+/* Row spacing */
+.row.g-3 {
+  row-gap: 20px;
 }

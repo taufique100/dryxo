@@ -14,6 +14,7 @@
 }
 
 .section-title {
+  color: orangered;
   position: relative;
   z-index: 1;
 }

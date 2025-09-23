@@ -8,17 +8,17 @@ const PadHome = () => {
    
       const navigate = useNavigate();
       const handleClick = () => {
-        navigate("/pad_atm", { state: { data: [1, 2, 34, 5] } });
+        navigate("/pad_atm");
       };
 
   return (
     <section className="community-section py-5">
       <Container>
         {/* Background Text */}
-        <h1 className="background-text text-center">PAD ATM</h1>
+        <h1 className=" text-center">PAD ATM</h1>
 
         {/* Main Heading */}
-        <h5 className="main-heading text-center">
+        <h5 className="text-warning text-center">
           Community Empowerment Initiatives
           <p className="dot-line">--------------------</p>
         </h5>
@@ -37,12 +37,12 @@ const PadHome = () => {
       </Container>
 
       {/* Image Section */}
-      <Container className="image-section mt-5">
-        <Row className="g-4">
+      <Container className="image-section ">
+        <Row className="g-2">
           {images
             .filter((img) => img.id !== 13)
             .map((img) => (
-              <Col key={img.id} xs={12} sm={6} md={4} lg={3}>
+              <Col key={img.id} xs={12} sm={6} md={4} lg={3}  >
                 <div className="gallery-card text-center">
                   <img
                     src={img.src}
