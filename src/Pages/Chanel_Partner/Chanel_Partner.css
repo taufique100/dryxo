@@ -111,3 +111,14 @@ textarea.form-control {
 .row.g-3 {
   row-gap: 20px;
 }
+
+@media (max-width:780px) {
+  .dryxo{
+    font-size: 24px;
+  }
+  .why-title{
+    margin-top: 10px;
+    font-size: 35px;
+  }
+  
+}

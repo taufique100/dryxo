@@ -3,6 +3,9 @@
     width: 100%;
     
 }
+.title{
+    color: orangered;
+}
 
 @media (max-width:450px) {
     .img{
@@ -11,7 +14,6 @@
     }
     .feature{
         margin-left: 10px;
-        color: orange;
     }
     .feature p{
     font-size: 13px;
@@ -21,7 +23,7 @@
 @media (min-width:950px) {
     .feature{
     margin-left: 300px;
-    color: orange
+ 
 }
 
 .feature p{

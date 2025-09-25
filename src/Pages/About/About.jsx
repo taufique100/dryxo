@@ -4,10 +4,10 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // Assets
-import mission from "../../assets/mission.jpg";
+import mission from "../../assets/product1.jpg";
 import irfan from "../../assets/irfan.jpg";
 import samina from "../../assets/samina.jpg";
-import product from "../../assets/dryxo1product-1.png";
+import product from "../../assets/padsBlogs1.jpg";
 import video from "../../assets/about-video.mp4";
 import { useLocation } from "react-router-dom";
 import "./About.css";
@@ -60,11 +60,12 @@ const About = () => {
       <section className="vision-mission py-5 bg-light">
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-md-6 text-center mb-4">
+            <div className="col-md-6 text-center mb-2">
               <img
                 src={mission}
                 alt="Vision"
                 className="img-fluid rounded shadow-lg"
+               
               />
             </div>
             <div className="col-md-6">

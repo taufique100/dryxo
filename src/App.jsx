@@ -11,6 +11,7 @@ import Blogs from "./Pages/Blogs/Blogs";
 import Pad_ATM from "./Pages/Pad_ATM/Pad_ATM";
 import Chanel_Partner from "./Pages/Chanel_Partner/Chanel_Partner";
 import { BlogDetailsPage } from "./Pages/Blogs/BlogDetailsPage";
+import ParchaseDetails from "./Pages/Products/Purchase/ParchaseDetails";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route path="home" element={<Home />} />
             <Route path="products" element={<Products />} />
+            <Route path="products/Parchase-Details" element={<ParchaseDetails />} />
             <Route path="media" element={<Media />} />
             <Route path="blog" element={<Blogs />} />
             <Route path="blog/blog-details" element={<BlogDetailsPage />} />

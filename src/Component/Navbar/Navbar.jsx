@@ -58,7 +58,7 @@ const Navbars = () => {
                 About
               </Nav.Link>
               <Nav.Link as={NavLink} to="/chanel_partner">
-                Chanel Partner
+                Channel Partner
               </Nav.Link>
               <Nav.Link as={NavLink} to="/contact">
                 Contact Us

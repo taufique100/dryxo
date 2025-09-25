@@ -36,14 +36,14 @@ const Safety = () => {
     <>
       <section className="safety-section bg-white text-center">
         <Container>
-          <Row className="g-4">
+          <Row className="g-4 my-0">
             {features.map((feature, index) => (
               <Col xs={6} md={3} key={index}>
                 <div className="feature-card">
                   <img
                     src={feature.img}
                     alt={feature.subtitle}
-                    className="safety-img mb-3"
+                    className="safety-img"
                   />
                   <h3 className="fw-bold">{feature.title}</h3>
                   <h5 className="fw-bold">{feature.subtitle}</h5>

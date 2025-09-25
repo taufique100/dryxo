@@ -37,8 +37,8 @@ const PadHome = () => {
       </Container>
 
       {/* Image Section */}
-      <Container className="image-section ">
-        <Row className="g-2">
+      <Container className="image-section mt-3 ">
+        <Row className="images g-2">
           {images
             .filter((img) => img.id !== 13)
             .map((img) => (
