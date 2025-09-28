@@ -19,7 +19,7 @@ function App() {
       <div className="app">
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Navigate to="home" replace />} />
+            <Route index element={<Navigate to="home" />} />
             <Route index path="home" element={<Home />} />
             <Route path="products" element={<Products />} />
             <Route path="products/Parchase-Details" element={<ParchaseDetails />} />
