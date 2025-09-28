@@ -7,7 +7,7 @@ const Contact = () => {
     <section className="py-5 bg-light">
       <Container>
         <h1
-          className="text-center text-uppercase mb-4 ">
+          className="text-center text-uppercase mb-4 mt-5">
           Drop Us A Message
         </h1>
         <Row className="g-4">

@@ -1,7 +1,9 @@
 import React from 'react'
 import "./Products.css";
-import banner from "../../assets/productBanner.jpg"
+import banner from "../../assets/product1.jpg"
 import { PadProduct } from './PadProduct';
+import Parchase from './Purchase/Parchase';
+
 
 
 const Products = () => {
@@ -14,10 +16,13 @@ const Products = () => {
         <h2 className="head mb-5">Dryxo Sanitary Pad</h2>
       </div>
       <PadProduct />
-      
+      <div className="purchase">
+        <Parchase />
+      </div>
+
       <div className="feature mb-5">
         <h2 className="title mb-3">PRODUCT FEATURES</h2>
-        <p className='mb-5'>
+        <p className=" mb-5">
           Double Perforated Top sheet quickly absorbs the flow and helps keep
           you dry.
           <br />

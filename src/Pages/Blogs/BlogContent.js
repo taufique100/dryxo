@@ -1,7 +1,7 @@
 
-import blog1 from "../../assets/mission2.jpg";
+import blog1 from "../../assets/product1.jpg";
 import blog2 from "../../assets/padsBlogs.jpg";
-import blog3 from "../../assets/padsBlogs.jpg";
+import blog3 from "../../assets/padsBlogs1.jpg";
 
 
 export const blogContent = [

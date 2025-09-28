@@ -39,12 +39,11 @@ const ProductOverview = () => {
 
   return (
     <div className="products-section text-center py-5">
-      {/* Background Title */}
-      <h1 className="section-bg-title">Our Products</h1>
+      {/* <h1 className="section-bg-title">Our Products</h1> */}
 
       {/* Main Title */}
-      <h3 className="fw-bold text-danger section-title">Product Overview</h3>
-      <hr className="title-underline" />
+      <h3 className=" section-title">Product Overview</h3>
+      <hr className="" />
 
       <div className="container mt-5">
         <Carousel interval={3000} indicators={true} controls={true}>

@@ -5,11 +5,16 @@ import join from "../../assets/join.jpg";
 
 const Chanel_Partner = () => {
   return (
+<<<<<<< HEAD
     <div className="partner-page">
       <div className="container channerpartner_container my-5">
+=======
+    <div className="partner-page mt-5">
+      <div className="container my-5 mt-5">
+>>>>>>> 3fc3d9c71537e26d66fe60d08db89d6c7b4b833a
         <div className="row align-items-start">
           {/* Image */}
-          <div className="col-md-5 text-center">
+          <div className="col-md-5 text-center mt-5">
             <div className="image-box">
               <img src={join} alt="Dryxo" className="img-fluid shadow-lg" />
               <h4 className="logo-text">DRYXO</h4>
@@ -18,10 +23,10 @@ const Chanel_Partner = () => {
 
           {/* Right Content */}
           <div className="col-md-7">
-            <h2 className="section-title">
+            <h2 className="section-title mt-5">
               Join the Dryxo Empowerment Journey
             </h2>
-            <p className="section-text">
+            <p className="section-text ">
               At Dryxo, we’re not just selling sanitary pads—we’re empowering
               women to embrace their health with dignity. By partnering with us,
               you’ll help bring eco-friendly, high-quality products to women
@@ -99,7 +104,7 @@ const Chanel_Partner = () => {
                 ></textarea>
               </div>
             </div>
-            <button type="submit" className="btn btn-dark mt-4 px-5 py-2">
+            <button type="submit" className="btn  mt-4 px-5 py-2">
               Submit Request
             </button>
           </form>

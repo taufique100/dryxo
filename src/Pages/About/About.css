@@ -80,3 +80,10 @@ video {
 .para{
   font-weight: 400;
 }
+
+@media (max-width:968px) {
+  .section-title{
+    margin-top: 80px;
+  }
+  
+}

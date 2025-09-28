@@ -17,9 +17,9 @@ const Media = () => {
     <div className="container py-5">
       {/* Media Highlights Section */}
       <div className="text-center mb-4">
-        <h1 className="title">MEDIA HIGHLIGHTS</h1>
+        <h1 className="title mt-5">MEDIA HIGHLIGHTS</h1>
         <div className="divider">
-          -------------------------------------------
+          -----------------------------------------
         </div>
       </div>
 
@@ -71,6 +71,7 @@ const Media = () => {
                 : "btn-outline-orangered"
             }`}
             onClick={() => setActiveCategory(monu)}
+            id="one"
           >
             {monu}
           </button>
@@ -79,8 +80,8 @@ const Media = () => {
 
       <div className="row">
         {filteredItems.map((item, idx) => (
-          <div key={idx} className="col-12 col-sm-6 col-md-4 mb-4">
-            <div className="card border-0 shadow-sm">
+          <div key={idx} className="col-12 col-sm-6 col-md-4 mb-1 g-3">
+            <div className=" card border-0 shadow-sm ">
               <img
                 src={item?.src}
                 alt={`Gallery ${item?.id}`}
