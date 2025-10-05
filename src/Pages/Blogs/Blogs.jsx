@@ -16,7 +16,7 @@ const Blogs = () => {
   };
 
   return (
-    <div className="container my-1">
+    <div className="container py-5">
       <h1 className="text-center mb-4">Latest Blogs</h1>
       <div className="row">
         {blogContent.map((blog) => (

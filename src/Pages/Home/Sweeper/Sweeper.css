@@ -1,26 +1,4 @@
-.slider-img {
-  width: 100%;
-  height: auto;       
-  object-fit: cover;   
-}
-
-@media (max-width: 768px) {
-  .slider-img {
-    height: 250px;   
-     object-fit: cover;    
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1200px) {
-  .slider-img {
-    height: 400px; 
-     object-fit: cover;      
-  }
-}
-
-@media (min-width: 1201px) {
-  .slider-img {
-    height: 600px;   
-     object-fit: cover;   
-  }
-}
+/* .slider-img{
+  height: 500px;
+  object-fit: cover;
+} */

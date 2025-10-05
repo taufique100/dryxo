@@ -26,7 +26,7 @@ const ParchaseDetails = () => {
   };
 
   return (
-    <div className="product-details-page py-5">
+    <div className="product-details-page py-5 border mb-3">
       {/* Back Button */}
       <div className="back-button" onClick={handleBack}>
         <FaArrowAltCircleLeft size={28} />
@@ -37,15 +37,7 @@ const ParchaseDetails = () => {
       <div className="product-details-container">
         {/* Image */}
         <div className="product-image">
-          <img src={itemData.image} alt={itemData.title} />
-          <div className="buttons m-3 ">
-            <button className="btn btn-primary btn-sm mt-auto custom-btn m-1">
-              Buy Now
-            </button>
-            <button className="btn btn-primary btn-sm mt-auto custom-btn m-1">
-              Add Card
-            </button>
-          </div>
+          <img src={itemData.image} alt={itemData.title} className="border" />
         </div>
 
         {/* Info */}
@@ -56,6 +48,14 @@ const ParchaseDetails = () => {
           </div>
           <h1 className="product-title">{itemData.title}</h1>
           <p className="product-description">{itemData.description}</p>
+          <div className="buttons mt-5 ">
+            <button className="btn btn-primary btn-sm mt-auto custom-btn m-1">
+              Buy Now
+            </button>
+            <button className="btn btn-primary btn-sm mt-auto custom-btn m-1">
+              Add Card
+            </button>
+          </div>
         </div>
       </div>
     </div>
