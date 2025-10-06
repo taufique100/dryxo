@@ -1,7 +1,8 @@
 import React from "react";
 import "./Parchase.css"; // custom styling
 import { useNavigate } from "react-router-dom";
-import ParchaseContent from "../Purchase/ParchaseContent"; // fixed import
+import ParchaseContent from "../Purchase/ParchaseContent"; 
+import { CiStar } from "react-icons/ci";
 
 const Parchase = () => {
   
@@ -25,7 +26,10 @@ const Parchase = () => {
               />
               <div className="card-body d-flex flex-column">
                 <h5 className="card-title">{item.title}</h5>
-                <p className="card-text">{item.text}</p>
+                <p className="card-text fw-bold text-success">
+                  {item.text}
+                 <CiStar />
+                </p>
                 <button
                   onClick={() => redirectParchaseDetailsPage(item.id)}
                   className="btn btn-primary btn-sm mt-auto custom-btn"

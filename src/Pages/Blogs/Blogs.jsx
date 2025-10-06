@@ -16,7 +16,11 @@ const Blogs = () => {
   };
 
   return (
+<<<<<<< HEAD
     <div className="container my-2">
+=======
+    <div className="container py-5">
+>>>>>>> 6163af884bfcc22140a931e0a0c2147dbe3729a1
       <h1 className="text-center mb-4">Latest Blogs</h1>
       <div className="row">
         {blogContent.map((blog) => (

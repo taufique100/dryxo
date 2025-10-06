@@ -15,14 +15,17 @@ const ContactBar = () => {
             md="auto"
             className="contact-info d-flex flex-wrap gap-3"
           >
-            <div className="contact-item d-flex align-items-center gap-1">
+            <div className="contact-item d-flex align-items-center gap-1 px-2">
               <MdAddCall className="contact-icon" />
               <span>+91 9315522533</span>
-            </div>
-            <div className="contact-item d-flex align-items-center gap-1">
-              <MdOutlineEmail className="contact-icon" />
+              <p className="px-2">{" "}</p>
+              <MdOutlineEmail className="contact-icon " />
               <span>dryxo179@gmail.com</span>
             </div>
+            {/* <div className="contact-item d-flex align-items-center gap-1">
+              <MdOutlineEmail className="contact-icon" />
+              <span>dryxo179@gmail.com</span>
+            </div> */}
             <div className="contact-item">
               <span>GSTIN/UIN: 09ABGCS0982H1ZL</span>
             </div>

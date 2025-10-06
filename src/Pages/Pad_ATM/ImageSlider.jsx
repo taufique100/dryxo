@@ -45,7 +45,7 @@ const ImageSlider = () => {
   }
 
   return (
-    <div className="container py-4 ">
+    <div className="container py-2 ">
       <Carousel indicators={true} controls={true} interval={3000} className="mt-1" >
         {groupedImages.map((group, index) => (
           <Carousel.Item key={index}>
