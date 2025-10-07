@@ -5,10 +5,17 @@
 }
 
 .header_position{
-  position: fixed;
+  position: sticky;
+  top: 0;
   width: 100%;
   z-index: 999;
 }
 .outlet_wrapper{
-  margin-top: 5rem;
+  margin-top: 2rem;
+}
+
+@media screen and (max-width:768px) {
+  .outlet_wrapper{
+    margin-top: 2rem;
+  }
 }

@@ -6,11 +6,11 @@ import { motion } from "framer-motion";
 
 const Chanel_Partner = () => {
   return (
-    <div className="partner-page mt-5">
-      <div className="container my-5 mt-5">
+    <div className="partner-page py-2">
+      <div className="container my-1 mt-1">
         <div className="row align-items-start">
           {/* Image */}
-          <div className="col-md-5 text-center mt-5">
+          <div className="col-md-5 text-center mt-2">
             <motion.div
               initial={{ opacity: 0, x: -100 }}
               transition={{ duration: 1.5 }}

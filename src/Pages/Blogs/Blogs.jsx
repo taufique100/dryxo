@@ -16,8 +16,8 @@ const Blogs = () => {
   };
 
   return (
-    <div className="container py-5">
-      <h1 className="text-center mb-4">Latest Blogs</h1>
+    <div className="container py-2">
+      <h1 className="text-center mb-4 py-2">Latest Blogs</h1>
       <div className="row">
         {blogContent.map((blog) => (
           <div key={blog.id} className="col-md-4 mb-4">

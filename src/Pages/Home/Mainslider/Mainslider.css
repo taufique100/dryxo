@@ -31,7 +31,7 @@
 
 @media (max-width: 768px) {
   .slider-img {
-    height: 60vh;
+    height: 300px;
   }
   .content-box h3 {
     font-size: 1.5rem;

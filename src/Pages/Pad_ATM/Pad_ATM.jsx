@@ -6,7 +6,7 @@ import ImageSlider from './ImageSlider';
 const Pad_ATM = () => {
   return (
     <>
-      <div className="main py-5">
+      <div className="main py-0">
         <div className="padatm-header d-flex justify-content-center align-items-center">
           <h1 className="PAD  fw-bold">Pad ATM</h1>
         </div>

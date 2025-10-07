@@ -4,10 +4,10 @@ import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 
 const Contact = () => {
   return (
-    <section className="py-5 bg-light">
+    <section className="py-2 bg-light ">
       <Container>
         <h1
-          className="text-center text-uppercase mb-4 mt-5">
+          className="text-center text-uppercase mb-4 mt-2">
           Drop Us A Message
         </h1>
         <Row className="g-4">

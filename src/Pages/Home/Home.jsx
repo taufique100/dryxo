@@ -14,7 +14,7 @@ import Sayri from "./Sayri/Sayri";
 const Home = () => {
   return (
     <>
-      <div>
+      <div className="mt-0 py-0">
         <Sweeper />
         <PadProduct />
         <WhyUs />

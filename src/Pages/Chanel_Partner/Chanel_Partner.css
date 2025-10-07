@@ -83,6 +83,10 @@
   box-shadow: 0 0 8px rgba(250, 67, 1, 0.3);
 }
 
+<<<<<<< HEAD
+.channerpartner_container{
+  margin-top: 6rem !important;
+=======
 /* Textarea */
 textarea.form-control {
   resize: none;
@@ -121,4 +125,5 @@ textarea.form-control {
     font-size: 35px;
   }
   
+>>>>>>> 3fc3d9c71537e26d66fe60d08db89d6c7b4b833a
 }

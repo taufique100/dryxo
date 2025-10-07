@@ -14,8 +14,8 @@ const About = () => {
   const location = useLocation();
   console.log("location", location);
   return (
-    <div id="about" className="about-page">
-      <section className="who-we-are py-5">
+    <div id="about" className="about-page py-2">
+      <section className="who-we-are py-2">
         <div className="container text-center">
           <h2 className="section-title mb-4">WHO WE ARE</h2>
           <div className="para text-start">

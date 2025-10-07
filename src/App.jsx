@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Route, Router, Routes } from "react-router-dom";
+import { Navigate, Route, Router, Routes } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import Layout from "./Component/Layout/Layout";
 import Contact from "./Pages/Contact/Contact";
@@ -19,7 +19,8 @@ function App() {
       <div className="app">
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route path="home" element={<Home />} />
+            <Route index element={<Navigate to="home" />} />
+            <Route index path="home" element={<Home />} />
             <Route path="products" element={<Products />} />
             <Route path="products/Parchase-Details" element={<ParchaseDetails />} />
             <Route path="media" element={<Media />} />

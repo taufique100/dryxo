@@ -14,10 +14,10 @@ const Media = () => {
       : galleryItems.filter((item) => item.category === activeCategory);
 
   return (
-    <div className="container py-5">
+    <div className="container py-2">
       {/* Media Highlights Section */}
       <div className="text-center mb-4">
-        <h1 className="title mt-5">MEDIA HIGHLIGHTS</h1>
+        <h1 className="title mt-2">MEDIA HIGHLIGHTS</h1>
         <div className="divider">
           -----------------------------------------
         </div>
