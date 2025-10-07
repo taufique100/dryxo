@@ -1,8 +1,6 @@
-//
-
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import { motion } from "framer-motion";
 // Assets
 import mission from "../../assets/product1.jpg";
 import irfan from "../../assets/irfan.jpg";
@@ -60,14 +58,19 @@ const About = () => {
       <section className="vision-mission py-5 bg-light">
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-md-6 text-center mb-2">
+            <motion.div
+              initial={{ opacity: 0, x: -100 }}
+              transition={{ duration: 1.5 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="col-md-6 text-center mb-2"
+            >
               <img
                 src={mission}
                 alt="Vision"
                 className="img-fluid rounded shadow-lg"
-               
               />
-            </div>
+            </motion.div>
             <div className="col-md-6">
               <h4 className="fw-bold text-orange">DRYXO’S VISION</h4>
               <p>
@@ -96,10 +99,24 @@ const About = () => {
           </div>
 
           <div className="row text-center">
-            <div className="col-md-6 mb-4">
-              <img src={irfan} alt="Founder" className="founder-img mb-3" />
+            <motion.div className="col-md-6 mb-4">
+              <motion.img
+                initial={{ opacity: 0, x: -100 }}
+                transition={{ duration: 1.5 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                src={irfan}
+                alt="Founder"
+                className="founder-img mb-3"
+              />
               <h5 className="fw-bold text-orange">Mohammad Irfan Khan</h5>
-              <p className="text-muted text-start">
+              <motion.p
+                initial={{ opacity: 0, y: 100 }}
+                transition={{ duration: 2 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-muted text-start"
+              >
                 As I look back on our journey at DRYXO, I am filled with pride
                 and gratitude for the progress we’ve made. Our commitment to
                 excellence, innovation, and teamwork has brought us to new
@@ -109,12 +126,26 @@ const About = () => {
                 lack of access to quality period products. We’re here to support
                 every woman on her journey, to make sure that periods are never
                 a hindrance, only a phase of growth and empowerment.
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
             <div className="col-md-6 mb-4">
-              <img src={samina} alt="Founder" className="founder-img mb-3" />
+              <motion.img
+                initial={{ opacity: 0, y: -100 }}
+                transition={{ duration: 1.5 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                src={samina}
+                alt="Founder"
+                className="founder-img mb-3"
+              />
               <h5 className="fw-bold text-orange">Samina Afroz</h5>
-              <p className="text-muted text-start">
+              <motion.p
+                initial={{ opacity: 0, x: 100 }}
+                transition={{ duration: 2 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="text-muted text-start"
+              >
                 In the face of challenges, we’ve not only persevered but
                 thrived, driven by our dedication to providing women with the
                 best care and comfort. Our journey has taught us the power of
@@ -124,7 +155,7 @@ const About = () => {
                 created to be more than just a product; it’s a partner in every
                 woman’s life, standing by her side during one of the most
                 intimate and defining parts of womanhood.
-              </p>
+              </motion.p>
             </div>
           </div>
         </div>
@@ -150,7 +181,11 @@ const About = () => {
               </p>
             </div>
             <div className="col-md-5 text-center">
-              <img
+              <motion.img
+                initial={{ opacity: 0, x: 100 }}
+                transition={{ duration: 1.5 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
                 src={product}
                 alt="Dryxo Product"
                 className="img-fluid rounded "
@@ -168,7 +203,13 @@ const About = () => {
             Manufacturing at DRYXO
           </h3>
           <div className="row align-items-center">
-            <div className="col-md-6 text-center mb-3">
+            <motion.div
+              initial={{ opacity: 0, x: -100 }}
+              transition={{ duration: 1.5 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="col-md-6 text-center mb-3"
+            >
               <video
                 src={video}
                 className="img-fluid rounded shadow-lg"
@@ -177,7 +218,7 @@ const About = () => {
               >
                 Your browser does not support the video .
               </video>
-            </div>
+            </motion.div>
             <div className="col-md-6">
               <p>
                 Supported by latest, state-of-art technology, DRYXO has set up

@@ -2,6 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Chanel_Partner.css";
 import join from "../../assets/join.jpg";
+import { motion } from "framer-motion";
 
 const Chanel_Partner = () => {
   return (
@@ -10,10 +11,24 @@ const Chanel_Partner = () => {
         <div className="row align-items-start">
           {/* Image */}
           <div className="col-md-5 text-center mt-5">
-            <div className="image-box">
+            <motion.div
+              initial={{ opacity: 0, x: -100 }}
+              transition={{ duration: 1.5 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="image-box"
+            >
               <img src={join} alt="Dryxo" className="img-fluid shadow-lg" />
-              <h4 className="logo-text">DRYXO</h4>
-            </div>
+              <motion.h4
+                initial={{ opacity: 0, x: -100 }}
+                transition={{ duration: 1.5 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="logo-text"
+              >
+                DRYXO
+              </motion.h4>
+            </motion.div>
           </div>
 
           {/* Right Content */}
