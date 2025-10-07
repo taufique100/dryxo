@@ -15,9 +15,10 @@ const Parchase = () => {
   return (
     <div className="container mt-4 mb-5">
       <h1 className="text-center mb-4">OUR PRODUCTS</h1>
-      <div className="row g-4">
+      <div className="row g-4 gap-2 mx-2">
         {ParchaseContent.map((item) => (
-          <div key={item.id} className="col-6 col-md-4 col-lg-3">
+          <div key={item.id} className=" product_card">
+          {/* <div key={item.id} className="col-6 col-md-4 col-lg-3 product_card"> */}
             <div className="card custom-card h-100 ">
               <img
                 className="card-img-top"

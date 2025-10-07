@@ -10,9 +10,6 @@ import ContactBar from "../ContactBar/ContactBar";
 const Navbars = () => {
   return (
     <>
-    <div className="contactbaer">
-      <ContactBar />
-    </div>
       <Navbar
         expand="lg"
         bg="white"

@@ -23,6 +23,7 @@ export const PadProduct = () => {
             className="img-fluid rounded img2"
           />
         </div>
+        
       </div>
     </div>
   );
