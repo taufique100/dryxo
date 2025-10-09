@@ -4,6 +4,7 @@ import banner from "../../assets/product1.jpg"
 import { PadProduct } from './PadProduct';
 import Parchase from './Purchase/Parchase';
 import ProductCard from './Purchase/ProductCard';
+import { motion } from 'framer-motion';
 
 const sanitaryProducts = [
   {
@@ -54,12 +55,20 @@ const sanitaryProducts = [
 const Products = () => {
   return (
     <>
-      <div style={{marginTop:'0rem'}} className=''>
+      <div style={{ marginTop: "0rem" }} className="">
         {/* <div className="banner">
         <img src={banner} alt="" className="img" />
       </div> */}
         <div className=" head text-center mt-4 mb-3">
-          <h2 className="head mb-5">Dryxo Sanitary Pad</h2>
+          <motion.h2
+            initial={{ opacity: 0, y: -100 }}
+            transition={{ duration: 1 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="head mb-5"
+          >
+            Dryxo Sanitary Pad
+          </motion.h2>
         </div>
         {/* <PadProduct /> */}
         <div className="purchase mb-3">
@@ -73,8 +82,8 @@ const Products = () => {
             Double Perforated Top sheet quickly absorbs the flow and helps keep
             you dry.
             <br />
-            Fresh Fragrance locks the bad odour to keep you feeling fresh all day
-            long.
+            Fresh Fragrance locks the bad odour to keep you feeling fresh all
+            day long.
             <br />
             Soft-edge arms that prevent and control rashes
             <br />

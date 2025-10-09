@@ -14,6 +14,7 @@ import img10 from "../../assets/ws-5.jpg";
 import img11 from "../../assets/ws-6.jpg";
 import img12 from "../../assets/ws-7.jpg";
 import img13 from "../../assets/ws-8.jpg";
+import { motion } from "framer-motion";
 
 const images = [img1,img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12,img13,];
 
@@ -45,8 +46,19 @@ const ImageSlider = () => {
   }
 
   return (
-    <div className="container py-2 ">
-      <Carousel indicators={true} controls={true} interval={3000} className="mt-1" >
+    <motion.div
+      initial={{ opacity: 0, x: -100 }}
+      transition={{ duration: 1.5 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      className="container py-2 "
+    >
+      <Carousel
+        indicators={true}
+        controls={true}
+        interval={3000}
+        className="mt-1"
+      >
         {groupedImages.map((group, index) => (
           <Carousel.Item key={index}>
             <div className="d-flex justify-content-center">
@@ -63,7 +75,7 @@ const ImageSlider = () => {
           </Carousel.Item>
         ))}
       </Carousel>
-    </div>
+    </motion.div>
   );
 };
 

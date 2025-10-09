@@ -1,15 +1,22 @@
 import React from 'react'
 import "./Pad_ATM.css"
 import ImageSlider from './ImageSlider';
+import { motion } from 'framer-motion';
 
 
 const Pad_ATM = () => {
   return (
     <>
       <div className="main py-0">
-        <div className="padatm-header d-flex justify-content-center align-items-center">
+        <motion.div
+          initial={{ opacity: 0, y: -100 }}
+          transition={{ duration: 1 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="padatm-header d-flex justify-content-center align-items-center"
+        >
           <h1 className="PAD  fw-bold">Pad ATM</h1>
-        </div>
+        </motion.div>
         <div className="heading">
           <div className="d-flex align-items-center justify-content-center text-center">
             {/* Left Line */}
@@ -17,15 +24,27 @@ const Pad_ATM = () => {
               <hr className="support-line" />
             </div>
 
-            <div className="px-3 py-2 support-box">
+            <motion.div
+              initial={{ opacity: 0, y: 100 }}
+              transition={{ duration: 1 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="px-3 py-2 support-box"
+            >
               Supporting PAD-ATM: A Step Towards Menstrual Dignity
-            </div>
+            </motion.div>
 
             <div className="flex-grow-1 d-none d-sm-block">
               <hr className="support-line" />
             </div>
           </div>
-          <div className="writing">
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            transition={{ duration: 1.8 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="writing"
+          >
             <p>
               At Dryxo, we’re honored to support the PAD-ATM initiative by Glad
               Bharat Foundation, which brings affordable, accessible sanitary
@@ -46,7 +65,7 @@ const Pad_ATM = () => {
               she is. Together, let’s support a future where menstrual health is
               a priority for all.
             </p>
-          </div>
+          </motion.div>
         </div>
         <div className="slider">
           <ImageSlider />

@@ -40,7 +40,7 @@ const PadHome = () => {
       <Container className="image-section mt-3 ">
         <Row className="images g-2">
           {images
-            .filter((img) => img.id !== 13)
+            .filter((img) => ![2, 10, 11, 13, 3, 4, 5, 6, 7, 8, 9, 15, 12].includes(img.id))
             .map((img) => (
               <Col key={img.id} xs={12} sm={6} md={4} lg={3}  >
                 <div className="gallery-card text-center">
