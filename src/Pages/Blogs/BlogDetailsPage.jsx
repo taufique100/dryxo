@@ -27,7 +27,7 @@ export const BlogDetailsPage = () => {
   };
 
   return (
-    <div className="blog-fullscreen py-5 pt-5">
+    <div className="blog-fullscreen py-2">
       
       {/* Back Button */}
       <div className="back-button" onClick={handleBack}>

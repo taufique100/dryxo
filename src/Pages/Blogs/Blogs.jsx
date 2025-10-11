@@ -7,6 +7,7 @@ import { RiMenu2Fill } from "react-icons/ri";
 import { FaRegHeart, FaRegCommentDots } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { blogContent } from "./BlogContent.js";
+import { motion } from "framer-motion";
 
 const Blogs = () => {
   const navigate = useNavigate();
@@ -16,8 +17,16 @@ const Blogs = () => {
   };
 
   return (
-    <div className="container py-5">
-      <h1 className="text-center mb-4">Latest Blogs</h1>
+    <div className="container py-2">
+      <motion.h1
+        initial={{ opacity: 0, y: -100 }}
+        transition={{ duration: 0.8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-center mb-4 py-2"
+      >
+        Latest Blogs
+      </motion.h1>
       <div className="row">
         {blogContent.map((blog) => (
           <div key={blog.id} className="col-md-4 mb-4">
@@ -54,9 +63,10 @@ const Blogs = () => {
                       <FaRegCommentDots /> 8
                     </span>
                   </div>
-                 <button
+                  <button
                     onClick={() => redirectBlogDetailsPage(blog.id)}
-                    className="btn btn-sm read-more-btn" >
+                    className="btn btn-sm read-more-btn"
+                  >
                     Read More →
                   </button>
                 </div>

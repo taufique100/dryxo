@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import "./Media.css";
 import st1 from "../../assets/st-1.jpg";
 import galleryItems from "./galleryItems";
+import { motion } from "framer-motion";
 
-const btnList = ["All", "School Students", "Social Work"];
+const btnList = ["All", "Social Work", "School Students"];
 
 const Media = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -14,18 +15,27 @@ const Media = () => {
       : galleryItems.filter((item) => item.category === activeCategory);
 
   return (
-    <div className="container py-5">
+    <div className="container py-2">
       {/* Media Highlights Section */}
       <div className="text-center mb-4">
-        <h1 className="title mt-5">MEDIA HIGHLIGHTS</h1>
-        <div className="divider">
-          -----------------------------------------
-        </div>
+        <motion.h1
+          initial={{ opacity: 0, y: -100 }}
+          transition={{ duration: 1 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="title mt-2">
+          MEDIA HIGHLIGHTS
+        </motion.h1>
+        <div className="divider">-----------------------------------------</div>
       </div>
 
       <div className="content row align-items-start">
         <div className="col-md-6 mb-4 mb-md-0 text-center">
-          <img
+          <motion.img
+            initial={{ opacity: 0, x: -100 }}
+            transition={{ duration: 1.5 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             src={st1}
             alt="Dryxo Media"
             className="img-fluid rounded shadow"

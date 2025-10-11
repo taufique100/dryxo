@@ -2,7 +2,7 @@ import React from "react";
 import "./Safety.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
-
+import { motion } from "framer-motion"; 
 import safety1 from "../../../assets/safety1.png";
 import safety2 from "../../../assets/safety2.png";
 import safety3 from "../../../assets/safety3.png";
@@ -40,7 +40,11 @@ const Safety = () => {
             {features.map((feature, index) => (
               <Col xs={6} md={3} key={index}>
                 <div className="feature-card">
-                  <img
+                  <motion.img
+                    initial={{ opacity: 0, y: -100 }}
+                    transition={{ duration: 1.4 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
                     src={feature.img}
                     alt={feature.subtitle}
                     className="safety-img"

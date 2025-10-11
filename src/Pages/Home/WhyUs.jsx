@@ -5,6 +5,7 @@ import pad2 from "../../assets/padmul.jpg";
 // import Button from "../../Component/Form/Button";
 import { useNavigate } from "react-router-dom";
 import Safety from "./Safety/Safety";
+import { motion } from "framer-motion";
 
 const WhyUs = () => {
   const navigate = useNavigate();
@@ -16,7 +17,13 @@ const WhyUs = () => {
     <section className="container py-5 whyus-section w-100 mt-5 ">
       <div className="row align-items-center">
         {/* Left Side - Images */}
-        <div className="col-md-6 text-center">
+        <motion.div
+          initial={{ opacity: 0, x: -100 }}
+          transition={{ duration: 1.5 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          className="col-md-6 text-center"
+        >
           <div className="row">
             <div className="col-6 mb-3">
               <img
@@ -40,7 +47,7 @@ const WhyUs = () => {
               />
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Side - Content */}
         <div className="col-md-6 position-relative">

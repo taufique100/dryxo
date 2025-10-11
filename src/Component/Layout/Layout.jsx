@@ -15,7 +15,7 @@ const Layout = () => {
         <div className="header_position">
           <Navbars />
         </div>
-        <div className="outlet_wrapper">
+        <div className="outlet_wrapper mt-0">
           <Outlet />
         </div>
         <Footer />
