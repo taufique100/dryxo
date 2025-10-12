@@ -219,13 +219,37 @@ const updateQuantity = (index, action) => {
                   />
                 </Form.Group>
               </Col>
+              <Col md={6}>
+                <Form.Group>
+                  <Form.Label>District</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="district"
+                    value={form.district}
+                    onChange={handleChange}
+                    placeholder="South Delhi"
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group>
+                  <Form.Label>State</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="district"
+                    value={form.district}
+                    onChange={handleChange}
+                    placeholder="Delhi"
+                  />
+                </Form.Group>
+              </Col>
             </Row>
           </Form>
         </section>
       </Modal.Body>
 
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+        <Button variant="primary" onClick={handleClose}>
           Cancel
         </Button>
         <Button
