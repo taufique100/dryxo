@@ -42,7 +42,7 @@ const ProductCard = ({ productList = [] }) => {
                                 <div className="footer_card_section d-flex align-items-center justify-content-between">
                                     <div className="price_sec">
                                         <p className="mb-0 text-start">Price</p>
-                                        <p className="mb-0">${item?.price}</p>
+                                        <p className="mb-0">₹{item?.price}</p>
                                     </div>
                                     <Button onClick={()=>addProduct(idx+1)}>Add to Cart</Button>
                                 </div>
