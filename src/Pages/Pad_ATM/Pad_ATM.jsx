@@ -45,7 +45,7 @@ const Pad_ATM = () => {
             viewport={{ once: true }}
             className="writing"
           >
-            <p>
+            <p className='para'>
               At Dryxo, we’re honored to support the PAD-ATM initiative by Glad
               Bharat Foundation, which brings affordable, accessible sanitary
               pads to women in remote, underserved areas. This initiative is
@@ -55,7 +55,7 @@ const Pad_ATM = () => {
               and girls can access sanitary pads with ease, helping them feel
               supported and secure throughout their menstrual cycle.
             </p>
-            <p>
+            <p className='para'>
               Through PAD-ATM, the Glad Bharat Foundation, along with local
               NGOs, is fostering a healthier future by encouraging the use of
               safe, hygienic menstrual products over traditional, often unsafe

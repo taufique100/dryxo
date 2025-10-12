@@ -7,7 +7,7 @@
   line-height: 1.7;
 }
 
-
+/* 
 .back-button {
   display: inline-flex;
   align-items: center;
@@ -20,7 +20,25 @@
   font-size: 14px;
   margin: 0 7% 10px;  
   transition: background 0.3s ease;
-}
+} */
+
+ .back-button{
+    align-items: center;
+    gap: 8px;
+    color:#fff;
+    cursor: pointer;
+    width: 80px;
+    font-weight: 500;
+    border-radius: 15px;
+    margin: 0 5%;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: rgba(0, 0, 0, 0.65);
+   font-size: 14px;
+} 
+
 .back-button:hover {
   background: rgba(0, 0, 0, 0.85);
 }
@@ -63,7 +81,7 @@
 }
 
 .blog-title {
-  font-size: 34px;
+  font-size: 30px;
   font-weight: 600;
   margin: 15px 0;
   line-height: 1.3;

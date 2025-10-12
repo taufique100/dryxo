@@ -13,13 +13,16 @@
     margin-top: 20px;
 }
 
+.para{
+  font-size: 14px;
+}
 
 .support-box {
   background-color: hsla(324, 90%, 45%, 0.788); 
   color: white;
   font-weight: 600;
   border-radius: 2px;
-  font-size: 1rem;
+  font-size: 16px;
   white-space: nowrap;
 }
 

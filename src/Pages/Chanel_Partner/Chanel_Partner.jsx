@@ -114,7 +114,7 @@ const Chanel_Partner = () => {
                 ></textarea>
               </div>
             </div>
-            <button type="submit" className="btn  mt-4 px-5 py-2">
+            <button type="submit" className="btn mt-4 px-5 py-2">
               Submit Request
             </button>
           </form>

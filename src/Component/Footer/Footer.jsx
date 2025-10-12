@@ -39,7 +39,7 @@ const Footer = () => {
 
           {/* Useful Links */}
           <Col md={2} className="text-center text-md-start">
-            <h5 className="fw-bold">Useful Links</h5>
+            <h5 className="ftwt">Useful Links</h5>
             <ul className="list-unstyled footer-links">
               <li>Home</li>
               <li>About Us</li>
@@ -54,7 +54,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <Col md={3} className="text-center text-md-start">
-            <h5 className="fw-bold">Contact Info</h5>
+            <h5 className="ftwt">Contact Info</h5>
             <p>
               <FaPhoneAlt className="me-2" />{" "}
               <a href="tel:+91 93155 22533">+91 93155 22533</a>
@@ -63,7 +63,7 @@ const Footer = () => {
               <FaEnvelope className="me-2" />
               <a href="mailto:dryxo179@gmail.com">dryxo179@gmail.com</a>
             </p>
-            <p className="fw-bold mb-1">Sharida Healthcare Pvt. Ltd</p>
+            <p className="ftwt mb-1">Sharida Healthcare Pvt. Ltd</p>
             <p>
               <FaMapMarkerAlt className="me-2" />
               B-149 Sector-63, Noida, Gautam Buddh Nagar UP 201301, India
@@ -72,7 +72,7 @@ const Footer = () => {
 
           {/* Social Media */}
           <Col md={3} className="text-center text-md-start">
-            <h5 className="fw-bold">Say hello on our socials</h5>
+            <h5 className="ftwt">Say hello on our socials</h5>
             <div className="social-icons mt-3">
               <a
                 href="https://www.instagram.com/dryxo100?igsh=MWp6cGkzaDdrMG9ycw=="
