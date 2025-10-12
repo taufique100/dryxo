@@ -202,7 +202,6 @@ export default function OrderModal() {
   const dispatch = useDispatch();
   const { openModal } = useSelector((state) => state.orderSlice);
 
-  // Dummy products with quantity
   const [selectedProducts, setSelectedProducts] = useState([
     { name: "Sanitary Pad XL", price: 120, image: "https://placehold.co/80x80", quantity: 1 },
     { name: "Sanitary Pad Medium", price: 100, image: "https://placehold.co/80x80", quantity: 1 },
@@ -221,7 +220,6 @@ export default function OrderModal() {
 
   const isFormValid = Object.values(form).every((f) => f.trim() !== "");
 
-  // 🧮 Update product quantity
   const updateQuantity = (index, action) => {
     setSelectedProducts((prev) =>
       prev.map((product, i) => {
@@ -237,7 +235,6 @@ export default function OrderModal() {
     );
   };
 
-  // 🧮 Cart calculations
   const subtotal = useMemo(
     () =>
       selectedProducts.reduce(
@@ -251,10 +248,10 @@ export default function OrderModal() {
 
   const handleSubmit = () => {
     if (!isFormValid) {
-      alert("⚠️ Please fill all the details!");
+      alert("Please fill all the details!");
       return;
     }
-    alert("✅ Order placed successfully!");
+    alert("Order placed successfully!");
     handleClose();
   };
 
@@ -269,11 +266,10 @@ export default function OrderModal() {
       className="order_modal"
     >
       <Modal.Header closeButton>
-        <Modal.Title>🛒 Place Your Order</Modal.Title>
+        <Modal.Title className="h6">🛒 Place Your Order</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
-        {/* 🧾 Product Summary */}
         <section className="product_summary">
           <h5 className="section_title">Selected Products</h5>
           {selectedProducts.map((product, index) => (
@@ -286,8 +282,6 @@ export default function OrderModal() {
                     <p className="mb-0 text-muted">₹ {product.price}</p>
                   </div>
                 </div>
-
-                {/* Quantity Controls */}
                 <div className="d-flex align-items-center gap-2">
                   <Button
                     variant="outline-secondary"
@@ -310,7 +304,6 @@ export default function OrderModal() {
           ))}
         </section>
 
-        {/* 💰 Calculation Section */}
         <section className="calculation_section mt-3">
           <h5 className="section_title">Order Summary</h5>
           <div className="calc_box">
@@ -329,7 +322,6 @@ export default function OrderModal() {
           </div>
         </section>
 
-        {/* Address Section */}
         <section className="address_section mt-3">
           <h5 className="section_title">Delivery Details</h5>
           <Form>
