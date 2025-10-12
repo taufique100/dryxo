@@ -12,11 +12,13 @@ import Pad_ATM from "./Pages/Pad_ATM/Pad_ATM";
 import Chanel_Partner from "./Pages/Chanel_Partner/Chanel_Partner";
 import { BlogDetailsPage } from "./Pages/Blogs/BlogDetailsPage";
 import ParchaseDetails from "./Pages/Products/Purchase/ParchaseDetails";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <>
       <div className="app">
+        <ToastContainer />
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Navigate to="home" />} />

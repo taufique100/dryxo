@@ -2,10 +2,19 @@ import React from "react";
 import './ProductCard.css';
 import productImg from '../../../assets/product-4.png';
 import { Button } from "react-bootstrap";
+import ViewAddedProductBtn from "../../Order/ViewAddedProductBtn";
+import { useDispatch } from "react-redux";
+import { setSelectedProductId } from "../../../Store/OrderSlice";
 
 const ProductCard = ({ productList = [] }) => {
+    const dispatch = useDispatch();
+
+    const addProduct=(id)=>{
+        dispatch(setSelectedProductId(id))
+    }
     return (
         <>
+            <ViewAddedProductBtn />
             <div className="container d-flex align-items-stretch justify-content-start gap-3 flex-wrap">
                 {
                     productList?.map((item, idx) => (
@@ -22,7 +31,7 @@ const ProductCard = ({ productList = [] }) => {
                                     </div>
                                     <p className="mb-2">{item?.description}</p>
 
-                                    {/* ✅ Features List */}
+                                    {/* Features List */}
                                     <ul className="feature_list mb-3">
                                         {item?.features?.map((feat, i) => (
                                             <li key={i}>{feat}</li>
@@ -35,7 +44,7 @@ const ProductCard = ({ productList = [] }) => {
                                         <p className="mb-0 text-start">Price</p>
                                         <p className="mb-0">${item?.price}</p>
                                     </div>
-                                    <Button>Add to Cart</Button>
+                                    <Button onClick={()=>addProduct(idx+1)}>Add to Cart</Button>
                                 </div>
                             </div>
                         </div>
