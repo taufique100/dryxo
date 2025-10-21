@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 const sanitaryProducts = [
   {
     title: "ComfortCare Sanitary Pads - Small",
-    size: "Small (240mm)",
+    size: "XXL (360mm)",
     type: "Ultra Thin",
     description: "Perfect for light flow days, designed for ultimate comfort and breathable protection throughout the day.",
     price: "2.49",
@@ -23,7 +23,7 @@ const sanitaryProducts = [
   },
   {
     title: "ComfortCare Sanitary Pads - Medium",
-    size: "Medium (280mm)",
+    size: " XL (340mm)",
     type: "Ultra Thin",
     description: "Ideal for regular flow, offering all-day protection with a gentle and secure fit.",
     price: "3.29",

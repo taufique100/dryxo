@@ -16,7 +16,7 @@ export default function OrderModal() {
       quantity: 1,
     },
     {
-      name: "Sanitary Pad Medium",
+      name: "Sanitary Pad Large",
       price: 100,
       image: "https://placehold.co/80x80",
       quantity: 1,
