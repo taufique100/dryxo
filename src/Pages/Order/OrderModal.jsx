@@ -92,7 +92,7 @@ const updateQuantity = (index, action) => {
       backdrop="static"
       keyboard={false}
       size="lg"
-      className="order_modal"
+      className="order_modal y-2"
     >
       <Modal.Header closeButton>
         <Modal.Title className="h6">🛒 Place Your Order</Modal.Title>
@@ -237,7 +237,7 @@ const updateQuantity = (index, action) => {
                   <Form.Control
                     type="text"
                     name="district"
-                    value={form.district}
+                    value={form.State}
                     onChange={handleChange}
                     placeholder="Delhi"
                   />

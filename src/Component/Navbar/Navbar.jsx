@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
-import ContactBar from "../ContactBar/ContactBar";
 
 const Navbars = () => {
+  const [menue, setMenue] = useState(false);
+  const location = useLocation(); 
+
+  const handleToggle = () => setMenue(!menue);
+  const handleClose = () => setMenue(false);
+
+  
+  useEffect(() => {
+    setMenue(false);
+  }, [location.pathname]); 
+
   return (
     <>
       <Navbar
@@ -15,28 +25,30 @@ const Navbars = () => {
         bg="white"
         variant="white"
         sticky="top"
-        className="bg-white shadow-sm text-dark  fw-bold"
+        expanded={menue}
+        onToggle={setMenue}
+        className="bg-white shadow-sm text-dark fw-bold"
       >
         <Container fluid>
-          {/*  Logo */}
+          {/* Logo */}
           <Navbar.Brand
             as={NavLink}
             to="/home"
-            className=" logo py-0 fw-bold fs-4"
+            className="logo py-0 fw-bold fs-4"
           >
             <img className="nav-logo" src={logo} alt="logo" />
           </Navbar.Brand>
 
           {/* Toggle Button */}
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle
+            aria-controls="basic-navbar-nav"
+            onClick={handleToggle}
+          />
 
           {/* Nav Links */}
-          <Navbar.Collapse
-            id="basic-navbar-nav"
-            className=" navbars flex gap-5 "
-          >
-            <Nav className=" bg-white mx-auto d-flex align-items-center gap-3 navbar-nav">
-              <Nav.Link as={NavLink} to="/home" end>
+          <Navbar.Collapse id="basic-navbar-nav" className="navbars flex gap-5">
+            <Nav className="bg-white mx-auto d-flex align-items-center gap-3 navbar-nav">
+              <Nav.Link as={NavLink} to="/home">
                 Home
               </Nav.Link>
               <Nav.Link as={NavLink} to="/products">
