@@ -167,7 +167,7 @@ const updateQuantity = (index, action) => {
                     name="name"
                     value={form.name}
                     onChange={handleChange}
-                    placeholder="John Doe"
+                    placeholder="Enter your name"
                   />
                 </Form.Group>
               </Col>
@@ -179,7 +179,7 @@ const updateQuantity = (index, action) => {
                     name="phone"
                     value={form.phone}
                     onChange={handleChange}
-                    placeholder="+91 9876543210"
+                    placeholder="Enter Your Number"
                   />
                 </Form.Group>
               </Col>
@@ -203,7 +203,7 @@ const updateQuantity = (index, action) => {
                     name="city"
                     value={form.city}
                     onChange={handleChange}
-                    placeholder="New Delhi"
+                    placeholder="Enter your city"
                   />
                 </Form.Group>
               </Col>
@@ -227,7 +227,7 @@ const updateQuantity = (index, action) => {
                     name="district"
                     value={form.district}
                     onChange={handleChange}
-                    placeholder="South Delhi"
+                    placeholder="Enter your district"
                   />
                 </Form.Group>
               </Col>
@@ -236,10 +236,10 @@ const updateQuantity = (index, action) => {
                   <Form.Label>State</Form.Label>
                   <Form.Control
                     type="text"
-                    name="district"
+                    name="state"
                     value={form.State}
                     onChange={handleChange}
-                    placeholder="Delhi"
+                    placeholder="Enter your State"
                   />
                 </Form.Group>
               </Col>

@@ -13,6 +13,10 @@ import Chanel_Partner from "./Pages/Chanel_Partner/Chanel_Partner";
 import { BlogDetailsPage } from "./Pages/Blogs/BlogDetailsPage";
 import ParchaseDetails from "./Pages/Products/Purchase/ParchaseDetails";
 import { ToastContainer } from "react-toastify";
+import Login from "./Pages/LoginSign/Login";
+import Sign from "./Pages/LoginSign/SignUp";
+import ForgetPassword from "./Pages/LoginSign/ForgetPassword";
+import MyOrder from "./Pages/MyOrder/MyOrder";
 
 function App() {
   return (
@@ -24,7 +28,10 @@ function App() {
             <Route index element={<Navigate to="home" />} />
             <Route index path="home" element={<Home />} />
             <Route path="products" element={<Products />} />
-            <Route path="products/Parchase-Details" element={<ParchaseDetails />} />
+            <Route
+              path="products/Parchase-Details"
+              element={<ParchaseDetails />}
+            />
             <Route path="media" element={<Media />} />
             <Route path="blog" element={<Blogs />} />
             <Route path="blog/blog-details" element={<BlogDetailsPage />} />
@@ -32,6 +39,10 @@ function App() {
             <Route path="about" element={<About />} />
             <Route path="chanel_partner" element={<Chanel_Partner />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="my-order" element={<MyOrder />} />
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<Sign />} />
+            <Route path="forget-password" element={<ForgetPassword />} />
           </Route>
         </Routes>
       </div>
