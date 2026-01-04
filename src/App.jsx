@@ -17,6 +17,7 @@ import Login from "./Pages/LoginSign/Login";
 import Sign from "./Pages/LoginSign/SignUp";
 import ForgetPassword from "./Pages/LoginSign/ForgetPassword";
 import MyOrder from "./Pages/MyOrder/MyOrder";
+import LoginPage from "./Pages/NewLogin/LoginPage";
 
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
             <Route path="chanel_partner" element={<Chanel_Partner />} />
             <Route path="contact" element={<Contact />} />
             <Route path="my-order" element={<MyOrder />} />
-            <Route path="login" element={<Login />} />
+            <Route path="login" element={<LoginPage />} />
             <Route path="signup" element={<Sign />} />
             <Route path="forget-password" element={<ForgetPassword />} />
           </Route>

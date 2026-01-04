@@ -5,6 +5,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import DryxoLogo from "../../assets/logo.png";
  import { loginUser } from "../../API/authApi";
 import './Login.css'
+import { errorNotify, successNotify } from "../../Utils/toastNotify";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -24,17 +25,16 @@ const Login = () => {
 
    const handleSubmit = async (e) => {
      e.preventDefault();
-
      try {
        const res = await loginUser(formData);
 
        localStorage.setItem("token", res.data.token);
 
-       alert("Login Successful");
+       successNotify("Login Successful");
        navigate("/home");
      } catch (error) {
       console.log(error);
-      alert(error.response?.data?.message || "Login failed");
+      errorNotify(error.response?.data?.message || "Login failed");
      }
    };
 

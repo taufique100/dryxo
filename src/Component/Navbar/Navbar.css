@@ -53,4 +53,31 @@
   .nav-logo {
     width: 95px;
   }
+  .nav-login .login-icon {
+    font-size: 16px;
+  }
+  .nav-login {
+    font-size: 14px;
+  }
 }
+
+/* Login link styling to match other nav items */
+.nav-login {
+  font-weight: 500;
+  font-size: 14px;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+}
+
+.nav-login .login-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.nav-login:hover {
+  color: #fd350d !important;
+}
+

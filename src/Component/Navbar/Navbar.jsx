@@ -83,18 +83,13 @@ const Navbars = () => {
             </Nav>
           </Navbar.Collapse>
 
-          <Navbar.Brand
-            as={NavLink}
-            to="/home"
-            className="logo py-0 fw-bold fs-4"
-          >
-            <Nav.Link onClick={toggleMenu} as={NavLink} to="/LOG_SIgn">
-              <Nav.Link onClick={toggleMenu} as={NavLink} to="/login">
-                <AiOutlineLogin />
-                Login
-              </Nav.Link>
+          {/* Login link */}
+          <Nav className="d-flex align-items-center">
+            <Nav.Link onClick={toggleMenu} as={NavLink} to="/login" className="nav-login d-flex align-items-center gap-2">
+              <AiOutlineLogin className="login-icon" />
+              <span className="login-text">Login</span>
             </Nav.Link>
-          </Navbar.Brand>
+          </Nav>
         </Container>
       </Navbar>
     </>
