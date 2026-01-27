@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Navigate, Route, Router, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import Layout from "./Component/Layout/Layout";
 import Contact from "./Pages/Contact/Contact";
@@ -21,7 +21,7 @@ function App() {
         <ToastContainer />
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Navigate to="home" />} />
+            <Route index element={<Navigate to="home" replace />} />
             <Route path="home" element={<Home />} />
             <Route path="products" element={<Products />} />
             <Route path="products/Parchase-Details" element={<ParchaseDetails />} />
