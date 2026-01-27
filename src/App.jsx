@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Navigate, Route, Router, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import Layout from "./Component/Layout/Layout";
 import Contact from "./Pages/Contact/Contact";
@@ -16,26 +16,24 @@ import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
-    <>
-      <div className="app">
-        <ToastContainer />
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Navigate to="home" />} />
-            <Route index path="home" element={<Home />} />
-            <Route path="products" element={<Products />} />
-            <Route path="products/Parchase-Details" element={<ParchaseDetails />} />
-            <Route path="media" element={<Media />} />
-            <Route path="blog" element={<Blogs />} />
-            <Route path="blog/blog-details" element={<BlogDetailsPage />} />
-            <Route path="pad_atm" element={<Pad_ATM />} />
-            <Route path="about" element={<About />} />
-            <Route path="chanel_partner" element={<Chanel_Partner />} />
-            <Route path="contact" element={<Contact />} />
-          </Route>
-        </Routes>
-      </div>
-    </>
+    <div className="app">
+      <ToastContainer />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Navigate to="home" replace />} />
+          <Route path="home" element={<Home />} />
+          <Route path="products" element={<Products />} />
+          <Route path="products/Parchase-Details" element={<ParchaseDetails />} />
+          <Route path="media" element={<Media />} />
+          <Route path="blog" element={<Blogs />} />
+          <Route path="blog/blog-details" element={<BlogDetailsPage />} />
+          <Route path="pad_atm" element={<Pad_ATM />} />
+          <Route path="about" element={<About />} />
+          <Route path="chanel_partner" element={<Chanel_Partner />} />
+          <Route path="contact" element={<Contact />} />
+        </Route>
+      </Routes>
+    </div>
   );
 }
 
