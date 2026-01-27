@@ -1,7 +1,7 @@
 import React from 'react'
 import { Carousel } from "react-bootstrap";
 import './Sweeper.css'
-import Sweeper1 from '../../../assets/Sweeper1.jpg'
+import Sweeper1 from '../../../assets/sweeper1.jpg'
 
 const Sweeper = () => {
   const img = "https://dryxo.in/wp-content/uploads/2023/10/orange_banner-1.webp";
