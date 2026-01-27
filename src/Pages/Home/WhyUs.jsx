@@ -1,12 +1,11 @@
 import React from "react";
-import "./WhyUs.css";
 import pad1 from "../../assets/pad1.jpg";
 import pad2 from "../../assets/padmul.jpg";
 // import Button from "../../Component/Form/Button";
 import { useNavigate } from "react-router-dom";
 import Safety from "./Safety/Safety";
 import { motion } from "framer-motion";
-
+import './WhyUS.css'
 const WhyUs = () => {
   const navigate = useNavigate();
   const handleClick = () => {

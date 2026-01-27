@@ -72,7 +72,7 @@
 /* Input Fields */
 .form-control {
   border-radius: 12px;
-  padding: 14px 16px;
+  padding: 5px 8px;
   border: 1px solid #ffd0b8;
   transition: all 0.3s ease;
   background-color: #fff;
@@ -83,10 +83,6 @@
   box-shadow: 0 0 8px rgba(250, 67, 1, 0.3);
 }
 
-<<<<<<< HEAD
-.channerpartner_container{
-  margin-top: 6rem !important;
-=======
 /* Textarea */
 textarea.form-control {
   resize: none;
@@ -97,12 +93,13 @@ textarea.form-control {
 .btn {
   background: linear-gradient(90deg, #fa4301, #ff6600);
   color: #fff;
-  font-weight: 600;
-  border-radius: 30px;
-  padding: 12px 40px;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 5px 24px;
   border: none;
   transition: all 0.4s ease;
-  box-shadow: 0 6px 15px rgba(250, 67, 1, 0.3);
+  font-size: 12px;
+  /* box-shadow: 0 6px 15px rgba(250, 67, 1, 0.3); */
 }
 
 .btn:hover {
@@ -125,5 +122,4 @@ textarea.form-control {
     font-size: 35px;
   }
   
->>>>>>> 3fc3d9c71537e26d66fe60d08db89d6c7b4b833a
 }

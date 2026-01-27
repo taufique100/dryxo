@@ -325,7 +325,7 @@ export default function OrderModal() {
         <section className="address_section mt-3">
           <h5 className="section_title">Delivery Details</h5>
           <Form>
-            <Row className="gy-3">
+            <Row className="gy-2">
               <Col md={6}>
                 <Form.Group>
                   <Form.Label>Full Name</Form.Label>
@@ -350,7 +350,7 @@ export default function OrderModal() {
                   />
                 </Form.Group>
               </Col>
-              <Col md={12}>
+              <Col md={6}>
                 <Form.Group>
                   <Form.Label>Address</Form.Label>
                   <Form.Control
@@ -383,6 +383,18 @@ export default function OrderModal() {
                     value={form.pincode}
                     onChange={handleChange}
                     placeholder="110001"
+                  />
+                </Form.Group>
+              </Col>
+               <Col md={6}>
+                <Form.Group>
+                  <Form.Label>State</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="state"
+                    value={form.state}
+                    onChange={handleChange}
+                    placeholder="Enter State"
                   />
                 </Form.Group>
               </Col>
