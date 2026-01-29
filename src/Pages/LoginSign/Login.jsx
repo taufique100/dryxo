@@ -3,7 +3,7 @@ import { Form, Button, InputGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import DryxoLogo from "../../assets/logo.png";
- import { loginUser } from "../../API/authApi";
+//  import { loginUser } from "../../API/authApi";
 import './Login.css'
 import { errorNotify, successNotify } from "../../Utils/toastNotify";
 

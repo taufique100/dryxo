@@ -3,7 +3,6 @@ import "./LoginPage.css";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import ForgotPassword from "./ForgotPassword";
 import SignUp from "./SignUp";
-
 import loginImage from "../../assets/NewLoginPage/image.jpg";
 import LoginLogo from "../../assets/NewLoginPage/logo.png";
 import axios from "axios";
@@ -78,7 +77,6 @@ const LoginPage = () => {
               <>
                 <div className="login_form_section">
                   <div className="login_form">
-                    {loading && <Loader message="Signing in..." />}
                     <div className="form_container">
                       <a href="#" className="login_logo_link">
                         <img

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import axios from "axios";
 import LoginLogo from "../../assets/NewLoginPage/logo.png";
 import { Button } from "react-bootstrap";
-
+import { apiUrls } from "../../Utils/apiUrls";
 import { errorNotify, successNotify } from "../../Utils/toastNotify";
 import { useNavigate } from "react-router-dom";
 
@@ -12,44 +13,94 @@ const SignUp = ({ onCancel }) => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const [credentials, setCredentials] = useState({
-    UserName: "",
-    Email: "",
-    Mobile: "",
-    Password: "",
-    ConfirmPassword: "",
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCredentials((prev) => ({ ...prev, [name]: value }));
+    setErrorMessage("");
+    setSuccessMessage("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // basic validation
+    setErrorMessage("");
+    setSuccessMessage("");
+
     if (
-      !credentials.UserName.trim() ||
-      !credentials.Email.trim() ||
-      !credentials.Password ||
-      !credentials.ConfirmPassword
+      !credentials.username.trim() ||
+      !credentials.email.trim() ||
+      !credentials.password ||
+      !credentials.confirmPassword
     ) {
-      setSuccessMessage("Please fill all required fields.");
+      setErrorMessage("Please fill all required fields.");
+      errorNotify("Please fill all required fields.");
       return;
     }
-    if (credentials.Password !== credentials.ConfirmPassword) {
-      setSuccessMessage("Passwords do not match.");
+
+    if (credentials.password !== credentials.confirmPassword) {
+      setErrorMessage("Passwords do not match.");
+      errorNotify("Passwords do not match.");
+      return;
+    }
+
+    if (credentials.password.length < 6) {
+      setErrorMessage("Password must be at least 6 characters long.");
+      errorNotify("Password must be at least 6 characters long.");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(credentials.email)) {
+      setErrorMessage("Please enter a valid email address.");
+      errorNotify("Please enter a valid email address.");
       return;
     }
 
     setLoading(true);
-    // Simulate signup (UI-only) instead of real API call
-    setTimeout(() => {
+    try {
+      console.log("SignUp attempt with:", {
+        username: credentials.username,
+        email: credentials.email,
+      });
+
+      const response = await axios.post(apiUrls.register, {
+        username: credentials.username,
+        email: credentials.email,
+        password: credentials.password,
+      });
+
+      console.log("SignUp Response:", response?.data);
+
+      if (response?.data?.success || response?.data?.message) {
+        setSuccessMessage(response?.data?.message || "Account created successfully!");
+        successNotify("Account created successfully! Redirecting to login...");
+        setTimeout(() => {
+          onCancel();
+        }, 1500);
+      } else {
+        setErrorMessage(response?.data?.message || "Signup failed");
+        errorNotify(response?.data?.message || "Signup failed");
+      }
+    } catch (error) {
+      console.error("SignUp Error:", error);
+      const errorMsg =
+        error?.response?.data?.message ||
+        error?.response?.data?.error ||
+        error?.message ||
+        "Something went wrong. Please try again.";
+      setErrorMessage(errorMsg);
+      errorNotify(errorMsg);
+    } finally {
       setLoading(false);
-      successNotify("Signup successful (UI-only). Redirecting to login...");
-      navigate('/login');
-    }, 800);
+    }
   };
 
   const togglePassword = (field) => {
@@ -66,57 +117,68 @@ const SignUp = ({ onCancel }) => {
           </a>
 
           <h3 className="login_heading">Create an account</h3>
+
           {successMessage && (
-            <p className="success_message">{successMessage}</p>
+            <div style={{ color: "green", marginBottom: "15px", fontSize: "14px" }}>
+              {successMessage}
+            </div>
+          )}
+          {errorMessage && (
+            <div style={{ color: "red", marginBottom: "15px", fontSize: "14px" }}>
+              {errorMessage}
+            </div>
           )}
 
           <form onSubmit={handleSubmit}>
             <div className="form_group">
-              <label htmlFor="UserName" className="form_label">
+              <label htmlFor="username" className="form_label">
                 Username <span className="text_danger">*</span>
               </label>
               <input
                 type="text"
-                id="UserName"
-                name="UserName"
+                id="username"
+                name="username"
                 className="form_control"
                 placeholder="Choose a username"
-                value={credentials.UserName}
+                value={credentials.username}
                 onChange={handleChange}
                 required
+                disabled={loading}
               />
             </div>
 
             <div className="form_group">
-              <label htmlFor="Email" className="form_label">
+              <label htmlFor="email" className="form_label">
                 Email <span className="text_danger">*</span>
               </label>
               <input
                 type="email"
-                id="Email"
-                name="Email"
+                id="email"
+                name="email"
                 className="form_control"
                 placeholder="Enter your email"
-                value={credentials.Email}
+                value={credentials.email}
                 onChange={handleChange}
                 required
+                disabled={loading}
               />
             </div>
 
             <div className="form_group">
-              <label htmlFor="Password" className="form_label">
+              <label htmlFor="password" className="form_label">
                 Password <span className="text_danger">*</span>
               </label>
               <div className="position_relative">
                 <input
                   type={showPassword ? "text" : "password"}
-                  id="Password"
-                  name="Password"
+                  id="password"
+                  name="password"
                   className="form_control"
-                  placeholder="Create a password"
-                  value={credentials.Password}
+                  placeholder="Create a password (min 6 characters)"
+                  value={credentials.password}
                   onChange={handleChange}
                   required
+                  disabled={loading}
                 />
                 <button
                   type="button"
@@ -133,19 +195,20 @@ const SignUp = ({ onCancel }) => {
             </div>
 
             <div className="form_group">
-              <label htmlFor="ConfirmPassword" className="form_label">
+              <label htmlFor="confirmPassword" className="form_label">
                 Confirm Password <span className="text_danger">*</span>
               </label>
               <div className="position_relative">
                 <input
                   type={showConfirmPassword ? "text" : "password"}
-                  id="ConfirmPassword"
-                  name="ConfirmPassword"
+                  id="confirmPassword"
+                  name="confirmPassword"
                   className="form_control"
                   placeholder="Confirm password"
-                  value={credentials.ConfirmPassword}
+                  value={credentials.confirmPassword}
                   onChange={handleChange}
                   required
+                  disabled={loading}
                 />
                 <button
                   type="button"
@@ -162,17 +225,24 @@ const SignUp = ({ onCancel }) => {
             </div>
 
             <div className="form_footer" style={{ justifyContent: "flex-end" }}>
-              <a href="#" className="forgot_link" onClick={onCancel}>
+              <a
+                href="#"
+                className="forgot_link"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onCancel();
+                }}
+              >
                 Back to Login
               </a>
             </div>
 
             <Button
               type="submit"
-              className="btn_primary px-4 py-2 border-0 rounded"
+              className="btn_primary px-4 py-2 border-0 rounded w-100"
               disabled={loading}
             >
-              {loading ? "Creating..." : "Create account"}
+              {loading ? "Creating account..." : "Create Account"}
             </Button>
           </form>
         </div>

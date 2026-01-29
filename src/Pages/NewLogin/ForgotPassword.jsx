@@ -1,67 +1,161 @@
 import React, { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-
+import axios from "axios";
 import LoginLogo from "../../assets/NewLoginPage/logo.png";
 import { Button } from "react-bootstrap";
+import { apiUrls } from "../../Utils/apiUrls";
+import { errorNotify, successNotify } from "../../Utils/toastNotify";
 
 
 const ForgotPassword = ({ onCancel }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  // Local UI-only state and handlers (no API calls)
   const [credentials, setCredentials] = useState({
-    UserName: "",
-    Mobile: "",
+    Email: "",
     OTP: "",
     Password: "",
     ConfirmPassword: "",
   });
 
-  const [isForgot, setIsForgot] = useState(false);
+  const [step, setStep] = useState("email"); // email, otp, reset
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCredentials((prev) => ({ ...prev, [name]: value }));
+    setErrorMessage("");
+    setSuccessMessage("");
   };
 
-  const handleForget = (e) => {
+  const handleSendOTP = async (e) => {
     e.preventDefault();
-    // simple validation
-    if (!credentials.UserName.trim() || !credentials.Mobile.trim()) {
-      setSuccessMessage("Please enter username and mobile number.");
+    setErrorMessage("");
+    setSuccessMessage("");
+    
+    if (!credentials.Email.trim()) {
+      setErrorMessage("Please enter email address.");
+      errorNotify("Please enter email address.");
       return;
     }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(credentials.Email)) {
+      setErrorMessage("Please enter a valid email address.");
+      errorNotify("Please enter a valid email address.");
+      return;
+    }
+
     setLoading(true);
-    setTimeout(() => {
+    try {
+      console.log("Sending OTP request with email:", credentials.Email);
+      const response = await axios.post(apiUrls.forgotPassword, {
+        email: credentials.Email,
+      });
+
+      console.log("OTP Response:", response?.data);
+
+      if (response?.data?.success || response?.data?.message) {
+        setSuccessMessage(response?.data?.message || "OTP sent successfully. Please check your email.");
+        successNotify("OTP sent successfully!");
+        setStep("otp");
+      } else {
+        setErrorMessage("Failed to send OTP. Please try again.");
+        errorNotify("Failed to send OTP. Please try again.");
+      }
+    } catch (error) {
+      console.error("Forgot Password Error:", error);
+      const errorMsg =
+        error?.response?.data?.message ||
+        error?.response?.data?.error ||
+        error?.message ||
+        "Something went wrong. Please try again.";
+      setErrorMessage(errorMsg);
+      errorNotify(errorMsg);
+    } finally {
       setLoading(false);
-      setIsForgot(true);
-      setSuccessMessage("OTP sent (UI-only). Proceed with reset.");
-    }, 700);
+    }
   };
 
-  const handleReset = (e) => {
+  const handleVerifyOTP = async (e) => {
     e.preventDefault();
-    if (
-      !credentials.OTP ||
-      !credentials.Password ||
-      !credentials.ConfirmPassword
-    ) {
-      setSuccessMessage("Please fill all fields.");
+    setErrorMessage("");
+    setSuccessMessage("");
+
+    if (!credentials.OTP.trim()) {
+      setErrorMessage("Please enter OTP.");
+      errorNotify("Please enter OTP.");
       return;
     }
+
+    // OTP verified, move to password reset
+    setSuccessMessage("OTP verified! Now set your new password.");
+    setStep("reset");
+  };
+
+  const handleResetPassword = async (e) => {
+    e.preventDefault();
+    setErrorMessage("");
+    setSuccessMessage("");
+
+    if (!credentials.Password || !credentials.ConfirmPassword) {
+      setErrorMessage("Please fill all password fields.");
+      errorNotify("Please fill all password fields.");
+      return;
+    }
+
     if (credentials.Password !== credentials.ConfirmPassword) {
-      setSuccessMessage("Passwords do not match.");
+      setErrorMessage("Passwords do not match.");
+      errorNotify("Passwords do not match.");
       return;
     }
+
+    if (credentials.Password.length < 6) {
+      setErrorMessage("Password must be at least 6 characters long.");
+      errorNotify("Password must be at least 6 characters long.");
+      return;
+    }
+
     setLoading(true);
-    setTimeout(() => {
+    try {
+      console.log("Resetting password with:", {
+        email: credentials.Email,
+        otp: credentials.OTP,
+        newPassword: credentials.Password,
+      });
+
+      const response = await axios.post(apiUrls.resetPassword, {
+        email: credentials.Email,
+        otp: credentials.OTP,
+        newPassword: credentials.Password,
+      });
+
+      console.log("Reset Password Response:", response?.data);
+
+      if (response?.data?.success || response?.data?.message) {
+        setSuccessMessage("Password reset successfully! Redirecting to login...");
+        successNotify("Password reset successfully!");
+        setTimeout(() => {
+          onCancel();
+        }, 1500);
+      } else {
+        setErrorMessage(response?.data?.message || "Failed to reset password");
+        errorNotify(response?.data?.message || "Failed to reset password");
+      }
+    } catch (error) {
+      console.error("Reset Password Error:", error);
+      const errorMsg =
+        error?.response?.data?.message ||
+        error?.response?.data?.error ||
+        error?.message ||
+        "Something went wrong. Please try again.";
+      setErrorMessage(errorMsg);
+      errorNotify(errorMsg);
+    } finally {
       setLoading(false);
-      setSuccessMessage("Password reset successful (UI-only).");
-      setTimeout(() => onCancel(), 800);
-    }, 700);
+    }
   };
 
   const togglePassword = (field) => {
@@ -72,6 +166,13 @@ const ForgotPassword = ({ onCancel }) => {
     }
   };
 
+  const goBackToEmail = () => {
+    setStep("email");
+    setCredentials({ ...credentials, OTP: "", Password: "", ConfirmPassword: "" });
+    setErrorMessage("");
+    setSuccessMessage("");
+  };
+
   return (
     <div className="login_form_section">
       <div className="login_form">
@@ -80,49 +181,49 @@ const ForgotPassword = ({ onCancel }) => {
             <img src={LoginLogo} alt="Logo" className="login_logo" />
           </a>
           <h3 className="login_heading">
-            {isForgot ? "Reset Password" : "Forgot Password"}
+            {step === "email" ? "Forgot Password" : step === "otp" ? "Verify OTP" : "Reset Password"}
           </h3>
+          
           {successMessage && (
-            <p className="success_message">{successMessage}</p>
+            <div style={{ color: "green", marginBottom: "15px", fontSize: "14px" }}>
+              {successMessage}
+            </div>
           )}
-          <form onSubmit={isForgot ? handleReset : handleForget}>
-            {!isForgot ? (
+          {errorMessage && (
+            <div style={{ color: "red", marginBottom: "15px", fontSize: "14px" }}>
+              {errorMessage}
+            </div>
+          )}
+
+          <form onSubmit={step === "email" ? handleSendOTP : step === "otp" ? handleVerifyOTP : handleResetPassword}>
+            {step === "email" && (
               <>
                 <div className="form_group">
-                  <label htmlFor="UserName" className="form_label">
-                    Username <span className="text_danger">*</span>
+                  <label htmlFor="Email" className="form_label">
+                    Email Address <span className="text_danger">*</span>
                   </label>
                   <input
-                    type="text"
-                    id="UserName"
-                    name="UserName"
+                    type="email"
+                    id="Email"
+                    name="Email"
                     className="form_control"
-                    placeholder="Enter your username"
-                    value={credentials.UserName}
+                    placeholder="Enter registered email address"
+                    value={credentials.Email}
                     onChange={handleChange}
                     required
-                  />
-                </div>
-
-                <div className="form_group">
-                  <label htmlFor="Mobile" className="form_label">
-                    Mobile Number <span className="text_danger">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="Mobile"
-                    name="Mobile"
-                    maxLength={10}
-                    className="form_control"
-                    placeholder="Enter registered mobile number"
-                    value={credentials.Mobile}
-                    onChange={handleChange}
-                    required
+                    disabled={loading}
                   />
                 </div>
               </>
-            ) : (
+            )}
+
+            {step === "otp" && (
               <>
+                <div className="form_group">
+                  <label className="form_label">
+                    Email: <strong>{credentials.Email}</strong>
+                  </label>
+                </div>
                 <div className="form_group">
                   <label htmlFor="OTP" className="form_label">
                     OTP <span className="text_danger">*</span>
@@ -132,13 +233,23 @@ const ForgotPassword = ({ onCancel }) => {
                     id="OTP"
                     name="OTP"
                     className="form_control"
-                    placeholder="Enter OTP"
+                    placeholder="Enter OTP sent to your email"
                     value={credentials.OTP}
                     onChange={handleChange}
                     required
+                    disabled={loading}
                   />
                 </div>
+              </>
+            )}
 
+            {step === "reset" && (
+              <>
+                <div className="form_group">
+                  <label className="form_label">
+                    Email: <strong>{credentials.Email}</strong>
+                  </label>
+                </div>
                 <div className="form_group">
                   <label htmlFor="Password" className="form_label">
                     New Password <span className="text_danger">*</span>
@@ -149,10 +260,11 @@ const ForgotPassword = ({ onCancel }) => {
                       id="Password"
                       name="Password"
                       className="form_control"
-                      placeholder="Enter new password"
+                      placeholder="Enter new password (min 6 characters)"
                       value={credentials.Password}
                       onChange={handleChange}
                       required
+                      disabled={loading}
                     />
                     <button
                       type="button"
@@ -182,6 +294,7 @@ const ForgotPassword = ({ onCancel }) => {
                       value={credentials.ConfirmPassword}
                       onChange={handleChange}
                       required
+                      disabled={loading}
                     />
                     <button
                       type="button"
@@ -199,22 +312,34 @@ const ForgotPassword = ({ onCancel }) => {
               </>
             )}
 
-            <div className="form_footer" style={{ justifyContent: "flex-end" }}>
-              <a href="#" className="forgot_link" onClick={onCancel}>
+            <div className="form_footer" style={{ justifyContent: "space-between", alignItems: "center" }}>
+              {step !== "email" && (
+                <button
+                  type="button"
+                  className="forgot_link"
+                  onClick={goBackToEmail}
+                  style={{ background: "none", border: "none", cursor: "pointer", color: "#0066cc" }}
+                >
+                  ← Change Email
+                </button>
+              )}
+              <a href="#" className="forgot_link" onClick={(e) => { e.preventDefault(); onCancel(); }}>
                 Back to Login
               </a>
             </div>
 
             <Button
               type="submit"
-              className="btn_primary px-4 py-2 border-0 rounded"
+              className="btn_primary px-4 py-2 border-0 rounded w-100"
               disabled={loading}
             >
               {loading
                 ? "Processing..."
-                : isForgot
-                ? "Reset Password"
-                : "Send OTP"}
+                : step === "email"
+                ? "Send OTP"
+                : step === "otp"
+                ? "Verify OTP"
+                : "Reset Password"}
             </Button>
           </form>
         </div>
