@@ -83,6 +83,10 @@
   box-shadow: 0 0 8px rgba(250, 67, 1, 0.3);
 }
 
+
+.channerpartner_container{
+  margin-top: 6rem !important;}
+
 /* Textarea */
 textarea.form-control {
   resize: none;
@@ -104,7 +108,7 @@ textarea.form-control {
 
 .btn:hover {
   background: linear-gradient(90deg, #ff6600, #fa4301);
-  transform: translateY(-2px);
+  /* transform: translateY(-2px); */
   box-shadow: 0 10px 20px rgba(250, 67, 1, 0.4);
 }
 
