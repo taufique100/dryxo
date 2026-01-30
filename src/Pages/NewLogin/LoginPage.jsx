@@ -31,7 +31,7 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // UI-only placeholder for submit; replace with actual integration as needed
+   
     const loginPayload = {
       email: credentials.username,
       password: credentials.password,
@@ -40,6 +40,7 @@ const LoginPage = () => {
       .post(apiUrls.login, loginPayload)
       .then((res) => {
         console.log("loginRes::", res?.data);
+
         localStorage.setItem("userToken", res?.data?.tokens?.access?.token);
         localStorage.setItem("userInfo", JSON.stringify(res?.data?.user));
         successNotify("Login successfully.");

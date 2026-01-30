@@ -204,7 +204,7 @@ label:not(.form-check-label):not(.custom-file-label) {
   margin-top: 1.5rem;
   margin-bottom: 0;
   color: #6c757d;
-  font-size: 1.1rem !important;
+  font-size: 1rem !important;
 }
 
 .signup_link {

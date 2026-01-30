@@ -10,7 +10,7 @@ export const PadProduct = () => {
         {/* First Image */}
         <div className="col-12 col-md-6 text-center">
           <img
-            src="https://dryxo.in/wp-content/uploads/2023/08/Bio-icon-2000x2000_624x.webp"
+            src={PadProduct1}
             alt="Dryxo Media"
             className="img-fluid rounded"
           />
