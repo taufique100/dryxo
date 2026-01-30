@@ -185,7 +185,7 @@ const LoginPage = () => {
                   <footer className="d-block d-md-none mt-5">
                     <span className="powered_badge">
                       {/* <img src={itDoseLogo} alt="itDoseLogo" /> */}
-                      Powered by <strong>ITDOSE INFOSYSTEMS PVT. LTD</strong>
+                      Powered by <strong>Dryxo PVT. LTD</strong>
                     </span>
                   </footer>
                 </div>
@@ -197,12 +197,7 @@ const LoginPage = () => {
             )}
           </div>
           {/* Powered by badge */}
-          <footer className="login_powered_footer">
-            <span className="powered_badge">
-              {/* <img src={itDoseLogo} alt="itDoseLogo" /> */}
-              Powered by <strong>ITDOSE INFOSYSTEMS PVT. LTD</strong>
-            </span>
-          </footer>
+        
           {/* <Footer /> */}
         </div>
       </div>
