@@ -16,7 +16,8 @@ const Navbars = () => {
   // const handleClose = () => setMenue(false);
 
   const toggleMenu = () => {
-    setMenue((prev) => !prev);
+    // setMenue((prev) => !prev);
+    setMenue(false)
   };
 
   // useEffect(() => {
@@ -46,7 +47,7 @@ const Navbars = () => {
 
           {/* Toggle Button */}
           <Navbar.Toggle
-            aria-controls="basic-navbar-nav"
+            // aria-controls="basic-navbar-nav"
             onClick={handleToggle}
           />
 
