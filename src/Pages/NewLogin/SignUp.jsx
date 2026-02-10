@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const SignUp = ({ onCancel }) => {
   const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -18,6 +19,7 @@ const SignUp = ({ onCancel }) => {
     password: "",
     confirmPassword: "",
   });
+
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -35,7 +37,7 @@ const SignUp = ({ onCancel }) => {
     setSuccessMessage("");
 
     if (
-      !credentials.username.trim() ||
+      !credentials.name.trim() ||
       !credentials.email.trim() ||
       !credentials.password ||
       !credentials.confirmPassword
@@ -65,29 +67,33 @@ const SignUp = ({ onCancel }) => {
     }
 
     setLoading(true);
+
     try {
       console.log("SignUp attempt with:", {
-        username: credentials.username,
+        name: credentials.name,
         email: credentials.email,
       });
 
+     
       const response = await axios.post(apiUrls.register, {
-        username: credentials.username,
+        name: credentials.name,
         email: credentials.email,
         password: credentials.password,
       });
 
       console.log("SignUp Response:", response?.data);
 
-      if (response?.data?.success || response?.data?.message) {
-        setSuccessMessage(response?.data?.message || "Account created successfully!");
+      if (response?.status === 201 || response?.data?.user) {
+        setSuccessMessage("Account created successfully!");
         successNotify("Account created successfully! Redirecting to login...");
+
         setTimeout(() => {
-          onCancel();
+          onCancel(); 
         }, 1500);
       } else {
-        setErrorMessage(response?.data?.message || "Signup failed");
-        errorNotify(response?.data?.message || "Signup failed");
+        const msg = response?.data?.message || "Signup failed";
+        setErrorMessage(msg);
+        errorNotify(msg);
       }
     } catch (error) {
       console.error("SignUp Error:", error);
@@ -104,8 +110,11 @@ const SignUp = ({ onCancel }) => {
   };
 
   const togglePassword = (field) => {
-    if (field === "password") setShowPassword((s) => !s);
-    else setShowConfirmPassword((s) => !s);
+    if (field === "password") {
+      setShowPassword((s) => !s);
+    } else {
+      setShowConfirmPassword((s) => !s);
+    }
   };
 
   return (
@@ -119,34 +128,41 @@ const SignUp = ({ onCancel }) => {
           <h3 className="login_heading">Create an account</h3>
 
           {successMessage && (
-            <div style={{ color: "green", marginBottom: "15px", fontSize: "14px" }}>
+            <div
+              style={{ color: "green", marginBottom: "15px", fontSize: "14px" }}
+            >
               {successMessage}
             </div>
           )}
+
           {errorMessage && (
-            <div style={{ color: "red", marginBottom: "15px", fontSize: "14px" }}>
+            <div
+              style={{ color: "red", marginBottom: "15px", fontSize: "14px" }}
+            >
               {errorMessage}
             </div>
           )}
 
           <form onSubmit={handleSubmit}>
+            {/* Name */}
             <div className="form_group">
-              <label htmlFor="username" className="form_label">
-                Username <span className="text_danger">*</span>
+              <label htmlFor="name" className="form_label">
+                Name <span className="text_danger">*</span>
               </label>
               <input
                 type="text"
-                id="username"
-                name="username"
+                id="name"
+                name="name"
                 className="form_control"
-                placeholder="Choose a username"
-                value={credentials.username}
+                placeholder="Enter your name"
+                value={credentials.name}
                 onChange={handleChange}
                 required
                 disabled={loading}
               />
             </div>
 
+            {/* Email */}
             <div className="form_group">
               <label htmlFor="email" className="form_label">
                 Email <span className="text_danger">*</span>
@@ -164,6 +180,7 @@ const SignUp = ({ onCancel }) => {
               />
             </div>
 
+            {/* Password */}
             <div className="form_group">
               <label htmlFor="password" className="form_label">
                 Password <span className="text_danger">*</span>
@@ -194,6 +211,7 @@ const SignUp = ({ onCancel }) => {
               </div>
             </div>
 
+            {/* Confirm Password */}
             <div className="form_group">
               <label htmlFor="confirmPassword" className="form_label">
                 Confirm Password <span className="text_danger">*</span>
@@ -224,6 +242,7 @@ const SignUp = ({ onCancel }) => {
               </div>
             </div>
 
+            {/* Back to Login */}
             <div className="form_footer" style={{ justifyContent: "flex-end" }}>
               <a
                 href="#"
@@ -237,6 +256,7 @@ const SignUp = ({ onCancel }) => {
               </a>
             </div>
 
+            {/* Submit */}
             <Button
               type="submit"
               className="btn_primary px-4 py-2 border-0 rounded w-100"

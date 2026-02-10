@@ -13,11 +13,12 @@ import Chanel_Partner from "./Pages/Chanel_Partner/Chanel_Partner";
 import { BlogDetailsPage } from "./Pages/Blogs/BlogDetailsPage";
 import ParchaseDetails from "./Pages/Products/Purchase/ParchaseDetails";
 import { ToastContainer } from "react-toastify";
-import Login from "./Pages/LoginSign/Login";
-import Sign from "./Pages/LoginSign/SignUp";
-import ForgetPassword from "./Pages/LoginSign/ForgetPassword";
+
+// import ForgetPassword from "./Pages/LoginSign/ForgetPassword";
 import MyOrder from "./Pages/MyOrder/MyOrder";
 import LoginPage from "./Pages/NewLogin/LoginPage";
+import SignUp from "./Pages/NewLogin/SignUp";
+import ForgotPassword from "./Pages/NewLogin/ForgotPassword";
 
 function App() {
   return (
@@ -42,8 +43,8 @@ function App() {
             <Route path="contact" element={<Contact />} />
             <Route path="my-order" element={<MyOrder />} />
             <Route path="login" element={<LoginPage />} />
-            <Route path="signup" element={<Sign />} />
-            <Route path="forget-password" element={<ForgetPassword />} />
+            <Route path="signup" element={<SignUp />} />
+            <Route path="forget-password" element={<ForgotPassword />} />
           </Route>
         </Routes>
       </div>

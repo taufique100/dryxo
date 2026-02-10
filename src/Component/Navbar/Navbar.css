@@ -1,10 +1,12 @@
+
 .navbar-nav a {
-  padding: 2px 2px;
+  padding: 2px;
+  font-weight: 500;
+  font-size: 14px;
 }
 
-/* Add bottom line on hover */
 .navbar-nav .nav-link {
-  position: relative; /* needed for ::after */
+  position: relative;
 }
 
 .navbar-nav .nav-link::after {
@@ -14,13 +16,13 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background: #fd350d; 
-  transform: scaleX(0); 
+  background: #fd350d;
+  transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.2s ease;
 }
 
-/* underline + color on hover */
+
 .navbar-nav .nav-link:hover {
   color: #fd350d !important;
 }
@@ -30,38 +32,33 @@
   transform-origin: left;
 }
 
-/* underline + color for active link */
+
 .navbar-nav .nav-link.active {
   color: #fd350d !important;
   font-weight: bold;
 }
 
 .navbar-nav .nav-link.active::after {
-  transform: scaleX(1); /* always visible */
+  transform: scaleX(1);
 }
+
+
+.navbar-nav {
+  gap: 18px;
+}
+
 
 .nav-logo {
   width: 150px;
 }
 
-.navbar-nav a{
-  font-weight: 500;
-  font-size: 14px;
-}
-
-@media screen and (max-width:576px) {
+@media (max-width: 576px) {
   .nav-logo {
     width: 95px;
   }
-  .nav-login .login-icon {
-    font-size: 16px;
-  }
-  .nav-login {
-    font-size: 14px;
-  }
 }
 
-/* Login link styling to match other nav items */
+
 .nav-login {
   font-weight: 500;
   font-size: 14px;
@@ -70,14 +67,69 @@
   align-items: center;
   gap: 8px;
   padding: 6px 8px;
+
 }
 
 .nav-login .login-icon {
   font-size: 18px;
-  line-height: 1;
 }
 
 .nav-login:hover {
   color: #fd350d !important;
 }
 
+.navbar,
+.navbar.sticky-top {
+  background-color: #ffffff !important;
+  z-index: 1050;
+}
+
+
+.navbar-collapse {
+  background-color: #ffffff;
+}
+
+
+@media (max-width: 991px) {
+  .navbar-collapse.show .navbar-nav {
+    align-items: flex-start !important;
+    text-align: left;
+    gap: 14px;
+  }
+
+  .login-link{
+   background-color: #5b66eb;
+   color: #fd350d !important;
+    border: 2px solid black;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .navbar-collapse.show .navbar-nav .nav-link {
+    width: 100%;
+    padding: 14px 0;
+    text-align: left;
+  }
+
+  .navbar-collapse.show .nav-login {
+    width: 100%;
+    margin-top: 16px;
+    padding: 12px;
+    justify-content: center;
+    background: #fd350d;
+    color: #fff !important;
+    border-radius: 6px;
+    font-weight: 600;
+  }
+
+  .navbar-collapse.show .nav-login:hover {
+    background: #e12d0a;
+    color: #fff !important;
+  }
+
+ 
+  .navbar-collapse.show .nav-link::after {
+    display: none;
+  }
+}

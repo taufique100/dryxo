@@ -2,11 +2,14 @@ import React from 'react'
 import { Carousel } from "react-bootstrap";
 import './Sweeper.css'
 import Sweeper1 from '../../../assets/sweeper1.jpg'
+import Sweeper2 from "../../../assets/sweeper2.jpg";
+import Sweeper3 from "../../../assets/sweeper3.jpg";
+
 
 const Sweeper = () => {
-  const img = "https://dryxo.in/wp-content/uploads/2023/10/orange_banner-1.webp";
+  const img = Sweeper2;
 
-  const img3 ="https://dryxo.in/wp-content/uploads/2023/10/watch_banner_dryxo.gif";
+  const img3 =Sweeper3;
   return (
     <>
       <Carousel

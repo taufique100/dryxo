@@ -15,7 +15,7 @@ const LoginPage = () => {
   const  navigate= useNavigate()
   const [showPassword, setShowPassword] = useState(false);
 
-  // Local UI-only state (no API / Redux integration)
+
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
@@ -31,7 +31,7 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // UI-only placeholder for submit; replace with actual integration as needed
+   
     const loginPayload = {
       email: credentials.username,
       password: credentials.password,
@@ -40,6 +40,7 @@ const LoginPage = () => {
       .post(apiUrls.login, loginPayload)
       .then((res) => {
         console.log("loginRes::", res?.data);
+
         localStorage.setItem("userToken", res?.data?.tokens?.access?.token);
         localStorage.setItem("userInfo", JSON.stringify(res?.data?.user));
         successNotify("Login successfully.");
@@ -182,10 +183,7 @@ const LoginPage = () => {
                     </div>
                   </div>
                   <footer className="d-block d-md-none mt-5">
-                    <span className="powered_badge">
-                      {/* <img src={itDoseLogo} alt="itDoseLogo" /> */}
-                      Powered by <strong>ITDOSE INFOSYSTEMS PVT. LTD</strong>
-                    </span>
+                    
                   </footer>
                 </div>
 
@@ -197,10 +195,7 @@ const LoginPage = () => {
           </div>
           {/* Powered by badge */}
           <footer className="login_powered_footer">
-            <span className="powered_badge">
-              {/* <img src={itDoseLogo} alt="itDoseLogo" /> */}
-              Powered by <strong>ITDOSE INFOSYSTEMS PVT. LTD</strong>
-            </span>
+           
           </footer>
           {/* <Footer /> */}
         </div>
