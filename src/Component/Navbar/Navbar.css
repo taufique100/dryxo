@@ -49,7 +49,7 @@
 
 
 .nav-logo {
-  width: 150px;
+  width: 110px;
 }
 
 @media (max-width: 576px) {
@@ -82,6 +82,7 @@
 .navbar.sticky-top {
   background-color: #ffffff !important;
   z-index: 1050;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 

@@ -2,38 +2,30 @@ import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import "./OrderModal.css";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  errorNotify,
-  successNotify,
-  warningNotify,
-} from "../../Utils/toastNotify";
+import { successNotify } from "../../Utils/toastNotify";
 import { setOpenModal } from "../../Store/OrderSlice";
 import OrderModal from "./OrderModal";
 
 function ViewAddedProductBtn() {
   const dispatch = useDispatch();
-  const [selectedProducts, setSelectedProducts] = useState([]);
   const [showMessage, setShowMessage] = useState(false);
   const [messageText, setMessageText] = useState("");
   const [animateWidth, setAnimateWidth] = useState(false);
+  const [prevCartLength, setPrevCartLength] = useState(0);
 
-  const { selectedProductId } = useSelector((state) => state.orderSlice);
+  const { cartItems } = useSelector((state) => state.orderSlice);
 
   useEffect(() => {
-    if (!selectedProductId) return;
-
-    if (!selectedProducts.includes(selectedProductId)) {
-      setSelectedProducts((prev) => [...prev, selectedProductId]);
+    if (cartItems.length > prevCartLength) {
       successNotify("Product added successfully!");
       showTemporaryMessage();
-    } else {
-      warningNotify("Product already added!");
     }
-  }, [selectedProductId]);
+    setPrevCartLength(cartItems.length);
+  }, [cartItems.length]);
 
   const showTemporaryMessage = () => {
-    const count = selectedProducts.length + 1;
-    setMessageText(`${count} item${count > 1 ? "s" : ""} added`);
+    const count = cartItems.length;
+    setMessageText(`${count} item${count > 1 ? "s" : ""} in cart`);
     setShowMessage(true);
     setAnimateWidth(true);
 
@@ -46,6 +38,8 @@ function ViewAddedProductBtn() {
   const handleModalOpen = () => {
     dispatch(setOpenModal(true));
   };
+
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <>
@@ -69,12 +63,12 @@ function ViewAddedProductBtn() {
             <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
           </svg>
 
-          {selectedProducts.length > 0 && (
+          {totalItems > 0 && (
             <span
-              key={selectedProducts.length}
+              key={totalItems}
               className="badge_count animate-badge"
             >
-              {selectedProducts.length}
+              {totalItems}
             </span>
           )}
         </Button>

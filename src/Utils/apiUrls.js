@@ -14,7 +14,8 @@ const allEnvApiUrls = {
 };
 // console.log("envUrlenvironment", environment, allEnvApiUrls);
 
-const envUrl = `${allEnvApiUrls[environment]?.baseUrl}/v1/`;
+// const envUrl = `${allEnvApiUrls[environment]?.baseUrl}/v1/`;
+const envUrl = `/v1`;
 
 // export const apiUrls = {
 //   login: `${envUrl}/auth/login`,
@@ -27,4 +28,5 @@ const envUrl = `${allEnvApiUrls[environment]?.baseUrl}/v1/`;
 export const apiUrls = {
   login: `${envUrl}/auth/login`,
   register: `${envUrl}/auth/register`,
+  getAllUserProducts: `${envUrl}/products/getAllUserProducts`
 };
