@@ -526,7 +526,7 @@ export default function OrderModal() {
               ))}
 
               {/* Grand totals */}
-              <div className="grand_total_box mt-3">
+              {/* <div className="grand_total_box mt-3">
                 <div className="calc_row">
                   <span>Cart Subtotal</span>
                   <span>₹ {summary.subtotal.toFixed(2)}</span>
@@ -537,11 +537,11 @@ export default function OrderModal() {
                   <span className="text-success">- ₹ {summary.discount.toFixed(2)}</span>
                 </div>
 
+              </div> */}
                 <div className="calc_row grand_total_row">
                   <span>Amount Payable</span>
                   <span>₹ {summary.total.toFixed(2)}</span>
                 </div>
-              </div>
             </section>
 
             {/* Delivery Details */}
