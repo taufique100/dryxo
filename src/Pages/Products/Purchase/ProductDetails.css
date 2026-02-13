@@ -4,6 +4,9 @@
   padding:60px 0;
 }
 
+
+
+/* IMAGE */
 .image_gallery{
   background:white;
   padding:20px;
@@ -37,7 +40,7 @@
   border-color:#ff5a00;
 }
 
-
+/* INFO */
 .product_info{
   background:white;
   padding:30px;
@@ -82,7 +85,7 @@
   margin-bottom:10px;
 }
 
-
+/* QTY */
 .qty_box{
   display:flex;
   align-items:center;
@@ -99,7 +102,7 @@
   border-radius:6px;
 }
 
-
+/* FEATURES */
 .features{
   margin-top:15px;
 }
@@ -108,7 +111,7 @@
   margin:3px 0;
 }
 
-
+/* DELIVERY */
 .delivery{
   background:#f1f6ff;
   padding:12px;
@@ -117,7 +120,7 @@
   font-size:14px;
 }
 
-
+/* BUTTONS */
 .action_btns{
   margin-top:20px;
   display:flex;
@@ -147,3 +150,16 @@
 .buy_btn:hover{
   background:#218838;
 }
+
+.action_btns{
+  margin-top:20px;
+  display:flex;
+  gap:15px;
+}
+
+.action_btns .cart_btn,
+.action_btns .buy_btn{
+  flex:1;             
+  text-align:center;  
+}
+
