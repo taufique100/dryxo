@@ -42,7 +42,6 @@
   transform: scaleX(1);
 }
 
-
 .navbar-nav {
   gap: 18px;
 }
@@ -104,6 +103,7 @@
     border-radius: 5px;
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
   .navbar-collapse.show .navbar-nav .nav-link {
@@ -128,7 +128,6 @@
     color: #fff !important;
   }
 
- 
   .navbar-collapse.show .nav-link::after {
     display: none;
   }

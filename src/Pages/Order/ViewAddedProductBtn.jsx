@@ -7,7 +7,7 @@ import {
   successNotify,
   warningNotify,
 } from "../../Utils/toastNotify";
-import { setOpenModal } from "../../Store/OrderSlice";
+import { setOpenModal, setSelectedProductId } from "../../Store/OrderSlice";
 import OrderModal from "./OrderModal";
 
 function ViewAddedProductBtn() {
@@ -29,6 +29,9 @@ function ViewAddedProductBtn() {
     } else {
       warningNotify("Product already added!");
     }
+
+   //for not add auto on add card
+    dispatch(setSelectedProductId(null));
   }, [selectedProductId]);
 
   const showTemporaryMessage = () => {
