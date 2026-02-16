@@ -17,16 +17,12 @@ const allEnvApiUrls = {
 // const envUrl = `${allEnvApiUrls[environment]?.baseUrl}/v1/`;
 const envUrl = `/v1`;
 
-// export const apiUrls = {
-//   login: `${envUrl}/auth/login`,
-//   register: `${envUrl}/auth/register`,
-//   forgotPassword: `${envUrl}/auth/forgot-password`,
-//   resetPassword: `${envUrl}/auth/reset-password`,
-// };
-
-
 export const apiUrls = {
   login: `${envUrl}/auth/login`,
   register: `${envUrl}/auth/register`,
-  getAllUserProducts: `${envUrl}/products/getAllUserProducts`
+  getAllUserProducts: `${envUrl}/products/getAllUserProducts`,
+  forgotPassword: `${envUrl}/auth/forgot-password`,
+  resetPassword: `${envUrl}/auth/reset-password`,
 };
+
+

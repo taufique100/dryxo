@@ -1,153 +1,133 @@
-.pro_card {
-  width: 100%;
-  border-radius: 16px;
-  background: white;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
+.pro_card_new {
+  position: relative;
+  background: #fff;
+  border-radius: 18px;
+  padding: 15px;
   height: 100%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+
 }
 
-.pro_card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+.pro_card_new:hover {
+  /* transform: translateY(-6px); */
+  box-shadow: 0 18px 40px rgba(0,0,0,0.15);
 }
+
+.best_badge {
+  position: absolute;
+  top: -10px;
+  left: 12px;
+  background: #ff5a1f;
+  color: white;
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
 
 .img_section {
-  height: 280px;
+  height: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: linear-gradient(135deg, #ff4400 0%, #d28611 100%);
-  position: relative;
 }
 
-.carousel-image-container {
-  height: 280px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.carousel-image {
+.img_section img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
+  object-fit: contain;
+  transform: scale(1.35);
+  transition: 0.3s ease;
 }
 
-.pro_card:hover .carousel-image {
-  transform: scale(1.08);
+.pro_card_new:hover .img_section img {
+  transform: scale(1.45);
 }
 
 .content_section {
-  background-color: #fff;
-  padding: 24px !important;
-  font-size: 14px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+  padding-top: 10px;
 }
 
-.content_section h1 {
-  color: #1a202c !important;
-  font-size: 20px !important;
-  font-weight: 700 !important;
-  margin-bottom: 12px !important;
-}
-
-.content_section > div > p {
-  font-size: 14px;
-  color: #4a5568;
-  line-height: 1.6;
-  margin-bottom: 16px;
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
 }
 
 .feature_box {
-  margin-bottom: 16px !important;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
 }
 
 .feature_box span {
-  background: #fff3e0;
-  color: #d28611;
-  border: 1px solid #ff4400;
-  padding: 6px 12px;
-  border-radius: 20px;
   font-size: 12px;
-  font-weight: 600;
-}
-
-.feature_list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 20px 0;
-}
-
-.feature_list li {
-  padding: 6px 0;
-  color: #4a5568;
-  font-size: 13px;
-  position: relative;
-  padding-left: 20px;
-}
-
-.feature_list li:before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: #ff4400;
-  font-weight: bold;
-}
-
-.footer_card_section {
-  margin-top: auto;
-  padding-top: 20px;
-  border-top: 2px solid #fff3e0;
-}
-
-.price_sec p {
-  font-weight: 500;
-  font-size: 13px;
-  color: #718096;
-  letter-spacing: 0.3px;
-}
-
-.price_sec p:nth-child(2) {
-  font-weight: 800;
-  font-size: 24px;
-  color: #ff4400;
-}
-
-.footer_card_section > button {
-  font-size: 14px;
-  font-weight: 600;
-  background-color: #ff4400;
-  border: none;
-  padding: 10px 24px;
+  border: 1px solid #ddd;
+  padding: 3px 8px;
   border-radius: 8px;
-  transition: all 0.3s ease;
 }
 
-.footer_card_section > button:hover {
-  background-color: #d28611;
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(255, 68, 0, 0.4);
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #f59e0b;
+  font-size: 14px;
+  margin-bottom: 6px;
 }
 
-@media screen and (max-width: 476px) {
-  .img_section,
-  .carousel-image-container {
-    height: 220px;
-  }
-  
-  .content_section {
-    padding: 18px !important;
-  }
-  
-  .content_section h1 {
-    font-size: 18px !important;
-  }
+.rating span {
+  color: #666;
+  margin-left: 5px;
+}
+
+.price_row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.old_price {
+  text-decoration: line-through;
+  color: gray;
+  font-size: 14px;
+}
+
+.off {
+  background: #ffe4d6;
+  color: #ff5a1f;
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.stock {
+  color: #ff5a1f;
+  font-size: 13px;
+  margin: 6px 0 10px;
+}
+
+.btn_row {
+  display: flex;
+  gap: 10px;
+}
+
+.cart_btn {
+  flex: 1;
+  background: #ff5a1f;
+  border: none;
+}
+
+.view_btn {
+  flex: 1;
+  background: #fff;
+  color: black;
+  border: 1px solid #ddd;
 }

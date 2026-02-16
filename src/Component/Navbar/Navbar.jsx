@@ -4,11 +4,12 @@ import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
 import { AiOutlineLogin } from "react-icons/ai";
+import { FaCartArrowDown } from "react-icons/fa";
+
 
 const Navbars = () => {
   const [menu, setMenu] = useState(false);
 
- 
 
   return (
     <Navbar
@@ -65,8 +66,11 @@ const Navbars = () => {
             </Nav.Link>
           </Nav>
 
-          {/* 🔥 SAME LOGIN (position CSS se change hogi) */}
           <Nav className="login-wrapper">
+            <Nav.Link as={NavLink} to="/cart" onClick={() => setMenu(false)}>
+              <FaCartArrowDown />
+            </Nav.Link>
+
             <Nav.Link
               as={NavLink}
               to="/login"

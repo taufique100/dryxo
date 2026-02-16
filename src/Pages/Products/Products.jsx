@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import "./Products.css";
+import banner from "../../assets/product1.jpg"
+import { PadProduct } from './PadProduct';
 import ProductCard from './Purchase/ProductCard';
 import { motion } from 'framer-motion';
-import axiosInstance from '../../api/axiosInstance';
-import { apiUrls } from '../../Utils/apiUrls';
+import sanitaryProducts  from "./sanitaryProducts";
+
 
 const Products = () => {
   const [product, setProduct] = useState([]);

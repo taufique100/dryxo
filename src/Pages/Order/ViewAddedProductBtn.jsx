@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import "./OrderModal.css";
 import { useDispatch, useSelector } from "react-redux";
-import { successNotify } from "../../Utils/toastNotify";
-import { setOpenModal } from "../../Store/OrderSlice";
+import {
+  errorNotify,
+  successNotify,
+  warningNotify,
+} from "../../Utils/toastNotify";
+import { setOpenModal, setSelectedProductId } from "../../Store/OrderSlice";
 import OrderModal from "./OrderModal";
 
 function ViewAddedProductBtn() {
