@@ -20,7 +20,7 @@ import LoginPage from "./Pages/NewLogin/LoginPage";
 import SignUp from "./Pages/NewLogin/SignUp";
 import ForgotPassword from "./Pages/NewLogin/ForgotPassword";
 import ProductDetails from "./Pages/Products/Purchase/ProductDetails";
-import OrderModal from "./Pages/Order/OrderModal";
+import Cart from "./Pages/Order/Cart";
 
 function App() {
   return (
@@ -44,7 +44,7 @@ function App() {
             <Route path="login" element={<LoginPage />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="forget-password" element={<ForgotPassword />} />
-            <Route path="cart" element={<OrderModal />} />
+            <Route path="cart" element={<Cart />} />
           </Route>
         </Routes>
       </div>
