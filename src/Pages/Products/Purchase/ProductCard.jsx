@@ -4,7 +4,8 @@ import productImg from "../../../assets/product-4.png";
 import { Button } from "react-bootstrap";
 import ViewAddedProductBtn from "../../Order/ViewAddedProductBtn";
 import { useDispatch } from "react-redux";
-import { setSelectedProductId } from "../../../Store/OrderSlice";
+import { addToCart } from "../../../Store/OrderSlice";
+import { successNotify, errorNotify } from "../../../Utils/toastNotify";
 import { useNavigate } from "react-router-dom";
 import { FaCartPlus, FaStar } from "react-icons/fa";
 
@@ -12,9 +13,14 @@ const ProductCard = ({ productList = [] }) => {
   const dispatch = useDispatch();
 
   const addProduct = (id) => {
-    dispatch(setSelectedProductId(id));
+    try {
+      dispatch(addToCart({ id, quantity: 1 }));
+      successNotify("Added to cart");
+    } catch (e) {
+      console.error("addToCart error", e);
+      errorNotify("Failed to add to cart");
+    }
   };
-
   const navigate = useNavigate();
 
   return (
@@ -76,15 +82,12 @@ const ProductCard = ({ productList = [] }) => {
 
                   {/* BUTTONS */}
                   <div className="btn_row">
-                    <Button
-                      onClick={() => addProduct(idx + 1)}
-                      className="cart_btn"
-                    >
-                      <FaCartPlus />  Cart
+                    <Button onClick={() => addProduct(item.id)} className="cart_btn">
+                      <FaCartPlus /> Cart
                     </Button>
 
                     <Button
-                      onClick={() => navigate(`/product/${idx}`)}
+                      onClick={() => navigate(`/product/${item.id}`)}
                       className="view_btn"
                     >
                       View
