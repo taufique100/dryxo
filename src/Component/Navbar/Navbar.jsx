@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
 import { AiOutlineLogin } from "react-icons/ai";
@@ -9,6 +10,7 @@ import { FaCartArrowDown } from "react-icons/fa";
 
 const Navbars = () => {
   const [menu, setMenu] = useState(false);
+  const { cart } = useSelector((state) => state.orderSlice);
 
 
   return (

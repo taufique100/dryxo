@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import "./OrderModal.css";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  errorNotify,
-  successNotify,
-  warningNotify,
-} from "../../Utils/toastNotify";
-import { setOpenModal, setSelectedProductId } from "../../Store/OrderSlice";
+import { setOpenModal } from "../../Store/OrderSlice";
 import OrderModal from "./OrderModal";
 
 function ViewAddedProductBtn() {
@@ -20,12 +15,12 @@ function ViewAddedProductBtn() {
   const { cartItems } = useSelector((state) => state.orderSlice);
 
   useEffect(() => {
-    if (cartItems.length > prevCartLength) {
+    if (cartItems?.length > prevCartLength) {
       successNotify("Product added successfully!");
       showTemporaryMessage();
     }
-    setPrevCartLength(cartItems.length);
-  }, [cartItems.length]);
+    setPrevCartLength(cartItems?.length);
+  }, [cartItems?.length]);
 
   const showTemporaryMessage = () => {
     const count = cartItems.length;
@@ -43,7 +38,7 @@ function ViewAddedProductBtn() {
     dispatch(setOpenModal(true));
   };
 
-  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const totalItems = cartItems?.length ? [...cartItems]?.reduce((sum, item) => sum + item?.quantity, 0) : [];
 
   return (
     <>
@@ -83,6 +78,8 @@ function ViewAddedProductBtn() {
       </div>
     </>
   );
+  // Floating cart button removed — controlled cart actions exist on page elements now.
+  return null;
 }
 
 export default ViewAddedProductBtn;

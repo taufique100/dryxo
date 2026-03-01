@@ -22,7 +22,7 @@ const Contact = () => {
         </div>
 
         <Row className="g-4">
-          {/* ================= LEFT SIDE FORM ================= */}
+         
           <Col lg={6}>
             <Card
               className="border-0 shadow-lg"
@@ -39,14 +39,14 @@ const Contact = () => {
                       <Form.Control
                         type="text"
                         placeholder="Full Name"
-                        className="py-3"
+                        className="py-2 "
                       />
                     </Col>
                     <Col>
                       <Form.Control
                         type="text"
                         placeholder="Phone Number"
-                        className="py-3"
+                        className="py-2"
                       />
                     </Col>
                   </Row>
@@ -56,14 +56,14 @@ const Contact = () => {
                       <Form.Control
                         type="email"
                         placeholder="Email Address"
-                        className="py-3"
+                        className="py-2"
                       />
                     </Col>
                     <Col>
                       <Form.Control
                         type="text"
                         placeholder="Subject"
-                        className="py-3"
+                        className="py-2"
                       />
                     </Col>
                   </Row>
@@ -82,7 +82,7 @@ const Contact = () => {
                       style={{
                         background: "linear-gradient(45deg,#fd350d,#ff7a59)",
                         border: "none",
-                        padding: "12px 40px",
+                        padding: "6px 15px",
                         borderRadius: "50px",
                         fontWeight: "600",
                         fontSize: "16px",
@@ -102,10 +102,10 @@ const Contact = () => {
             <Card className="border-0 shadow-sm mb-4 p-3">
               <div className="d-flex align-items-start">
                 <div
-                  className="text-white p-3 rounded-circle me-3"
+                  className="text-white py-2 px-2 rounded-circle me-3"
                   style={{ background: "#fd350d" }}
                 >
-                  <FaMapMarkerAlt size={22} />
+                  <FaMapMarkerAlt size={18} />
                 </div>
                 <div>
                   <h5 className="fw-bold mb-1">Sharida Healthcare Pvt. Ltd</h5>
@@ -121,10 +121,10 @@ const Contact = () => {
             <Card className="border-0 shadow-sm mb-4 p-3">
               <div className="d-flex align-items-start">
                 <div
-                  className="text-white p-3 rounded-circle me-3"
+                  className="text-white py-2 px-2 rounded-circle me-3"
                   style={{ background: "#fd350d" }}
                 >
-                  <FaPhoneAlt size={22} />
+                  <FaPhoneAlt size={18} />
                 </div>
                 <div>
                   <h5 className="fw-bold mb-1">Call Us</h5>
@@ -137,10 +137,10 @@ const Contact = () => {
             <Card className="border-0 shadow-sm p-3">
               <div className="d-flex align-items-start">
                 <div
-                  className="text-white p-3 rounded-circle me-3"
+                  className="text-white py-2 px-2 rounded-circle me-3"
                   style={{ background: "#fd350d" }}
                 >
-                  <FaEnvelope size={22} />
+                  <FaEnvelope size={18} />
                 </div>
                 <div>
                   <h5 className="fw-bold mb-1">Email Support</h5>
@@ -149,12 +149,7 @@ const Contact = () => {
               </div>
             </Card>
 
-            {/* TRUST MESSAGE */}
-            <div className="mt-4 text-center">
-              <p className="text-muted">
-                Our support team typically responds within 24 hours.
-              </p>
-            </div>
+            
           </Col>
         </Row>
       </Container>

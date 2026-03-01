@@ -21,6 +21,10 @@ import SignUp from "./Pages/NewLogin/SignUp";
 import ForgotPassword from "./Pages/NewLogin/ForgotPassword";
 import ProductDetails from "./Pages/Products/Purchase/ProductDetails";
 import Cart from "./Pages/Order/Cart";
+import OrderLayout from "./Pages/Order/OrderLayout";
+import OrderDetails from "./Pages/Order/OrderDetails";
+import AddressSelection from "./Pages/Order/AddressSelection";
+import Payment from "./Pages/Order/Payment";
 
 function App() {
   return (
@@ -45,6 +49,11 @@ function App() {
             <Route path="signup" element={<SignUp />} />
             <Route path="forget-password" element={<ForgotPassword />} />
             <Route path="cart" element={<Cart />} />
+            <Route path="order" element={<OrderLayout />}>
+              <Route path="details" element={<OrderDetails />} />
+              <Route path="address" element={<AddressSelection />} />
+              <Route path="payment" element={<Payment />} />
+            </Route>
           </Route>
         </Routes>
       </div>

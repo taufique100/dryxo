@@ -1,0 +1,6 @@
+.order-steps{display:flex;align-items:center}
+.order-step{padding:8px 14px;border-radius:6px;background:#f5f7fa}
+.order-step.active{background:#ff6b00;color:#fff}
+.step-link{color:inherit;text-decoration:none}
+
+.order-layout{max-width:1100px}
