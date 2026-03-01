@@ -5,6 +5,8 @@ import { PadProduct } from './PadProduct';
 import ProductCard from './Purchase/ProductCard';
 import { motion } from 'framer-motion';
 import sanitaryProducts  from "./sanitaryProducts";
+import axiosInstance from '../../api/axiosInstance';
+import { apiUrls } from '../../Utils/apiUrls';
 
 
 const Products = () => {
