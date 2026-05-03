@@ -16,6 +16,8 @@ import { ToastContainer } from "react-toastify";
 
 // import ForgetPassword from "./Pages/LoginSign/ForgetPassword";
 import MyOrder from "./Pages/MyOrder/MyOrder";
+import Orders from "./Pages/Orders/Orders";
+import ChangePassword from "./Pages/ChangePassword/ChangePassword";
 import LoginPage from "./Pages/NewLogin/LoginPage";
 import SignUp from "./Pages/NewLogin/SignUp";
 import ForgotPassword from "./Pages/NewLogin/ForgotPassword";
@@ -42,6 +44,8 @@ function App() {
             <Route path="chanel_partner" element={<Chanel_Partner />} />
             <Route path="contact" element={<Contact />} />
             <Route path="my-order" element={<MyOrder />} />
+            <Route path="orders" element={<Orders />} />
+            <Route path="change-password" element={<ChangePassword />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="forget-password" element={<ForgotPassword />} />

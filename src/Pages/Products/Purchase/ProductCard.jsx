@@ -41,13 +41,13 @@ const ProductCard = ({ productList = [] }) => {
         <>
             <ViewAddedProductBtn />
             <div className="container">
-                {productList.length === 0 ? (
+                {productList?.length === 0 ? (
                     <div className="text-center py-5">
                         <p style={{ fontSize: '1.2rem', color: '#718096' }}>No products available at the moment</p>
                     </div>
                 ) : (
                     <div className="row g-3">
-                        {productList.map((item, idx) => {
+                        {productList?.map((item, idx) => {
                             const discountPercentage = item?.discountPercentage || 0;
                             const originalPrice = item?.originalPrice || item?.mrp || item?.price;
                             const salePrice = item?.price || 0;

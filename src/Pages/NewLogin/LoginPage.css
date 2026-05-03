@@ -80,19 +80,22 @@
   width: 100%; 
   max-width: 500px;
   padding: 2.5rem;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  background-color: #fff;
-  border-radius: 8px;
+  box-shadow: rgba(253, 53, 13, 0.2) 0px 10px 30px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 15px;
+  border: 1px solid rgba(253, 53, 13, 0.1);
 }
 
 .login_form h3 {
-  font-size: 20px !important;
+  font-size: 24px !important;
+  color: #fd350d;
+  font-weight: 700;
 }
 
 .login_heading {
   text-align: center;
-  font-weight: 500;
-  color: #141724;
+  font-weight: 600;
+  color: #333;
   line-height: 1.2;
   margin-top: 0;
   margin-bottom: 2rem;
@@ -190,13 +193,18 @@ label:not(.form-check-label):not(.custom-file-label) {
   width: 100%;
   padding: 0.8rem 1.125rem;
   border: none;
-  border-radius: 6px !important;
-  background-color: #5b66eb;
+  border-radius: 25px !important;
+  background: linear-gradient(45deg, #fd350d, #ff6b4a);
   color: #fff;
   font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+#ldpl_login_button:hover {
+  background: linear-gradient(45deg, #e62e0a, #ff5722);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(253, 53, 13, 0.3);
 }
 
 .social_login_wrap {
@@ -210,22 +218,30 @@ label:not(.form-check-label):not(.custom-file-label) {
   gap: 0.75rem;
   width: 100%;
   padding: 0.75rem 1rem;
-  border-radius: 8px;
+  border-radius: 25px;
   font-size: 14px;
   font-weight: 600;
-  border: 1px solid #dbeafe;
-  background-color: #fff;
-  color: #111827;
+  border: 1px solid rgba(253, 53, 13, 0.2);
+  background: linear-gradient(45deg, #fff, #f8f9fa);
+  color: #333;
   cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(253, 53, 13, 0.1);
   margin-bottom: 1rem;
 }
 
 .btn_social:hover {
-  background-color: #f8fafc;
-  border-color: #c7d2fe;
-  transform: translateY(-1px);
+  background: linear-gradient(45deg, #fd350d, #ff6b4a);
+  color: white;
+  border-color: #fd350d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(253, 53, 13, 0.3);
+}
+
+.btn_social:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .btn_social:disabled {

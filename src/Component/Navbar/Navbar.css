@@ -1,6 +1,6 @@
 
 .navbar-nav a {
-  padding: 2px;
+  /* padding: 2px; */
   font-weight: 500;
   font-size: 14px;
 }
@@ -74,8 +74,132 @@
   font-size: 18px;
 }
 
-.nav-login:hover {
+button.profile-toggle {
+  border: 1px solid rgba(253, 53, 13, 0.12);
+  color: #333;
+  padding: 4px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 50%;
+  gap: 8px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border-radius: 999px; */
+  background: #e1e0e072 !important;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+button.profile-toggle:hover {
+  background: rgba(253, 53, 13, 0.08);
+  color: #fd350d !important;;
+}
+
+.profile-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.profile-icon {
+  font-size: 20px;
+  color: #fd350d;
+}
+
+button.profile-toggle:hover .profile-icon {
+  color: #fd350d;
+}
+
+.profile-dropdown .dropdown-toggle::after {
+  display: none;
+}
+
+.profile-dropdown .dropdown-menu {
+  border-radius: 20px;
+  border: 1px solid rgba(253, 53, 13, 0.12);
+  box-shadow: 0 24px 40px rgba(0, 0, 0, 0.12);
+  min-width: 240px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.profile-menu-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  background: linear-gradient(135deg, #fd350d, #ff6b4a);
+  color: #fff;
+}
+
+.profile-menu-avatar {
+  width: 42px;
+  height: 42px;
+  font-size: 24px;
+}
+
+.profile-menu-name {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.profile-menu-email {
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.profile-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  color: #333;
+  font-weight: 600;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.profile-item:hover,
+.profile-item.active {
+  background-color: rgba(253, 53, 13, 0.08);
   color: #fd350d !important;
+}
+
+.profile-item-icon {
+  font-size: 18px;
+}
+
+.logout-item {
+  color: #d93b2e !important;
+}
+
+.logout-item:hover {
+  background-color: rgba(217, 59, 46, 0.08);
+  color: #d93b2e !important;
+}
+
+.login-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fd350d, #ff6b4a);
+  color: white !important;
+  font-weight: 600;
+  box-shadow: 0 10px 20px rgba(253, 53, 13, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(253, 53, 13, 0.24);
+}
+
+.login-icon {
+  font-size: 18px;
 }
 
 .navbar,
