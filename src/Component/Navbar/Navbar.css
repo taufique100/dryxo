@@ -124,6 +124,8 @@ button.profile-toggle:hover .profile-icon {
   min-width: 240px;
   padding: 0;
   overflow: hidden;
+  position:absolute;
+  right: 0;
 }
 
 .profile-menu-header {
@@ -256,5 +258,9 @@ button.profile-toggle:hover .profile-icon {
  
   .navbar-collapse.show .nav-link::after {
     display: none;
+  }
+
+  .profile-dropdown .dropdown-menu{
+    right: -75px;
   }
 }
