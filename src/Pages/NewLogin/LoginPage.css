@@ -199,9 +199,69 @@ label:not(.form-check-label):not(.custom-file-label) {
   transition: background-color 0.2s ease-in-out;
 }
 
+.social_login_wrap {
+  margin-bottom: 1rem;
+}
+
+.btn_social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid #dbeafe;
+  background-color: #fff;
+  color: #111827;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+  margin-bottom: 1rem;
+}
+
+.btn_social:hover {
+  background-color: #f8fafc;
+  border-color: #c7d2fe;
+  transform: translateY(-1px);
+}
+
+.btn_social:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn_social_icon {
+  font-size: 18px;
+}
+
+.social_separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.social_separator::before,
+.social_separator::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #e5e7eb;
+}
+
+.social_separator span {
+  padding: 0 8px;
+}
+
 .signup_text {
   text-align: center;
-  margin-top: 1.5rem;
+  /* margin-top: 1.5rem; */
   margin-bottom: 0;
   color: #6c757d;
   font-size: 1rem !important;

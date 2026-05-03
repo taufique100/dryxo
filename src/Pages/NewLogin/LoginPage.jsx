@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./LoginPage.css";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import { FcGoogle } from "react-icons/fc";
+import { useGoogleLogin } from "@react-oauth/google";
 import ForgotPassword from "./ForgotPassword";
 import SignUp from "./SignUp";
 import loginImage from "../../assets/NewLoginPage/image.jpg";
@@ -12,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const LoginPage = () => {
-  const  navigate= useNavigate()
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
 
 
@@ -21,7 +23,43 @@ const LoginPage = () => {
     password: "",
   });
   const [loading, setLoading] = useState(false);
-  const [panel, setPanel] = useState("login"); 
+  const [panel, setPanel] = useState("login");
+  const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+
+  const handleGoogleCredentialResponse = async (response) => {
+    setLoading(true);
+
+    const token = response?.credential;
+    if (!token) {
+      setLoading(false);
+      errorNotify("Google login failed. Please try again.");
+      return;
+    }
+
+    try {
+      const res = await axios.post(apiUrls.googleLogin, { token });
+      localStorage.setItem("userToken", res?.data?.tokens?.access?.token);
+      localStorage.setItem("userInfo", JSON.stringify(res?.data?.user));
+      successNotify("Login successfully.");
+      navigate("/home");
+    } catch (err) {
+      console.error("Google login error", err);
+      errorNotify(
+        err?.response?.data?.message || "Google login failed. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loginWithGoogle = useGoogleLogin({
+    onSuccess: handleGoogleCredentialResponse,
+    onError: () => {
+      setLoading(false);
+      errorNotify("Google login failed. Please try again.");
+    },
+    flow: "implicit",
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,7 +69,7 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-   
+
     const loginPayload = {
       email: credentials.username,
       password: credentials.password,
@@ -64,6 +102,7 @@ const LoginPage = () => {
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
+
 
   return (
     <>
@@ -141,7 +180,6 @@ const LoginPage = () => {
                           </div>
                         </div>
 
-                        {/* Remember me + Forgot password */}
                         <div className="form_footer">
                           <div className="remember_me">
                             <input
@@ -170,7 +208,24 @@ const LoginPage = () => {
                         </button>
                       </form>
 
-                      <p className="signup_text">
+                      {/* Remember me + Forgot password */}
+                      <div className="social_login_wrap mt-3">
+                        <button
+                          type="button"
+                          className="btn_social btn_google"
+                          onClick={() => loginWithGoogle()}
+                          disabled={loading}
+                        >
+                          <FcGoogle className="btn_social_icon" />
+                          Continue with Google
+                        </button>
+
+                        {/* <div className="social_separator">
+                          <span>or use your email</span>
+                        </div> */}
+                      </div>
+
+                      <p className="signup_text ">
                         Don’t have an account?{" "}
                         <a
                           href="#"
@@ -183,7 +238,7 @@ const LoginPage = () => {
                     </div>
                   </div>
                   <footer className="d-block d-md-none mt-5">
-                    
+
                   </footer>
                 </div>
 
@@ -195,7 +250,7 @@ const LoginPage = () => {
           </div>
           {/* Powered by badge */}
           <footer className="login_powered_footer">
-           
+
           </footer>
           {/* <Footer /> */}
         </div>

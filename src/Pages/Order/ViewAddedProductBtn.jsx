@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { successNotify } from "../../Utils/toastNotify";
 import { setOpenModal } from "../../Store/OrderSlice";
 import OrderModal from "./OrderModal";
+import LoginModal from "../../Component/LoginModal";
+import useAuth from "../../hooks/useAuth";
 
 function ViewAddedProductBtn() {
   const dispatch = useDispatch();
@@ -12,8 +14,10 @@ function ViewAddedProductBtn() {
   const [messageText, setMessageText] = useState("");
   const [animateWidth, setAnimateWidth] = useState(false);
   const [prevCartLength, setPrevCartLength] = useState(0);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   const { cartItems } = useSelector((state) => state.orderSlice);
+  const { isLoggedIn, loading: authLoading } = useAuth();
 
   useEffect(() => {
     if (cartItems.length > prevCartLength) {
@@ -36,6 +40,17 @@ function ViewAddedProductBtn() {
   };
 
   const handleModalOpen = () => {
+    if (authLoading) return; // Wait for auth check
+
+    if (!isLoggedIn) {
+      setShowLoginModal(true);
+    } else {
+      dispatch(setOpenModal(true));
+    }
+  };
+
+  const handleLoginSuccess = () => {
+    // After successful login, open the order modal
     dispatch(setOpenModal(true));
   };
 
@@ -44,6 +59,11 @@ function ViewAddedProductBtn() {
   return (
     <>
       <OrderModal />
+      <LoginModal
+        show={showLoginModal}
+        onHide={() => setShowLoginModal(false)}
+        onLoginSuccess={handleLoginSuccess}
+      />
       <div
         onClick={handleModalOpen}
         className={`add_card_btn ${animateWidth ? "expand" : ""}`}
@@ -51,6 +71,7 @@ function ViewAddedProductBtn() {
         <Button
           onClick={handleModalOpen}
           className="d-flex align-items-center gap-2 position-relative"
+          disabled={authLoading}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -51,7 +51,7 @@ const Products = () => {
       </motion.div> */}
 
       {/* Products Section */}
-      <div className="products-section pt-5">
+      <div className="products-section pt-4">
         <motion.div
           className="section-header"
           initial={{ opacity: 0, y: 20 }}

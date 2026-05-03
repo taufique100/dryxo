@@ -232,52 +232,171 @@ button:disabled {
 }
  */
 
- /* Floating Cart Button (your existing) */
+ /* Floating Cart Button - Modern Design */
 .add_card_btn {
   position: fixed;
-  bottom: 20px;
-  right: 6px;
-  z-index: 99;
-  background-color: #ff4400;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1050;
+  background: linear-gradient(135deg, #ff4400 0%, #ff8533 100%);
   color: #fff;
-  padding: 6px 10px;
-  border-radius: 6px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  transition: all 0.4s ease-in-out;
-  width: 40px;
-  height: 40px;
+  gap: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 48px;
+  height: 48px;
+  box-shadow: 0 4px 20px rgba(255, 68, 0, 0.4);
+  border: none;
+  cursor: pointer;
+  transform: scale(1);
+}
+
+.add_card_btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 25px rgba(255, 68, 0, 0.5);
+  background: linear-gradient(135deg, #ff8533 0%, #ff4400 100%);
 }
 
 .add_card_btn.expand {
-  width: 120px;
+  width: 160px;
+  border-radius: 28px;
+  padding: 0 16px;
 }
 
 .add_card_btn > button {
-  background-color: inherit;
+  background-color: transparent;
   border: none;
-  padding: 6px;
+  padding: 0;
   position: relative;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 20px;
 }
 
 .add_card_btn > button:hover {
-  background-color: #f8571c;
+  background-color: transparent;
+  transform: scale(1.05);
+}
+
+.add_card_btn > button:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 .badge_count {
   position: absolute;
-  top: -14px;
+  top: -8px;
   right: -8px;
-  background-color: #f82516f2;
+  background: linear-gradient(135deg, #ff1744 0%, #d50000 100%);
   color: #fff;
-  font-size: 11px;
+  font-size: 12px;
+  font-weight: 700;
   border-radius: 50%;
-  padding: 1px 7px;
-  font-weight: 600;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 4px 8px;
+  min-width: 20px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(255, 23, 68, 0.4);
+  border: 2px solid #fff;
+  animation: pulse 2s infinite;
+}
+
+.animate-badge {
+  animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.order_item {
+  font-size: 14px;
+  color: #fff;
+  opacity: 0;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.animate-message {
+  animation: slideInFade 2.5s ease-in-out;
+}
+
+@keyframes slideInFade {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  15% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  85% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .add_card_btn {
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .add_card_btn.expand {
+    width: 140px;
+    padding: 0 12px;
+  }
+
+  .add_card_btn > button {
+    font-size: 18px;
+  }
+
+  .badge_count {
+    font-size: 11px;
+    padding: 3px 6px;
+    min-width: 18px;
+    height: 18px;
+  }
 }
 
 /* Modal */

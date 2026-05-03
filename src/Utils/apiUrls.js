@@ -28,5 +28,6 @@ const envUrl = `/v1`;
 export const apiUrls = {
   login: `${envUrl}/auth/login`,
   register: `${envUrl}/auth/register`,
+  googleLogin: `${envUrl}/auth/google-login`,
   getAllUserProducts: `${envUrl}/products/getAllUserProducts`
 };
