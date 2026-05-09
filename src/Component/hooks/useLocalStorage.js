@@ -3,6 +3,7 @@ import CryptoJS from "crypto-js";
 const SECRET_KEY = import.meta.env.VITE_APP_SECRET_KEY || "dryxo-secret-key-2024";
 
 const useLocalStorage = () => {
+  
   const encrypt = (data) => {
     return CryptoJS.AES.encrypt(JSON.stringify(data), SECRET_KEY).toString();
   };

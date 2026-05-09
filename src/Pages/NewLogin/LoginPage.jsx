@@ -11,11 +11,14 @@ import axios from "axios";
 import { apiUrls } from "../../Utils/apiUrls";
 import { errorNotify, successNotify } from "../../Utils/toastNotify";
 import { useNavigate } from "react-router-dom";
+import useLocalStorage from "../../Component/hooks/useLocalStorage";
 
 
 const LoginPage = () => {
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
+
+  const {setItem, getItem} = useLocalStorage();
 
 
   const [credentials, setCredentials] = useState({
@@ -38,10 +41,12 @@ const LoginPage = () => {
 
     try {
       const res = await axios.post(apiUrls.googleLogin, { token });
-      localStorage.setItem("userToken", res?.data?.tokens?.access?.token);
-      localStorage.setItem("userInfo", JSON.stringify(res?.data?.user));
+      // localStorage.setItem("userToken", res?.data?.tokens?.access?.token);
+      // localStorage.setItem("userInfo", JSON.stringify(res?.data?.user));
+      setItem("userToken", res?.data?.tokens?.access?.token)
+      setItem("userInfo", JSON.stringify(res?.data?.user))
       successNotify("Login successfully.");
-      navigate("/home");
+      // navigate("/home");
     } catch (err) {
       console.error("Google login error", err);
       errorNotify(
@@ -79,8 +84,11 @@ const LoginPage = () => {
       .then((res) => {
         console.log("loginRes::", res?.data);
 
-        localStorage.setItem("userToken", res?.data?.tokens?.access?.token);
-        localStorage.setItem("userInfo", JSON.stringify(res?.data?.user));
+        // localStorage.setItem("userToken", res?.data?.tokens?.access?.token);
+        // localStorage.setItem("userInfo", JSON.stringify(res?.data?.user));
+        setItem("userToken", res?.data?.tokens?.access?.token)
+        setItem("userInfo", JSON.stringify(res?.data?.user))
+
         successNotify("Login successfully.");
         navigate("/home");
       })

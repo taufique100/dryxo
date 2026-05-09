@@ -52,16 +52,10 @@ const Products = () => {
 
       {/* Products Section */}
       <div className="products-section pt-4">
-        <motion.div
-          className="section-header"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="section-header">
           <h2>🛒 Place Your Order</h2>
           <p>Choose from our range of premium products</p>
-        </motion.div>
+        </div>
 
         {loading ? (
           <div className="loading-state">Loading products...</div>

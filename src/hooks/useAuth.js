@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
+import useLocalStorage from '../Component/hooks/useLocalStorage';
 
 const useAuth = () => {
+  const {getItem, setItem} = useLocalStorage();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const checkAuthStatus = () => {
+   const checkAuthStatus = () => {
       try {
-        const token = localStorage.getItem('userToken');
-        const user = localStorage.getItem('userInfo');
+        const token = getItem('userToken');
+        const user = getItem('userInfo');
 
         if (token && user) {
           setIsLoggedIn(true);
@@ -27,6 +28,8 @@ const useAuth = () => {
       }
     };
 
+
+  useEffect(() => {
     checkAuthStatus();
   }, []);
 

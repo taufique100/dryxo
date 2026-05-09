@@ -9,6 +9,7 @@ import { errorNotify, successNotify } from "../Utils/toastNotify.js";
 import loginImage from "../assets/NewLoginPage/image.jpg";
 import LoginLogo from "../assets/NewLoginPage/logo.png";
 import "./LoginModal.css";
+import useLocalStorage from "./hooks/useLocalStorage.js";
 
 const LoginModal = ({ show, onHide, onLoginSuccess }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,7 +26,6 @@ const LoginModal = ({ show, onHide, onLoginSuccess }) => {
     email: "",
     password: "",
     confirmPassword: "",
-    phone: "",
   });
 
   const handleGoogleCredentialResponse = async (response) => {
@@ -84,8 +84,10 @@ const LoginModal = ({ show, onHide, onLoginSuccess }) => {
 
     try {
       const res = await axios.post(apiUrls.login, loginPayload);
-      localStorage.setItem("userToken", res?.data?.tokens?.access?.token);
-      localStorage.setItem("userInfo", JSON.stringify(res?.data?.user));
+      // localStorage.setItem("userToken", res?.data?.tokens?.access?.token);
+      // localStorage.setItem("userInfo", JSON.stringify(res?.data?.user));
+      useLocalStorage("userToken", res?.data?.tokens?.access?.token)
+      useLocalStorage("userInfo", JSON.stringify(res?.data?.user))
       successNotify("Login successful!");
       onLoginSuccess && onLoginSuccess();
       onHide();
@@ -110,7 +112,6 @@ const LoginModal = ({ show, onHide, onLoginSuccess }) => {
       name: signupData.name,
       email: signupData.email,
       password: signupData.password,
-      phone: signupData.phone,
     };
 
     try {
@@ -122,7 +123,6 @@ const LoginModal = ({ show, onHide, onLoginSuccess }) => {
         email: "",
         password: "",
         confirmPassword: "",
-        phone: "",
       });
     } catch (error) {
       console.error("Signup error:", error);
@@ -296,7 +296,7 @@ const LoginModal = ({ show, onHide, onLoginSuccess }) => {
                   ) : (
                     <Form onSubmit={handleSignup}>
                       <Row>
-                        <Col md={6}>
+                        <Col>
                           <div className="form_group">
                             <label className="form_label">
                               Full Name <span className="text_danger">*</span>
@@ -307,23 +307,6 @@ const LoginModal = ({ show, onHide, onLoginSuccess }) => {
                               className="form_control"
                               placeholder="Enter your name"
                               value={signupData.name}
-                              onChange={handleChange}
-                              required
-                            />
-                          </div>
-                        </Col>
-
-                        <Col md={6}>
-                          <div className="form_group">
-                            <label className="form_label">
-                              Phone <span className="text_danger">*</span>
-                            </label>
-                            <input
-                              type="tel"
-                              name="phone"
-                              className="form_control"
-                              placeholder="Enter phone number"
-                              value={signupData.phone}
                               onChange={handleChange}
                               required
                             />

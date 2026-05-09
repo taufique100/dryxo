@@ -5,17 +5,24 @@ import "./Navbar.css";
 import logo from "../../assets/logo.png";
 import { AiOutlineLogin, AiOutlineUser, AiOutlineShoppingCart, AiOutlineLogout, AiOutlineSetting } from "react-icons/ai";
 import useAuth from "../../hooks/useAuth";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const Navbars = () => {
   const [menu, setMenu] = useState(false);
+  const {getItem} = useLocalStorage();
   const { isLoggedIn, userInfo, logout } = useAuth();
+
+  const isUserLogin=()=>{
+    const userData = JSON.parse(getItem('userInfo') || "{}");
+    return userData?.role == 'user'
+  }
 
  const PrifileAcc=()=>{
   return(
     <>
       {/* 🔥 LOGIN / PROFILE DROPDOWN */}
           <Nav className="login-wrapper">
-            {isLoggedIn ? (
+            {!isUserLogin() ? (
               <Nav.Link
                 as={NavLink}
                 to="/login"
@@ -34,7 +41,7 @@ const Navbars = () => {
                 >
                   <div className="profile-label">
                     <AiOutlineUser className="profile-icon" />
-                    {userInfo?.name && <span>{userInfo.name.split(" ")[0]}</span>}
+                    {/* {userInfo?.name && <span>{userInfo.name.split(" ")[0]}</span>} */}
                   </div>
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="profile-menu">
