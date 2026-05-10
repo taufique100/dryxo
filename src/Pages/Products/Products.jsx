@@ -21,8 +21,6 @@ const Products = () => {
 
   return (
     <div className="products-page">
-
-      {/* ── HERO BANNER ── */}
       <div className="products-hero-banner">
         <div className="products-hero-inner">
           <span className="products-hero-tag">Premium Collection</span>
