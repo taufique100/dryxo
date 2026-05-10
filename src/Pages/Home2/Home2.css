@@ -255,7 +255,51 @@
 .h2-feature-card p  { font-size:.875rem; color:var(--muted); line-height:1.65; margin:0; }
 
 /* ===== PRODUCTS GRID (Home2) ===== */
-.h2-products { background: var(--bg4); }
+.h2-products {
+  background: radial-gradient(circle at 16% 24%, rgba(255,68,0,0.16), transparent 26%),
+              radial-gradient(circle at 82% 18%, rgba(240,168,50,0.1), transparent 18%),
+              linear-gradient(180deg, #15151d 0%, #191925 100%);
+  border-top: 1px solid rgba(255,68,0,0.08);
+  border-bottom: 1px solid rgba(255,68,0,0.08);
+  padding: 70px 0 64px;
+}
+
+.h2-prod-scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 26px 0 0;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,68,0,0.35) transparent;
+}
+
+.h2-prod-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.h2-prod-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.h2-prod-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255,68,0,0.28);
+  border-radius: 999px;
+}
+
+.h2-prod-card {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+}
+
+.h2-products-loading,
+.h2-prod-empty {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.95rem;
+  padding: 36px 0;
+}
 
 .h2-prod-grid {
   display: grid;

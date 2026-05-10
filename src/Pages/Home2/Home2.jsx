@@ -1,18 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import axiosInstance from "../../api/axiosInstance";
+import { apiUrls } from "../../Utils/apiUrls";
+import { setSelectedProductId } from "../../Store/OrderSlice";
+import "../Products/Purchase/ProductCard.css";
 import "./Home2.css";
 
-import heroImg  from "../../assets/homeproduct.png";
-import product1 from "../../assets/product-1.png";
-import product2 from "../../assets/product-2.png";
-import product3 from "../../assets/product-3.png";
-import product4 from "../../assets/product-4.png";
-import techImg  from "../../assets/dryxo1product-1.png";
+import heroImg from "../../assets/homeproduct.png";
+import techImg from "../../assets/dryxo1product-1.png";
 
 /* ── animated counter ── */
 function useCounter(target, duration = 1800) {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
+
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return;
@@ -44,29 +46,46 @@ function Stat({ num, suffix, label }) {
 }
 
 const features = [
-  { icon: "🌿", title: "100% Biodegradable",  desc: "Fully organic materials that break down naturally — zero guilt, zero waste." },
-  { icon: "⚡", title: "Anion Technology",     desc: "Negative ion chip neutralizes odor and provides antibacterial protection 24/7." },
-  { icon: "💧", title: "Ultra Dry Core",       desc: "Double perforated top sheet locks moisture away instantly for all-day dryness." },
-  { icon: "🪶", title: "Feather-Soft Edges",   desc: "Contoured soft arms prevent rashes and irritation even during heavy flow." },
-  { icon: "🛡️", title: "Leak-Proof Shield",   desc: "360° protection design ensures zero leaks regardless of activity or flow." },
-  { icon: "🌸", title: "Fresh Fragrance",      desc: "Subtle botanical fragrance keeps you feeling confident and fresh all day." },
-];
-
-const products = [
-  { img: product1, badge: "Best Seller", tag: "Regular",    name: "Dryxo Regular",  desc: "Everyday comfort with anion protection" },
-  { img: product2, badge: "Popular",     tag: "Heavy Flow", name: "Dryxo XL Night", desc: "Extra-long for overnight confidence" },
-  { img: product3, badge: null,          tag: "Ultra Thin", name: "Dryxo Slim",     desc: "Barely-there feel, maximum protection" },
-  { img: product4, badge: "New",         tag: "Active",     name: "Dryxo Active",   desc: "Designed for active lifestyles" },
+  { icon: "🌿", title: "100% Biodegradable", desc: "Fully organic materials that break down naturally — zero guilt, zero waste." },
+  { icon: "⚡", title: "Anion Technology", desc: "Negative ion chip neutralizes odor and provides antibacterial protection 24/7." },
+  { icon: "💧", title: "Ultra Dry Core", desc: "Double perforated top sheet locks moisture away instantly for all-day dryness." },
+  { icon: "🪶", title: "Feather-Soft Edges", desc: "Contoured soft arms prevent rashes and irritation even during heavy flow." },
+  { icon: "🛡️", title: "Leak-Proof Shield", desc: "360° protection design ensures zero leaks regardless of activity or flow." },
+  { icon: "🌸", title: "Fresh Fragrance", desc: "Subtle botanical fragrance keeps you feeling confident and fresh all day." },
 ];
 
 const testimonials = [
-  { text: "I found Dryxo Naturally Soft extra-long pads online. They leave no irritation and are super comfortable during heavy flow days. Genuinely the best I've tried.", name: "Mahima Singh",  stars: "★★★★★" },
-  { text: "Dryxo pads have a soft texture and long-lasting protection which prevents rashes and keeps me dry all day and night. They are a total saviour!",                  name: "Kajal Roy",     stars: "★★★★★" },
-  { text: "Finally a brand that actually cares. The resealable packaging, the anion chip, the biodegradable promise — Dryxo is probably the best sanitary pad in India.",   name: "Neetu Sharma",  stars: "★★★★★" },
+  { text: "I found Dryxo Naturally Soft extra-long pads online. They leave no irritation and are super comfortable during heavy flow days. Genuinely the best I've tried.", name: "Mahima Singh", stars: "★★★★★" },
+  { text: "Dryxo pads have a soft texture and long-lasting protection which prevents rashes and keeps me dry all day and night. They are a total saviour!", name: "Kajal Roy", stars: "★★★★★" },
+  { text: "Finally a brand that actually cares. The resealable packaging, the anion chip, the biodegradable promise — Dryxo is probably the best sanitary pad in India.", name: "Neetu Sharma", stars: "★★★★★" },
 ];
 
 const Home2 = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [products, setProducts] = useState([]);
+  const [loadingProducts, setLoadingProducts] = useState(true);
+
+  const addProduct = (id) => {
+    dispatch(setSelectedProductId(id));
+  };
+
+  const fetchProducts = async () => {
+    setLoadingProducts(true);
+    try {
+      const payload = await axiosInstance.get(apiUrls.getAllUserProducts);
+      setProducts(Array.isArray(payload) ? payload : payload?.data || []);
+    } catch (error) {
+      console.error("Home2 product fetch error:", error);
+      setProducts([]);
+    } finally {
+      setLoadingProducts(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   return (
     <div className="h2-page">
@@ -91,7 +110,7 @@ const Home2 = () => {
               </p>
               <div className="h2-hero-actions">
                 <button className="h2-btn-primary" onClick={() => navigate("/products")}>Shop Now →</button>
-                <button className="h2-btn-ghost"   onClick={() => navigate("/about")}>Our Story</button>
+                <button className="h2-btn-ghost" onClick={() => navigate("/about")}>Our Story</button>
               </div>
             </div>
 
@@ -118,12 +137,12 @@ const Home2 = () => {
 
       {/* ── STATS ── */}
       <section className="h2-stats">
-        <div className="container">
+        <div className="container-fluid">
           <div className="row">
-            <div className="col-6 col-md-3"><Stat num={500} suffix="K+" label="Happy Women" /></div>
-            <div className="col-6 col-md-3"><Stat num={12}  suffix="+"  label="States Reached" /></div>
+            <div className="col-6 col-md-3"><Stat num={20} suffix="K+" label="Happy Women" /></div>
+            <div className="col-6 col-md-3"><Stat num={4} suffix="+" label="States Reached" /></div>
             <div className="col-6 col-md-3"><Stat num={100} suffix="%" label="Biodegradable" /></div>
-            <div className="col-6 col-md-3"><Stat num={0}   suffix=" Toxins" label="Chemical Free" /></div>
+            <div className="col-6 col-md-3"><Stat num={0} suffix="Toxins" label="Chemical Free" /></div>
           </div>
         </div>
       </section>
@@ -163,22 +182,83 @@ const Home2 = () => {
             </button>
           </div>
 
-          <div className="h2-prod-grid">
-            {products.map((p, i) => (
-              <div className="h2-prod-item" key={i} onClick={() => navigate("/products")}>
-                <div className="h2-prod-img-wrap">
-                  <img src={p.img} alt={p.name} />
-                  {p.badge && <span className="h2-prod-badge">{p.badge}</span>}
-                </div>
-                <div className="h2-prod-body">
-                  <div className="h2-prod-tag">{p.tag}</div>
-                  <h4>{p.name}</h4>
-                  <p>{p.desc}</p>
-                  <button className="h2-prod-btn">Add to Cart</button>
-                </div>
-              </div>
-            ))}
-          </div>
+          {loadingProducts ? (
+            <div className="h2-products-loading">Loading products...</div>
+          ) : products.length === 0 ? (
+            <div className="h2-prod-empty">No products available at the moment.</div>
+          ) : (
+            <div className="h2-prod-scroll">
+              {products.map((item, idx) => {
+                const discountPercentage = item?.discountPercentage || 0;
+                const originalPrice = item?.originalPrice || item?.mrp || item?.price || 0;
+                const salePrice = item?.price || 0;
+                const rating = typeof item?.rating === "object" ? item.rating?.rate : item?.rating ?? item?.averageRating ?? 4.5;
+                const image = item?.images?.[0] || item?.image || heroImg;
+                const title = item?.title || item?.name || "Dryxo Product";
+                const featureItems = [item?.size, item?.category].filter(Boolean);
+
+                return (
+                  <div className="h2-prod-card" key={item?.id || idx}>
+                    <div className="pro_card">
+                      <div className="img_section">
+                        {image ? (
+                          <img src={image} alt={title} className="carousel-image" />
+                        ) : (
+                          <div style={{ color: '#fff', fontSize: '0.95rem' }}>No Image</div>
+                        )}
+                        {discountPercentage > 0 && (
+                          <div className="discount-badge">{discountPercentage}% OFF</div>
+                        )}
+                      </div>
+
+                      <div className="content_section px-3 py-3 d-flex flex-column justify-content-between">
+                        <div>
+                          <h1>{title}</h1>
+                          <div className="rating_section d-flex align-items-center gap-2 mb-2">
+                            <div className="stars">
+                              {Array.from({ length: 5 }).map((_, starIndex) => {
+                                const value = starIndex + 1;
+                                if (value <= Math.floor(rating)) return <span key={value} className="star filled">★</span>;
+                                if (value === Math.ceil(rating) && rating % 1 !== 0) return <span key={value} className="star filled">★</span>;
+                                return <span key={value} className="star empty">★</span>;
+                              })}
+                            </div>
+                            <span className="rating_text">({rating.toFixed(1)})</span>
+                          </div>
+
+                          {featureItems.length > 0 && (
+                            <div className="feature_box d-flex align-items-center justify-content-start gap-2 flex-wrap mb-2">
+                              {featureItems.map((feature, index) => (
+                                <span key={index}>{feature}</span>
+                              ))}
+                            </div>
+                          )}
+
+                          <div className="price_section">
+                            <div className="price_container d-flex align-items-baseline gap-2">
+                              <span className="sale_price">₹{salePrice || "0"}</span>
+                              {originalPrice > salePrice && (
+                                <span className="original_price">₹{originalPrice}</span>
+                              )}
+                            </div>
+                            {originalPrice > salePrice && (
+                              <div className="savings_text">You save ₹{(originalPrice - salePrice).toFixed(2)}</div>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="footer_card_section">
+                          <button type="button" onClick={() => addProduct(item?.id)}>
+                            Add to Cart
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       </section>
 
@@ -210,9 +290,9 @@ const Home2 = () => {
               <p className="h2-section-sub">Dryxo isn't just a pad — it's a precision-engineered health product.</p>
               <ul className="h2-tech-list">
                 {[
-                  ["Anion Chip",         "Releases negative ions that neutralize odor-causing bacteria and balance pH."],
+                  ["Anion Chip", "Releases negative ions that neutralize odor-causing bacteria and balance pH."],
                   ["Moisture-Lock Core", "SAP gel absorbs 10x its weight, keeping the surface bone dry."],
-                  ["Organic Top Sheet",  "Soft, breathable, skin-tested material prevents rashes and irritation."],
+                  ["Organic Top Sheet", "Soft, breathable, skin-tested material prevents rashes and irritation."],
                   ["Biodegradable Base", "Plant-based film decomposes within months, not centuries."],
                 ].map(([title, desc], i) => (
                   <li key={i}>
@@ -263,7 +343,7 @@ const Home2 = () => {
           <p>Join over 500,000 women who've made the switch to smarter, cleaner, more comfortable menstrual care.</p>
           <div className="d-flex gap-3 justify-content-center flex-wrap">
             <button className="h2-btn-primary" onClick={() => navigate("/products")}>Shop Now →</button>
-            <button className="h2-btn-ghost"   onClick={() => navigate("/contact")}>Contact Us</button>
+            <button className="h2-btn-ghost" onClick={() => navigate("/contact")}>Contact Us</button>
           </div>
         </div>
       </section>

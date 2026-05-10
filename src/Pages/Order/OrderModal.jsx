@@ -295,7 +295,6 @@ export default function OrderModal() {
   const { openModal, cartItems } = useSelector((state) => state.orderSlice);
   
   const [products, setProducts] = useState([]);
-  console.log('cartItems::', cartItems, products)
   const [loadingProducts, setLoadingProducts] = useState(false);
 
   const [form, setForm] = useState({
@@ -414,8 +413,6 @@ export default function OrderModal() {
     dispatch(clearCart());
     handleClose();
   };
-
-  console.log('selectedProducts1::', selectedProducts)
 
   return (
     <Modal

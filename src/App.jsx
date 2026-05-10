@@ -17,6 +17,7 @@ import { ToastContainer } from "react-toastify";
 
 // import ForgetPassword from "./Pages/LoginSign/ForgetPassword";
 import MyOrder from "./Pages/MyOrder/MyOrder";
+import OrderDetail from "./Pages/MyOrder/OrderDetail";
 import Orders from "./Pages/Orders/Orders";
 import ChangePassword from "./Pages/ChangePassword/ChangePassword";
 import LoginPage from "./Pages/NewLogin/LoginPage";
@@ -50,6 +51,7 @@ function App() {
             <Route path="chanel_partner" element={<Chanel_Partner />} />
             <Route path="contact" element={<Contact />} />
             <Route path="my-order" element={<MyOrder />} />
+            <Route path="my-order/:id" element={<OrderDetail />} />
             <Route path="orders" element={<Orders />} />
             <Route path="change-password" element={<ChangePassword />} />
             <Route path="login" element={<LoginPage />} />

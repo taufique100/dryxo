@@ -29,7 +29,7 @@ export const BlogDetailsPage = () => {
     <div className="blog-fullscreen">
 
       {/* Back */}
-      <div className="back-button" onClick={() => navigate(-1)}>
+      <div className="back-button_blog" onClick={() => navigate(-1)}>
         <FaArrowLeft size={13} />
         <span>Back to Blogs</span>
       </div>

@@ -1,20 +1,18 @@
 import React, { useState } from "react";
-import { Container, Form, Button, Alert } from "react-bootstrap";
+import { FiEye, FiEyeOff, FiLock } from "react-icons/fi";
 import axios from "axios";
 import { apiUrls } from "../../Utils/apiUrls";
 import { errorNotify, successNotify } from "../../Utils/toastNotify";
+import "../../Pages/theme.css";
+import "./ChangePassword.css";
 
 const ChangePassword = () => {
-  const [formData, setFormData] = useState({
-    oldPassword: "",
-    newPassword: "",
-    confirmPassword: "",
-  });
+  const [formData, setFormData] = useState({ oldPassword: "", newPassword: "", confirmPassword: "" });
+  const [show, setShow] = useState({ old: false, new: false, confirm: false });
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const toggle = (field) => setShow((s) => ({ ...s, [field]: !s[field] }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,78 +20,69 @@ const ChangePassword = () => {
       errorNotify("New passwords do not match.");
       return;
     }
-
     setLoading(true);
     try {
       const token = localStorage.getItem("userToken");
-      await axios.post(`${apiUrls.baseUrl}/auth/change-password`, {
-        oldPassword: formData.oldPassword,
-        newPassword: formData.newPassword,
-      }, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      await axios.post(`${apiUrls.baseUrl}/auth/change-password`,
+        { oldPassword: formData.oldPassword, newPassword: formData.newPassword },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
       successNotify("Password changed successfully.");
       setFormData({ oldPassword: "", newPassword: "", confirmPassword: "" });
-    } catch (error) {
+    } catch {
       errorNotify("Failed to change password.");
     } finally {
       setLoading(false);
     }
   };
 
+  const fields = [
+    { key: "oldPassword",     label: "Current Password",  showKey: "old",     placeholder: "Enter current password" },
+    { key: "newPassword",     label: "New Password",       showKey: "new",     placeholder: "Enter new password" },
+    { key: "confirmPassword", label: "Confirm Password",   showKey: "confirm", placeholder: "Re-enter new password" },
+  ];
+
   return (
-    <Container className="py-5" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <div style={{ maxWidth: '500px', width: '100%', background: 'white', padding: '40px', borderRadius: '15px', boxShadow: '0 10px 30px rgba(253, 53, 13, 0.2)' }}>
-        <h2 className="text-center mb-4" style={{ color: '#fd350d', fontWeight: '700' }}>Change Password</h2>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3">
-            <Form.Label style={{ color: '#333', fontWeight: '600' }}>Old Password</Form.Label>
-            <Form.Control
-              type="password"
-              name="oldPassword"
-              value={formData.oldPassword}
-              onChange={handleChange}
-              required
-              style={{ borderRadius: '10px', border: '1px solid #ddd', padding: '12px' }}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label style={{ color: '#333', fontWeight: '600' }}>New Password</Form.Label>
-            <Form.Control
-              type="password"
-              name="newPassword"
-              value={formData.newPassword}
-              onChange={handleChange}
-              required
-              style={{ borderRadius: '10px', border: '1px solid #ddd', padding: '12px' }}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label style={{ color: '#333', fontWeight: '600' }}>Confirm New Password</Form.Label>
-            <Form.Control
-              type="password"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              required
-              style={{ borderRadius: '10px', border: '1px solid #ddd', padding: '12px' }}
-            />
-          </Form.Group>
-          <Button type="submit" disabled={loading} style={{
-            width: '100%',
-            background: 'linear-gradient(45deg, #fd350d, #ff6b4a)',
-            border: 'none',
-            borderRadius: '25px',
-            padding: '12px',
-            fontWeight: '600',
-            fontSize: '16px',
-            transition: 'all 0.3s ease'
-          }} onMouseOver={(e) => e.target.style.background = 'linear-gradient(45deg, #e62e0a, #ff5722)'} onMouseOut={(e) => e.target.style.background = 'linear-gradient(45deg, #fd350d, #ff6b4a)'}>
-            {loading ? "Changing..." : "Change Password"}
-          </Button>
-        </Form>
+    <div className="cp-page">
+      <div className="cp-card">
+        {/* icon */}
+        <div className="cp-icon-wrap">
+          <FiLock size={28} />
+        </div>
+
+        <span className="pg-section-tag" style={{ display: "block", textAlign: "center", marginBottom: 8 }}>
+          Account Security
+        </span>
+        <h2 className="cp-title">Change Password</h2>
+        <p className="cp-sub">Keep your account secure with a strong, unique password.</p>
+
+        <form onSubmit={handleSubmit}>
+          {fields.map(({ key, label, showKey, placeholder }) => (
+            <div className="cp-group" key={key}>
+              <label className="pg-label">{label}</label>
+              <div className="cp-input-wrap">
+                <input
+                  type={show[showKey] ? "text" : "password"}
+                  name={key}
+                  className="pg-input cp-input"
+                  placeholder={placeholder}
+                  value={formData[key]}
+                  onChange={handleChange}
+                  required
+                />
+                <button type="button" className="cp-eye" onClick={() => toggle(showKey)}>
+                  {show[showKey] ? <FiEye /> : <FiEyeOff />}
+                </button>
+              </div>
+            </div>
+          ))}
+
+          <button type="submit" className="pg-btn cp-submit" disabled={loading}>
+            {loading ? "Updating..." : "Update Password →"}
+          </button>
+        </form>
       </div>
-    </Container>
+    </div>
   );
 };
 

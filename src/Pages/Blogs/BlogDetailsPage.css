@@ -10,7 +10,7 @@
 }
 
 /* ===== BACK BUTTON ===== */
-.back-button {
+.back-button_blog {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -18,7 +18,7 @@
   cursor: pointer;
   font-size: 13px;
   font-weight: 500;
-  padding: 10px 18px;
+  padding: 4px 12px;
   border-radius: 100px;
   border: 1px solid rgba(255,255,255,0.08);
   background: rgba(255,255,255,0.04);
@@ -28,7 +28,7 @@
   justify-content: flex-start;
 }
 
-.back-button:hover {
+.back-button_blog:hover {
   color: #ff6633;
   border-color: rgba(255,68,0,0.35);
   background: rgba(255,68,0,0.07);
@@ -212,7 +212,7 @@
   .blog-banner { width: 94%; margin: 0 3%; border-radius: 14px; }
   .blog-banner img { height: 260px; }
   .blog-article { padding: 36px 20px 60px; }
-  .back-button { margin-left: 3%; }
+  .back-button_blog { margin-left: 3%; }
 }
 
 @media (max-width: 480px) {

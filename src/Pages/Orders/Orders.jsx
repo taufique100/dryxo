@@ -3,6 +3,8 @@ import { Container, Row, Col, Card, Button, Modal, Badge } from "react-bootstrap
 import axios from "axios";
 import { apiUrls } from "../../Utils/apiUrls";
 import { errorNotify } from "../../Utils/toastNotify";
+import { BsBoxSeam } from "react-icons/bs";
+import { HiArrowRight } from "react-icons/hi";
 import "./Orders.css";
 
 const Orders = () => {
@@ -62,7 +64,19 @@ const Orders = () => {
     <Container className="orders-page py-5">
       <h2 className="text-center mb-4">My Orders</h2>
       {orders?.length === 0 ? (
-        <p className="text-center">No orders found.</p>
+        <div className="orders-empty">
+          <div className="orders-empty-icon">
+            <BsBoxSeam />
+          </div>
+          <h3 className="orders-empty-title">No orders yet!</h3>
+          <p className="orders-empty-sub">
+            Looks like you haven't placed any orders yet.<br />
+            Explore our products and grab something amazing today.
+          </p>
+          <a href="/products" className="orders-empty-btn">
+            Shop Now <HiArrowRight />
+          </a>
+        </div>
       ) : (
         <Row>
           {orders?.map((order) => (
