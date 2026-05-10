@@ -6,7 +6,6 @@ import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { apiUrls } from "../Utils/apiUrls.js";
 import { errorNotify, successNotify } from "../Utils/toastNotify.js";
-import loginImage from "../assets/NewLoginPage/image.jpg";
 import LoginLogo from "../assets/NewLoginPage/logo.png";
 import "./LoginModal.css";
 import useLocalStorage from "./hooks/useLocalStorage.js";
@@ -384,9 +383,80 @@ const LoginModal = ({ show, onHide, onLoginSuccess }) => {
             </div>
           </div>
 
-          {/* Image Section */}
-          <div className="login-image-section d-none d-md-block">
-            <img src={loginImage} alt="loginImage" className="login-banner-image" />
+          {/* Right Panel — Second Way to Login */}
+          <div className="login-image-section d-none d-md-flex">
+
+            {/* SVG graphic lines background */}
+            <svg className="lm-svg-bg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              {Array.from({length:7}).map((_,i)=>(
+                <line key={`v${i}`} x1={i*90} y1="0" x2={i*90} y2="600" stroke="rgba(255,68,0,0.06)" strokeWidth="1"/>
+              ))}
+              {Array.from({length:8}).map((_,i)=>(
+                <line key={`h${i}`} x1="0" y1={i*85} x2="500" y2={i*85} stroke="rgba(255,68,0,0.06)" strokeWidth="1"/>
+              ))}
+              <line x1="0" y1="600" x2="300" y2="0" stroke="rgba(255,68,0,0.07)" strokeWidth="1"/>
+              <line x1="100" y1="600" x2="500" y2="0" stroke="rgba(255,68,0,0.05)" strokeWidth="1"/>
+              <line x1="500" y1="600" x2="200" y2="0" stroke="rgba(210,134,17,0.05)" strokeWidth="1"/>
+              <path d="M -50 600 Q 250 100 550 600" fill="none" stroke="rgba(255,68,0,0.07)" strokeWidth="1.5"/>
+              <circle cx="80"  cy="520" r="140" fill="rgba(255,68,0,0.05)"/>
+              <circle cx="420" cy="80"  r="120" fill="rgba(210,134,17,0.05)"/>
+              {Array.from({length:6}).map((_,r)=>
+                Array.from({length:7}).map((_,c)=>(
+                  <circle key={`d${r}-${c}`} cx={c*80+40} cy={r*100+50} r="1.2" fill="rgba(255,255,255,0.05)"/>
+                ))
+              )}
+            </svg>
+
+            <div className="lm-right-content">
+
+              {/* Tag */}
+              <span className="lm-tag">Another Way In</span>
+
+              {/* Heading */}
+              <h2 className="lm-heading">
+                Sign in faster<br />with <span>Google</span>
+              </h2>
+
+              <p className="lm-sub">
+                Skip the password. Use your Google account for a quick,
+                secure one-click login — no extra steps needed.
+              </p>
+
+              {/* Google CTA */}
+              <button
+                className="lm-google-btn"
+                onClick={() => loginWithGoogle()}
+                disabled={loading}
+                type="button"
+              >
+                <FcGoogle size={20} />
+                <span>Continue with Google</span>
+              </button>
+
+              {/* Divider */}
+              <div className="lm-divider">
+                <span>Why Dryxo?</span>
+              </div>
+
+              {/* Feature list */}
+              <ul className="lm-features">
+                {[
+                  ["🌿", "100% Biodegradable pads"],
+                  ["⚡", "Anion chip technology"],
+                  ["🛡️", "Leak-proof protection"],
+                  ["🚀", "Fast delivery across India"],
+                ].map(([icon, text]) => (
+                  <li key={text}>
+                    <span className="lm-feat-icon">{icon}</span>
+                    <span>{text}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Bottom tagline */}
+              <p className="lm-tagline">Feel Dry. Feel Free. Feel Dryxo.</p>
+
+            </div>
           </div>
         </div>
       </Modal.Body>

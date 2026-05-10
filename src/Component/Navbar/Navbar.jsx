@@ -22,59 +22,27 @@ const Navbars = () => {
     setMenu(prev=>!prev);
   }
 
- const PrifileAcc=()=>{
-  return(
-    <>
-      {/* 🔥 LOGIN / PROFILE DROPDOWN */}
-          <Nav className="login-wrapper">
-            {!isUserLogin() ? (
-              <Nav.Link
-                as={NavLink}
-                to="/login"
-                className="login-link"
-                onClick={() => setMenu(false)}
-              >
-                <AiOutlineLogin className="login-icon" />
-                Login
-              </Nav.Link>
-            ) : (
-                <ProfileMenu closeMenu={closeMenu}/>
-              // <Dropdown align="end" className="profile-dropdown">
-              //   <Dropdown.Toggle
-              //     variant="link"
-              //     className="profile-toggle"
-              //     id="profile-dropdown"
-              //   >
-              //     <div className="profile-label">
-              //       <AiOutlineUser className="profile-icon" />
-              //     </div>
-              //   </Dropdown.Toggle>
-              //   <Dropdown.Menu className="profile-menu">
-              //     <div className="profile-menu-header">
-              //       <AiOutlineUser className="profile-menu-avatar" />
-              //       <div>
-              //         <div className="profile-menu-name">{userInfo?.name || "My Account"}</div>
-              //         <div className="profile-menu-email">{userInfo?.email || "Account settings"}</div>
-              //       </div>
-              //     </div>
-              //     <Dropdown.Divider />
-              //     <Dropdown.Item as={NavLink} to="/orders" onClick={() => setMenu(false)} className="profile-item">
-              //       <AiOutlineShoppingCart className="profile-item-icon" /> Orders
-              //     </Dropdown.Item>
-              //     <Dropdown.Item as={NavLink} to="/change-password" onClick={() => setMenu(false)} className="profile-item">
-              //       <AiOutlineSetting className="profile-item-icon" /> Change Password
-              //     </Dropdown.Item>
-              //     <Dropdown.Divider />
-              //     <Dropdown.Item onClick={logout} className="profile-item logout-item">
-              //       <AiOutlineLogout className="profile-item-icon" /> Logout
-              //     </Dropdown.Item>
-              //   </Dropdown.Menu>
-              // </Dropdown>
-            )}
-          </Nav>
-    </>
-  )
- }
+ const PrifileAcc = () => {
+  return (
+    <Nav className="login-wrapper">
+      {!isUserLogin() ? (
+        <Nav.Link
+          as={NavLink}
+          to="/login"
+          onClick={() => setMenu(false)}
+          style={{ padding: 0 }}
+        >
+          <span className="login-btn">
+            <AiOutlineLogin className="login-icon" />
+            <span>Login</span>
+          </span>
+        </Nav.Link>
+      ) : (
+        <ProfileMenu closeMenu={closeMenu} />
+      )}
+    </Nav>
+  );
+ };
 
   return (
     <Navbar
@@ -108,7 +76,7 @@ const Navbars = () => {
               Home
             </Nav.Link>
             <Nav.Link
-              as={NavLink}PrifileAcc
+              as={NavLink}
               to="/products"
               onClick={() => setMenu(false)}
             >

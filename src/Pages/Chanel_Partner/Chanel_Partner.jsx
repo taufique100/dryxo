@@ -1,127 +1,155 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./Chanel_Partner.css";
-import join from "../../assets/join.jpg";
 import { motion } from "framer-motion";
+import join from "../../assets/join.jpg";
+import "../../Pages/theme.css";
+import "./Chanel_Partner.css";
 
-const Chanel_Partner = () => {
-  return (
-    <div className="partner-page py-2">
-      <div className="container my-1 mt-1">
-        <div className="row align-items-start">
-          {/* Image */}
-          <div className="col-md-5 text-center mt-2">
-            <motion.div
-              initial={{ opacity: 0, x: -100 }}
-              transition={{ duration: 1.5 }}
-              whileInView={{ opacity: 1, x: 0 }}
+const benefits = [
+  { icon: "📈", title: "Business Growth",    desc: "Tap into India's fast-growing menstrual hygiene market with a trusted brand." },
+  { icon: "🤝", title: "Full Support",        desc: "Marketing materials, training, and dedicated partner support from day one." },
+  { icon: "🌿", title: "Eco-Friendly Brand",  desc: "Partner with a brand that stands for sustainability and women's health." },
+  { icon: "💰", title: "Attractive Margins",  desc: "Competitive pricing and healthy profit margins for all partner tiers." },
+  { icon: "🏆", title: "Brand Recognition",   desc: "Leverage Dryxo's growing presence across 12+ states in India." },
+  { icon: "🚀", title: "Fast Onboarding",     desc: "Simple process to get started — from application to first order in days." },
+];
+
+const Chanel_Partner = () => (
+  <div className="pg-root">
+
+    {/* ── HERO ── */}
+    <div className="pg-hero">
+      <div className="pg-hero-inner">
+        <span className="pg-tag">Partner With Us</span>
+        <h1>Join the Dryxo <span>Journey</span></h1>
+        <p>Become a channel partner and help bring dignified menstrual care to every woman in India.</p>
+      </div>
+    </div>
+
+    {/* ── INTRO ── */}
+    <section className="pg-section">
+      <div className="container">
+        <div className="row align-items-center g-5">
+          <motion.div className="col-lg-5"
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.9 }}
+            viewport={{ once: true }}
+          >
+            <div className="cp-img-wrap">
+              <img src={join} alt="Join Dryxo" className="cp-img" />
+              <div className="cp-img-badge">DRYXO</div>
+            </div>
+          </motion.div>
+          <motion.div className="col-lg-7"
+            initial={{ opacity: 0, x: 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.9, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            <span className="pg-section-tag">Empowerment Journey</span>
+            <h2 className="pg-title">Grow With <span>Purpose</span></h2>
+            <p className="pg-text">
+              At Dryxo, we're not just selling sanitary pads — we're empowering women to embrace
+              their health with dignity. By partnering with us, you'll help bring eco-friendly,
+              high-quality products to women everywhere.
+            </p>
+            <p className="pg-text">
+              Whether you're a Retailer bringing our products to your community or a Franchise
+              Partner expanding our mission, together we'll grow a business that makes a real
+              difference. Join us in making menstrual care accessible, sustainable, and empowering.
+            </p>
+            <div className="d-flex gap-3 flex-wrap mt-4">
+              <a href="#partner-form" className="pg-btn">Apply Now →</a>
+              <a href="#benefits" className="pg-btn-ghost">See Benefits</a>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+
+    <div className="pg-divider" />
+
+    {/* ── BENEFITS ── */}
+    <section className="pg-section-alt" id="benefits">
+      <div className="container">
+        <div className="text-center mb-5">
+          <span className="pg-section-tag">Why Partner</span>
+          <h2 className="pg-title">Partner <span>Benefits</span></h2>
+        </div>
+        <div className="row g-4">
+          {benefits.map((b, i) => (
+            <motion.div className="col-md-6 col-lg-4" key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.07 }}
               viewport={{ once: true }}
-              className="image-box"
             >
-              <img src={join} alt="Dryxo" className="img-fluid shadow-lg" />
-              <motion.h4
-                initial={{ opacity: 0, x: -100 }}
-                transition={{ duration: 1.5 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="logo-text"
-              >
-                DRYXO
-              </motion.h4>
+              <div className="pg-benefit-card">
+                <div className="cp-benefit-icon">{b.icon}</div>
+                <h4>{b.title}</h4>
+                <p>{b.desc}</p>
+              </div>
             </motion.div>
-          </div>
+          ))}
+        </div>
+      </div>
+    </section>
 
-          {/* Right Content */}
-          <div className="col-md-7">
-            <h2 className="section-title mt-5">
-              Join the Dryxo Empowerment Journey
-            </h2>
-            <p className="section-text ">
-              At Dryxo, we’re not just selling sanitary pads—we’re empowering
-              women to embrace their health with dignity. By partnering with us,
-              you’ll help bring eco-friendly, high-quality products to women
-              everywhere, giving them the comfort and care they deserve. Whether
-              you’re a Retailer bringing our products to your community or a
-              Franchise Partner expanding our mission, together we’ll grow a
-              business that makes a real difference.
-              <br />
-              <br />
-              Join us in our journey to make menstrual care accessible,
-              sustainable, and empowering. Let’s build a legacy that impacts
-              lives and communities. Together, we can take Dryxo to new heights
-              while providing better care to those who need it most.
+    <div className="pg-divider" />
+
+    {/* ── FORM ── */}
+    <section className="pg-section" id="partner-form">
+      <div className="container">
+        <div className="cp-form-wrap">
+          <div className="text-center mb-5">
+            <span className="pg-section-tag">Get Started</span>
+            <h2 className="pg-title">Join Our <span>Partner Program</span></h2>
+            <p className="pg-text mx-auto" style={{maxWidth:500}}>
+              Fill out the form below to become a part of our journey to healthier menstrual care for all.
             </p>
           </div>
-        </div>
-
-        {/* Partner Form */}
-        <div className="form-section mt-5">
-          <h3 className="form-title">Join Our Partner Program</h3>
-          <p className="form-subtitle">
-            Fill out the form below to become a part of our journey to healthier
-            menstrual care for all.
-          </p>
-
-          <form className="mt-4">
+          <form>
             <div className="row g-3">
               <div className="col-md-6">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Enter Your Name"
-                />
+                <label className="pg-label">Your Name</label>
+                <input type="text" className="pg-input" placeholder="Enter your full name" />
               </div>
               <div className="col-md-6">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Enter Your Firm Name"
-                />
+                <label className="pg-label">Firm Name</label>
+                <input type="text" className="pg-input" placeholder="Enter your firm name" />
               </div>
               <div className="col-md-6">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Enter Your Mobile No"
-                />
+                <label className="pg-label">Mobile Number</label>
+                <input type="text" className="pg-input" placeholder="+91 00000 00000" />
               </div>
               <div className="col-md-6">
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Enter Your Email"
-                />
+                <label className="pg-label">Email</label>
+                <input type="email" className="pg-input" placeholder="you@example.com" />
               </div>
               <div className="col-md-6">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Enter Your State"
-                />
+                <label className="pg-label">State</label>
+                <input type="text" className="pg-input" placeholder="Your state" />
               </div>
               <div className="col-md-6">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Enter Your City"
-                />
+                <label className="pg-label">City</label>
+                <input type="text" className="pg-input" placeholder="Your city" />
               </div>
               <div className="col-12">
-                <textarea
-                  className="form-control"
-                  rows="4"
-                  placeholder="Message"
-                ></textarea>
+                <label className="pg-label">Message</label>
+                <textarea className="pg-input" rows={4} placeholder="Tell us about your business..." />
+              </div>
+              <div className="col-12 text-center mt-2">
+                <button type="submit" className="pg-btn px-5" style={{justifyContent:'center'}}>
+                  Submit Request →
+                </button>
               </div>
             </div>
-            <button type="submit" className="btn mt-4 px-5 py-2">
-              Submit Request
-            </button>
           </form>
         </div>
       </div>
-    </div>
-  );
-};
+    </section>
+
+  </div>
+);
 
 export default Chanel_Partner;

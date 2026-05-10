@@ -12,49 +12,30 @@ const Products = () => {
   const getAllProducts = async () => {
     setLoading(true);
     await axiosInstance.get(apiUrls.getAllUserProducts)
-      .then((res) => {
-        setProduct(res?.data || []);
-      })
+      .then((res) => setProduct(res?.data || []))
       .catch((err) => console.error(err))
       .finally(() => setLoading(false));
   }
 
-  useEffect(() => {
-    getAllProducts();
-  }, [])
+  useEffect(() => { getAllProducts(); }, [])
 
   return (
     <div className="products-page">
-      {/* Hero Section */}
-      {/* <motion.div 
-        className="products-hero"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="hero-content">
-          <motion.h1
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Premium Sanitary Pads
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Experience comfort and protection with Dryxo
-          </motion.p>
-        </div>
-      </motion.div> */}
 
-      {/* Products Section */}
-      <div className="products-section pt-4">
+      {/* ── HERO BANNER ── */}
+      <div className="products-hero-banner">
+        <div className="products-hero-inner">
+          <span className="products-hero-tag">Premium Collection</span>
+          <h1>Our <span>Products</span></h1>
+          <p>Experience comfort, protection and confidence — engineered for every woman, every day.</p>
+        </div>
+      </div>
+
+      {/* ── PRODUCTS GRID ── */}
+      <div className="products-section">
         <div className="section-header">
-          <h2>🛒 Place Your Order</h2>
-          <p>Choose from our range of premium products</p>
+          <h2>🛒 <span>Place Your Order</span></h2>
+          <p>Choose from our range of premium biodegradable sanitary pads</p>
         </div>
 
         {loading ? (
@@ -64,8 +45,8 @@ const Products = () => {
         )}
       </div>
 
-      {/* Features Section */}
-      <motion.div 
+      {/* ── FEATURES ── */}
+      <motion.div
         className="features-section"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -73,31 +54,25 @@ const Products = () => {
         transition={{ duration: 0.8 }}
       >
         <h2>Why Choose Dryxo?</h2>
+        <p className="features-section-sub">Every pad is built with science, care and your comfort in mind.</p>
         <div className="features-grid">
-          <div className="feature-item">
-            <div className="feature-icon">💧</div>
-            <h3>Superior Absorption</h3>
-            <p>Double perforated top sheet for quick absorption</p>
-          </div>
-          <div className="feature-item">
-            <div className="feature-icon">🌸</div>
-            <h3>Fresh Fragrance</h3>
-            <p>Locks bad odour to keep you fresh all day</p>
-          </div>
-          <div className="feature-item">
-            <div className="feature-icon">🛡️</div>
-            <h3>Rash Protection</h3>
-            <p>Soft-edge arms prevent and control rashes</p>
-          </div>
-          <div className="feature-item">
-            <div className="feature-icon">✨</div>
-            <h3>Even Flow</h3>
-            <p>Superlative emboss design ensures even distribution</p>
-          </div>
+          {[
+            { icon: "💧", title: "Superior Absorption", desc: "Double perforated top sheet for instant dryness and quick absorption." },
+            { icon: "🌸", title: "Fresh Fragrance", desc: "Botanical fragrance locks odor and keeps you confident all day." },
+            { icon: "🛡️", title: "Rash Protection", desc: "Feather-soft edge arms prevent irritation and rashes completely." },
+            { icon: "✨", title: "Even Flow", desc: "Superlative emboss design ensures even distribution and leak-proof protection." },
+          ].map((f, i) => (
+            <div className="feature-item" key={i}>
+              <span className="feature-icon">{f.icon}</span>
+              <h3>{f.title}</h3>
+              <p>{f.desc}</p>
+            </div>
+          ))}
         </div>
       </motion.div>
+
     </div>
   );
 }
 
-export default Products
+export default Products;

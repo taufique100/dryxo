@@ -2,41 +2,37 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home2.css";
 
-import heroImg from "../../assets/homeproduct.png";
+import heroImg  from "../../assets/homeproduct.png";
 import product1 from "../../assets/product-1.png";
 import product2 from "../../assets/product-2.png";
 import product3 from "../../assets/product-3.png";
 import product4 from "../../assets/product-4.png";
-import techImg from "../../assets/dryxo1product-1.png";
+import techImg  from "../../assets/dryxo1product-1.png";
 
 /* ── animated counter ── */
 function useCounter(target, duration = 1800) {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        observer.disconnect();
-        let start = 0;
-        const step = target / (duration / 16);
-        const tick = () => {
-          start += step;
-          if (start >= target) { setCount(target); return; }
-          setCount(Math.floor(start));
-          requestAnimationFrame(tick);
-        };
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      observer.disconnect();
+      let start = 0;
+      const step = target / (duration / 16);
+      const tick = () => {
+        start += step;
+        if (start >= target) { setCount(target); return; }
+        setCount(Math.floor(start));
         requestAnimationFrame(tick);
-      },
-      { threshold: 0.4 }
-    );
+      };
+      requestAnimationFrame(tick);
+    }, { threshold: 0.4 });
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, [target, duration]);
   return [count, ref];
 }
 
-/* ── stat item ── */
 function Stat({ num, suffix, label }) {
   const [count, ref] = useCounter(num);
   return (
@@ -48,37 +44,25 @@ function Stat({ num, suffix, label }) {
 }
 
 const features = [
-  { icon: "🌿", title: "100% Biodegradable", desc: "Fully organic materials that break down naturally — zero guilt, zero waste." },
-  { icon: "⚡", title: "Anion Technology", desc: "Negative ion chip neutralizes odor and provides antibacterial protection 24/7." },
-  { icon: "💧", title: "Ultra Dry Core", desc: "Double perforated top sheet locks moisture away instantly for all-day dryness." },
-  { icon: "🪶", title: "Feather-Soft Edges", desc: "Contoured soft arms prevent rashes and irritation even during heavy flow." },
-  { icon: "🛡️", title: "Leak-Proof Shield", desc: "360° protection design ensures zero leaks regardless of activity or flow." },
-  { icon: "🌸", title: "Fresh Fragrance", desc: "Subtle botanical fragrance keeps you feeling confident and fresh all day." },
+  { icon: "🌿", title: "100% Biodegradable",  desc: "Fully organic materials that break down naturally — zero guilt, zero waste." },
+  { icon: "⚡", title: "Anion Technology",     desc: "Negative ion chip neutralizes odor and provides antibacterial protection 24/7." },
+  { icon: "💧", title: "Ultra Dry Core",       desc: "Double perforated top sheet locks moisture away instantly for all-day dryness." },
+  { icon: "🪶", title: "Feather-Soft Edges",   desc: "Contoured soft arms prevent rashes and irritation even during heavy flow." },
+  { icon: "🛡️", title: "Leak-Proof Shield",   desc: "360° protection design ensures zero leaks regardless of activity or flow." },
+  { icon: "🌸", title: "Fresh Fragrance",      desc: "Subtle botanical fragrance keeps you feeling confident and fresh all day." },
 ];
 
 const products = [
-  { img: product1, tag: "Best Seller", name: "Dryxo Regular", desc: "Everyday comfort with anion protection" },
-  { img: product2, tag: "Heavy Flow", name: "Dryxo XL Night", desc: "Extra-long for overnight confidence" },
-  { img: product3, tag: "Ultra Thin", name: "Dryxo Slim", desc: "Barely-there feel, maximum protection" },
-  { img: product4, tag: "New", name: "Dryxo Active", desc: "Designed for active lifestyles" },
+  { img: product1, badge: "Best Seller", tag: "Regular",    name: "Dryxo Regular",  desc: "Everyday comfort with anion protection" },
+  { img: product2, badge: "Popular",     tag: "Heavy Flow", name: "Dryxo XL Night", desc: "Extra-long for overnight confidence" },
+  { img: product3, badge: null,          tag: "Ultra Thin", name: "Dryxo Slim",     desc: "Barely-there feel, maximum protection" },
+  { img: product4, badge: "New",         tag: "Active",     name: "Dryxo Active",   desc: "Designed for active lifestyles" },
 ];
 
 const testimonials = [
-  {
-    text: "I found Dryxo Naturally Soft extra-long pads online. They leave no irritation and are super comfortable during heavy flow days. Genuinely the best I've tried.",
-    name: "Mahima Singh",
-    stars: "★★★★★",
-  },
-  {
-    text: "Dryxo pads have a soft texture and long-lasting protection which prevents rashes and keeps me dry all day and night. They are a total saviour!",
-    name: "Kajal Roy",
-    stars: "★★★★★",
-  },
-  {
-    text: "Finally a brand that actually cares. The resealable packaging, the anion chip, the biodegradable promise — Dryxo is probably the best sanitary pad in India.",
-    name: "Neetu Sharma",
-    stars: "★★★★★",
-  },
+  { text: "I found Dryxo Naturally Soft extra-long pads online. They leave no irritation and are super comfortable during heavy flow days. Genuinely the best I've tried.", name: "Mahima Singh",  stars: "★★★★★" },
+  { text: "Dryxo pads have a soft texture and long-lasting protection which prevents rashes and keeps me dry all day and night. They are a total saviour!",                  name: "Kajal Roy",     stars: "★★★★★" },
+  { text: "Finally a brand that actually cares. The resealable packaging, the anion chip, the biodegradable promise — Dryxo is probably the best sanitary pad in India.",   name: "Neetu Sharma",  stars: "★★★★★" },
 ];
 
 const Home2 = () => {
@@ -94,13 +78,10 @@ const Home2 = () => {
         <div className="container">
           <div className="row align-items-center">
 
-            {/* Left */}
             <div className="col-lg-6">
-              <div className="h2-hero-badge">
-                <span /> India's #1 Biodegradable Pad
-              </div>
+              <div className="h2-hero-badge"><span /> India's #1 Biodegradable Pad</div>
               <h1 className="h2-hero-title">
-                Feel Dry.<br  className="d-sm-block d-md-none"/>
+                Feel Dry.<br />
                 Feel <span className="accent">Free.</span><br />
                 Feel Dryxo.
               </h1>
@@ -109,16 +90,11 @@ const Home2 = () => {
                 Designed for every woman who refuses to compromise.
               </p>
               <div className="h2-hero-actions">
-                <button className="h2-btn-primary" onClick={() => navigate("/products")}>
-                  Shop Now →
-                </button>
-                <button className="h2-btn-ghost" onClick={() => navigate("/about")}>
-                  Our Story
-                </button>
+                <button className="h2-btn-primary" onClick={() => navigate("/products")}>Shop Now →</button>
+                <button className="h2-btn-ghost"   onClick={() => navigate("/about")}>Our Story</button>
               </div>
             </div>
 
-            {/* Right */}
             <div className="col-lg-6">
               <div className="h2-hero-visual">
                 <div className="h2-hero-img-wrap">
@@ -144,18 +120,10 @@ const Home2 = () => {
       <section className="h2-stats">
         <div className="container">
           <div className="row">
-            <div className="col-6 col-md-3">
-              <Stat num={500} suffix="K+" label="Happy Women" />
-            </div>
-            <div className="col-6 col-md-3">
-              <Stat num={12} suffix="+" label="States Reached" />
-            </div>
-            <div className="col-6 col-md-3">
-              <Stat num={100} suffix="%" label="Biodegradable" />
-            </div>
-            <div className="col-6 col-md-3">
-              <Stat num={0} suffix=" Toxins" label="Chemical Free" />
-            </div>
+            <div className="col-6 col-md-3"><Stat num={500} suffix="K+" label="Happy Women" /></div>
+            <div className="col-6 col-md-3"><Stat num={12}  suffix="+"  label="States Reached" /></div>
+            <div className="col-6 col-md-3"><Stat num={100} suffix="%" label="Biodegradable" /></div>
+            <div className="col-6 col-md-3"><Stat num={0}   suffix=" Toxins" label="Chemical Free" /></div>
           </div>
         </div>
       </section>
@@ -182,7 +150,7 @@ const Home2 = () => {
         </div>
       </section>
 
-      {/* ── PRODUCTS ── */}
+      {/* ── PRODUCTS GRID ── */}
       <section className="h2-section h2-products">
         <div className="container">
           <div className="d-flex justify-content-between align-items-end flex-wrap gap-3">
@@ -194,14 +162,19 @@ const Home2 = () => {
               View All Products →
             </button>
           </div>
-          <div className="h2-product-scroll">
+
+          <div className="h2-prod-grid">
             {products.map((p, i) => (
-              <div className="h2-product-card" key={i} onClick={() => navigate("/products")}>
-                <img src={p.img} alt={p.name} className="h2-product-img" />
-                <div className="h2-product-info">
-                  <div className="h2-product-tag">{p.tag}</div>
+              <div className="h2-prod-item" key={i} onClick={() => navigate("/products")}>
+                <div className="h2-prod-img-wrap">
+                  <img src={p.img} alt={p.name} />
+                  {p.badge && <span className="h2-prod-badge">{p.badge}</span>}
+                </div>
+                <div className="h2-prod-body">
+                  <div className="h2-prod-tag">{p.tag}</div>
                   <h4>{p.name}</h4>
                   <p>{p.desc}</p>
+                  <button className="h2-prod-btn">Add to Cart</button>
                 </div>
               </div>
             ))}
@@ -209,11 +182,11 @@ const Home2 = () => {
         </div>
       </section>
 
-      {/* ── MISSION STRIP ── */}
+      {/* ── MISSION ── */}
       <section className="h2-mission">
         <div className="container">
           <div className="h2-mission-content">
-            <span className="h2-section-tag" style={{ color: "rgba(255,255,255,0.6)" }}>Our Mission</span>
+            <span className="h2-section-tag">Our Mission</span>
             <h2>A Simple Change for<br />a Better Tomorrow</h2>
             <p>
               India uses <strong>12.3 billion</strong> sanitary pads every year, creating
@@ -234,22 +207,17 @@ const Home2 = () => {
             <div>
               <span className="h2-section-tag">Innovation</span>
               <h2 className="h2-section-title">Science Behind<br />the Comfort</h2>
-              <p className="h2-section-sub">
-                Dryxo isn't just a pad — it's a precision-engineered health product.
-              </p>
+              <p className="h2-section-sub">Dryxo isn't just a pad — it's a precision-engineered health product.</p>
               <ul className="h2-tech-list">
                 {[
-                  ["Anion Chip", "Releases negative ions that neutralize odor-causing bacteria and balance pH."],
+                  ["Anion Chip",         "Releases negative ions that neutralize odor-causing bacteria and balance pH."],
                   ["Moisture-Lock Core", "SAP gel absorbs 10x its weight, keeping the surface bone dry."],
-                  ["Organic Top Sheet", "Soft, breathable, skin-tested material prevents rashes and irritation."],
+                  ["Organic Top Sheet",  "Soft, breathable, skin-tested material prevents rashes and irritation."],
                   ["Biodegradable Base", "Plant-based film decomposes within months, not centuries."],
                 ].map(([title, desc], i) => (
                   <li key={i}>
                     <div className="h2-tech-dot" />
-                    <div>
-                      <strong>{title}</strong>
-                      <span>{desc}</span>
-                    </div>
+                    <div><strong>{title}</strong><span>{desc}</span></div>
                   </li>
                 ))}
               </ul>
@@ -292,17 +260,10 @@ const Home2 = () => {
         <div className="container">
           <span className="h2-section-tag">Get Started</span>
           <h2>Ready to Feel the<br />Dryxo Difference?</h2>
-          <p>
-            Join over 500,000 women who've made the switch to smarter,
-            cleaner, more comfortable menstrual care.
-          </p>
+          <p>Join over 500,000 women who've made the switch to smarter, cleaner, more comfortable menstrual care.</p>
           <div className="d-flex gap-3 justify-content-center flex-wrap">
-            <button className="h2-btn-primary" onClick={() => navigate("/products")}>
-              Shop Now →
-            </button>
-            <button className="h2-btn-ghost" onClick={() => navigate("/contact")}>
-              Contact Us
-            </button>
+            <button className="h2-btn-primary" onClick={() => navigate("/products")}>Shop Now →</button>
+            <button className="h2-btn-ghost"   onClick={() => navigate("/contact")}>Contact Us</button>
           </div>
         </div>
       </section>

@@ -34,8 +34,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Navigate to="home" replace />} />
-            <Route path="home" element={<Home />} />
-            <Route path="home2" element={<Home2 />} />
+            <Route path="home" element={<Home2 />} />
+            <Route path="home2" element={<Home />} />
             <Route path="products" element={<Products />} />
             <Route
               path="products/Parchase-Details"

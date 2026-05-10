@@ -1,106 +1,117 @@
 import React, { useState } from "react";
-import "./Media.css";
+import { motion } from "framer-motion";
 import st1 from "../../assets/st-1.jpg";
 import galleryItems from "./galleryItems";
-import { motion } from "framer-motion";
+import "../../Pages/theme.css";
+import "./Media.css";
 
 const btnList = ["All", "Social Work", "School Students"];
 
 const Media = () => {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [active, setActive] = useState("All");
 
-  const filteredItems =
-    activeCategory === "All"
-      ? galleryItems
-      : galleryItems.filter((item) => item.category === activeCategory);
+  const filtered = active === "All"
+    ? galleryItems
+    : galleryItems.filter((i) => i.category === active);
 
   return (
-    <div className="container py-2">
-      {/* Media Highlights Section */}
-      <div className="text-center mb-4">
-        <motion.h1
-          initial={{ opacity: 0, y: -100 }}
-          transition={{ duration: 1 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="title mt-2">
-          MEDIA HIGHLIGHTS
-        </motion.h1>
-        <div className="divider">-----------------------------------------</div>
-      </div>
+    <div className="pg-root">
 
-      <div className="content row align-items-start">
-        <div className="col-md-6 mb-4 mb-md-0 text-center">
-          <motion.img
-            initial={{ opacity: 0, x: -100 }}
-            transition={{ duration: 1.5 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            src={st1}
-            alt="Dryxo Media"
-            className="img-fluid rounded shadow"
-            height={300}
-          />
-        </div>
-
-        <div className="col-md-6">
-          <p className="mt-4">
-            At Dryxo, we believe that every woman deserves access to safe and
-            dignified menstrual care. In a heartfelt effort to support
-            underserved communities, we have distributed Dryxo sanitary pads to
-            schools, remote villages, and urban slums. Our mission is to reach
-            women and girls who often face challenges in accessing quality
-            menstrual products, ensuring they can manage their cycles with
-            comfort and confidence.
-          </p>
-          <p>
-            To spread awareness and encourage healthier menstrual practices, we
-            have also been providing free samples of Dryxo sanitary pads. By
-            allowing women to experience the comfort and reliability of our
-            products, we aim to foster a positive change in menstrual health.
-            Partnering with local community leaders, we are dedicated to
-            empowering women to embrace safe, eco-friendly alternatives. Dryxo
-            stands with every woman, striving to make a lasting impact by
-            providing the care and support they truly deserve.
-          </p>
+      {/* ── HERO ── */}
+      <div className="pg-hero">
+        <div className="pg-hero-inner">
+          <span className="pg-tag">Our Impact</span>
+          <h1>Media <span>Highlights</span></h1>
+          <p>Dryxo in action — reaching communities, empowering women, making a difference.</p>
         </div>
       </div>
 
-      <div className="d-flex align-items-center justify-content-center mb-4 mt-5 position-relative">
-        <hr className="flex-grow-1 custom-line" />
-        <span className="gradient-box mx-3 b">Media Gallery</span>
-      </div>
-
-      <div className="d-flex justify-content-center mb-4">
-        {btnList.map((monu, idx) => (
-          <button
-            key={monu}
-            className={`btn mx-2 ${idx === 0 && "px-4"} ${
-              activeCategory === monu
-                ? "btn-orangered"
-                : "btn-outline-orangered"
-            }`}
-            onClick={() => setActiveCategory(monu)}
-            id="one"
-          >
-            {monu}
-          </button>
-        ))}
-      </div>
-
-      <div className="row">
-        {filteredItems.map((item, idx) => (
-          <div key={idx} className="col-12 col-sm-6 col-md-4 mb-1 g-3">
-            <div className=" card border-0 shadow-sm ">
-              <img
-                src={item?.src}
-                alt={`Gallery ${item?.id}`}
-                className="card-img-top rounded"
-              />
-            </div>
+      {/* ── INTRO ── */}
+      <section className="pg-section">
+        <div className="container">
+          <div className="row align-items-center g-5">
+            <motion.div className="col-lg-5"
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9 }}
+              viewport={{ once: true }}
+            >
+              <img src={st1} alt="Dryxo Media" className="md-img" />
+            </motion.div>
+            <motion.div className="col-lg-7"
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              <span className="pg-section-tag">Community Outreach</span>
+              <h2 className="pg-title">Reaching Every <span>Woman</span></h2>
+              <p className="pg-text">
+                At Dryxo, we believe that every woman deserves access to safe and dignified
+                menstrual care. In a heartfelt effort to support underserved communities, we have
+                distributed Dryxo sanitary pads to schools, remote villages, and urban slums.
+              </p>
+              <p className="pg-text">
+                To spread awareness and encourage healthier menstrual practices, we have also been
+                providing free samples of Dryxo sanitary pads. Partnering with local community
+                leaders, we are dedicated to empowering women to embrace safe, eco-friendly alternatives.
+              </p>
+              <div className="md-stats">
+                {[["Schools", "50+"], ["Villages", "30+"], ["Women Reached", "10K+"]].map(([l, n]) => (
+                  <div className="md-stat" key={l}>
+                    <span className="md-stat-num">{n}</span>
+                    <span className="md-stat-label">{l}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </div>
-        ))}
-      </div>
+        </div>
+      </section>
+
+      <div className="pg-divider" />
+
+      {/* ── GALLERY ── */}
+      <section className="pg-section-alt">
+        <div className="container">
+          <div className="text-center mb-5">
+            <span className="pg-section-tag">Gallery</span>
+            <h2 className="pg-title">Media <span>Gallery</span></h2>
+          </div>
+
+          {/* Filter */}
+          <div className="pg-filter-wrap">
+            {btnList.map((b) => (
+              <button
+                key={b}
+                className={`pg-filter-btn ${active === b ? "active" : ""}`}
+                onClick={() => setActive(b)}
+              >
+                {b}
+              </button>
+            ))}
+          </div>
+
+          {/* Grid */}
+          <div className="row g-3">
+            {filtered.map((item, idx) => (
+              <motion.div
+                key={idx}
+                className="col-12 col-sm-6 col-md-4"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: idx * 0.04 }}
+                viewport={{ once: true }}
+              >
+                <div className="pg-gallery-card">
+                  <img src={item.src} alt={`Gallery ${item.id}`} />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 };
