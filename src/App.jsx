@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home/Home";
+import Home2 from "./Pages/Home2/Home2";
 import Layout from "./Component/Layout/Layout";
 import Contact from "./Pages/Contact/Contact";
 import About from "./Pages/About/About";
@@ -21,8 +22,11 @@ import ChangePassword from "./Pages/ChangePassword/ChangePassword";
 import LoginPage from "./Pages/NewLogin/LoginPage";
 import SignUp from "./Pages/NewLogin/SignUp";
 import ForgotPassword from "./Pages/NewLogin/ForgotPassword";
+import Profile from "./Pages/Profile/Profile";
+import usePageTitle from "./hooks/usePageTitle";
 
 function App() {
+  usePageTitle();
   return (
     <>
       <div className="app">
@@ -31,11 +35,13 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Navigate to="home" replace />} />
             <Route path="home" element={<Home />} />
+            <Route path="home2" element={<Home2 />} />
             <Route path="products" element={<Products />} />
             <Route
               path="products/Parchase-Details"
               element={<ParchaseDetails />}
             />
+            <Route path="profile" element={<Profile/>}/>
             <Route path="media" element={<Media />} />
             <Route path="blog" element={<Blogs />} />
             <Route path="blog/blog-details" element={<BlogDetailsPage />} />

@@ -6,6 +6,7 @@ import logo from "../../assets/logo.png";
 import { AiOutlineLogin, AiOutlineUser, AiOutlineShoppingCart, AiOutlineLogout, AiOutlineSetting } from "react-icons/ai";
 import useAuth from "../../hooks/useAuth";
 import useLocalStorage from "../hooks/useLocalStorage";
+import ProfileMenu from "../Profile/ProfileMenu";
 
 const Navbars = () => {
   const [menu, setMenu] = useState(false);
@@ -15,6 +16,10 @@ const Navbars = () => {
   const isUserLogin=()=>{
     const userData = JSON.parse(getItem('userInfo') || "{}");
     return userData?.role == 'user'
+  }
+
+  const closeMenu=()=>{
+    setMenu(prev=>!prev);
   }
 
  const PrifileAcc=()=>{
@@ -33,38 +38,38 @@ const Navbars = () => {
                 Login
               </Nav.Link>
             ) : (
-              <Dropdown align="end" className="profile-dropdown">
-                <Dropdown.Toggle
-                  variant="link"
-                  className="profile-toggle"
-                  id="profile-dropdown"
-                >
-                  <div className="profile-label">
-                    <AiOutlineUser className="profile-icon" />
-                    {/* {userInfo?.name && <span>{userInfo.name.split(" ")[0]}</span>} */}
-                  </div>
-                </Dropdown.Toggle>
-                <Dropdown.Menu className="profile-menu">
-                  <div className="profile-menu-header">
-                    <AiOutlineUser className="profile-menu-avatar" />
-                    <div>
-                      <div className="profile-menu-name">{userInfo?.name || "My Account"}</div>
-                      <div className="profile-menu-email">{userInfo?.email || "Account settings"}</div>
-                    </div>
-                  </div>
-                  <Dropdown.Divider />
-                  <Dropdown.Item as={NavLink} to="/orders" onClick={() => setMenu(false)} className="profile-item">
-                    <AiOutlineShoppingCart className="profile-item-icon" /> Orders
-                  </Dropdown.Item>
-                  <Dropdown.Item as={NavLink} to="/change-password" onClick={() => setMenu(false)} className="profile-item">
-                    <AiOutlineSetting className="profile-item-icon" /> Change Password
-                  </Dropdown.Item>
-                  <Dropdown.Divider />
-                  <Dropdown.Item onClick={logout} className="profile-item logout-item">
-                    <AiOutlineLogout className="profile-item-icon" /> Logout
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
+                <ProfileMenu closeMenu={closeMenu}/>
+              // <Dropdown align="end" className="profile-dropdown">
+              //   <Dropdown.Toggle
+              //     variant="link"
+              //     className="profile-toggle"
+              //     id="profile-dropdown"
+              //   >
+              //     <div className="profile-label">
+              //       <AiOutlineUser className="profile-icon" />
+              //     </div>
+              //   </Dropdown.Toggle>
+              //   <Dropdown.Menu className="profile-menu">
+              //     <div className="profile-menu-header">
+              //       <AiOutlineUser className="profile-menu-avatar" />
+              //       <div>
+              //         <div className="profile-menu-name">{userInfo?.name || "My Account"}</div>
+              //         <div className="profile-menu-email">{userInfo?.email || "Account settings"}</div>
+              //       </div>
+              //     </div>
+              //     <Dropdown.Divider />
+              //     <Dropdown.Item as={NavLink} to="/orders" onClick={() => setMenu(false)} className="profile-item">
+              //       <AiOutlineShoppingCart className="profile-item-icon" /> Orders
+              //     </Dropdown.Item>
+              //     <Dropdown.Item as={NavLink} to="/change-password" onClick={() => setMenu(false)} className="profile-item">
+              //       <AiOutlineSetting className="profile-item-icon" /> Change Password
+              //     </Dropdown.Item>
+              //     <Dropdown.Divider />
+              //     <Dropdown.Item onClick={logout} className="profile-item logout-item">
+              //       <AiOutlineLogout className="profile-item-icon" /> Logout
+              //     </Dropdown.Item>
+              //   </Dropdown.Menu>
+              // </Dropdown>
             )}
           </Nav>
     </>
