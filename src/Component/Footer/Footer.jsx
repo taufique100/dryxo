@@ -123,13 +123,13 @@ const Footer = () => {
             <h6 className="ft-heading">Follow Us</h6>
             <p className="ft-social-sub">Stay connected with Dryxo</p>
             <div className="ft-socials">
-              <a href="https://www.instagram.com/dryxo100?igsh=MWp6cGkzaDdrMG9ycw==" target="_blank" rel="noreferrer" className="ft-social-btn" aria-label="Instagram">
+              <a href="https://www.instagram.com/dryxo.india?igsh=MXJpMXBhdDJlbjIycA%3D%3D&utm_source=qr" target="_blank" rel="noreferrer" className="ft-social-btn" aria-label="Instagram">
                 <FaInstagram />
               </a>
               <a href="https://www.facebook.com/share/1CZPmRk2nm/" target="_blank" rel="noreferrer" className="ft-social-btn" aria-label="Facebook">
                 <FaFacebookF />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="ft-social-btn" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/in/dryxo-sharida-healthcare-pvt-ltd-9512a7291?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noreferrer" className="ft-social-btn" aria-label="LinkedIn">
                 <FaLinkedinIn />
               </a>
               <button className="ft-social-btn" onClick={handleWhatsApp} aria-label="WhatsApp">

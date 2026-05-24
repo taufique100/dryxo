@@ -17,18 +17,18 @@ const ContactBar = () => {
           >
             <div className="contact-item d-flex align-items-center gap-1 px-2">
               <MdAddCall className="contact-icon" />
-              <span>+91 9315522533</span>
+              <span>+91-9315522533</span>
               <p className="px-2">{" "}</p>
               <MdOutlineEmail className="contact-icon " />
-              <span>dryxo179@gmail.com</span>
+              <span>dryxo.india@gmail.com</span>
             </div>
             {/* <div className="contact-item d-flex align-items-center gap-1">
               <MdOutlineEmail className="contact-icon" />
               <span>dryxo179@gmail.com</span>
             </div> */}
-            <div className="contact-item">
+            {/* <div className="contact-item">
               <span>GSTIN/UIN: 09ABGCS0982H1ZL</span>
-            </div>
+            </div> */}
           </Col>
 
           {/* Right Side Social Icons */}
@@ -38,14 +38,14 @@ const ContactBar = () => {
             className="contact-social-icons text-md-end d-flex gap-3 justify-content-md-end mt-2 mt-md-0"
           >
             <a
-              href="https://www.instagram.com/dryxo100?igsh=MWp6cGkzaDdrMG9ycw=="
+              href="https://www.instagram.com/dryxo.india?igsh=MXJpMXBhdDJlbjIycA%3D%3D&utm_source=qr"
               target="_blank"
               rel="noopener noreferrer"
             >
               <FaInstagram />
             </a>
             <a
-              href="https://www.linkedin.com/in/dryxo-9512a7291?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+              href="https://www.linkedin.com/in/dryxo-sharida-healthcare-pvt-ltd-9512a7291?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
               target="_blank"
               rel="noopener noreferrer"
             >
