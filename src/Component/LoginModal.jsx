@@ -14,6 +14,7 @@ const LoginModal = ({ show, onHide, onLoginSuccess }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [panel, setPanel] = useState("login");
   const [loading, setLoading] = useState(false);
+  const {setItem, getItem} = useLocalStorage();
 
   const [credentials, setCredentials] = useState({
     username: "",
@@ -39,8 +40,13 @@ const LoginModal = ({ show, onHide, onLoginSuccess }) => {
 
     try {
       const res = await axios.post(apiUrls.googleLogin, { token });
-      localStorage.setItem("userToken", res?.data?.tokens?.access?.token);
-      localStorage.setItem("userInfo", JSON.stringify(res?.data?.user));
+      // localStorage.setItem("userToken", res?.data?.tokens?.access?.token);
+      // localStorage.setItem("userRefreshToken", res?.data?.tokens?.refresh?.token);
+      // localStorage.setItem("userInfo", JSON.stringify(res?.data?.user));
+
+      setItem("userToken", res?.data?.tokens?.access?.token);
+      setItem("userRefreshToken", res?.data?.tokens?.refresh?.token);
+      setItem("userInfo", JSON.stringify(res?.data?.user));
       successNotify("Login successful!");
       onLoginSuccess && onLoginSuccess();
       onHide();
@@ -85,8 +91,8 @@ const LoginModal = ({ show, onHide, onLoginSuccess }) => {
       const res = await axios.post(apiUrls.login, loginPayload);
       // localStorage.setItem("userToken", res?.data?.tokens?.access?.token);
       // localStorage.setItem("userInfo", JSON.stringify(res?.data?.user));
-      useLocalStorage("userToken", res?.data?.tokens?.access?.token)
-      useLocalStorage("userInfo", JSON.stringify(res?.data?.user))
+      setItem("userToken", res?.data?.tokens?.access?.token)
+      setItem("userInfo", JSON.stringify(res?.data?.user))
       successNotify("Login successful!");
       onLoginSuccess && onLoginSuccess();
       onHide();

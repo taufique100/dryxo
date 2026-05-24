@@ -1,4 +1,5 @@
 import axios from "axios";
+import useLocalStorage from "../Component/hooks/useLocalStorage";
 
 const axiosInstance = axios.create({
   baseURL: "",
@@ -7,7 +8,9 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("user_token"); 
+    const {setItem, getItem} = useLocalStorage(); 
+    const token = localStorage.getItem("user_token") || getItem("userToken");
+    console.log(token, "token from axiosInstance");
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -27,6 +30,7 @@ axiosInstance.interceptors.response.use(
       localStorage.clear();
       // window.location.href = "/login";
       console.warn("Unauthorized, redirect to login");
+     
     }
     return Promise.reject(error);
   }

@@ -7,15 +7,15 @@ export default defineConfig(({ mode }) => {
   
   return {
     plugins: [react()],
-    server:{
-      port:3000,
-      proxy: {
-        '/v1': {
-          target: env.VITE_APP_REACT_APP_BASE_URL,
-          changeOrigin: true,
-          secure: false,
-        }
-      }
-    }
+    // server:{
+    //   port:3000,
+    //   proxy: {
+    //     '/v1': {
+    //       target: env.VITE_APP_REACT_APP_BASE_URL,
+    //       changeOrigin: true,
+    //       secure: false,
+    //     }
+    //   }
+    // }
   }
 })

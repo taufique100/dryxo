@@ -14,8 +14,8 @@ const allEnvApiUrls = {
 };
 // console.log("envUrlenvironment", environment, allEnvApiUrls);
 
-// const envUrl = `${allEnvApiUrls[environment]?.baseUrl}/v1/`;
-const envUrl = `/v1`;
+const envUrl = `${allEnvApiUrls[environment]?.baseUrl}/v1`;
+// const envUrl = `/v1`;
 
 // export const apiUrls = {
 //   login: `${envUrl}/auth/login`,
@@ -27,7 +27,14 @@ const envUrl = `/v1`;
 
 export const apiUrls = {
   login: `${envUrl}/auth/login`,
+  logout: `${envUrl}/auth/logout`,
   register: `${envUrl}/auth/register`,
   googleLogin: `${envUrl}/auth/google-login`,
-  getAllUserProducts: `${envUrl}/products/getAllUserProducts`
+  getAllUserProducts: `${envUrl}/products/getAllUserProducts`,
+  updateProfile: `${envUrl}/profile/updateProfile`,
+  getUserProfile: `${envUrl}/profile/getProfile`,
+  createAddress: `${envUrl}/address/createAddress`,
+  getAddress: `${envUrl}/address/getAddress`, 
+  updateAddress: `${envUrl}/address/updateAddress`,
+  deleteAddress: `${envUrl}/address/deleteAddress`,
 };

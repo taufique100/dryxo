@@ -44,6 +44,7 @@ const LoginPage = () => {
       // localStorage.setItem("userToken", res?.data?.tokens?.access?.token);
       // localStorage.setItem("userInfo", JSON.stringify(res?.data?.user));
       setItem("userToken", res?.data?.tokens?.access?.token)
+      setItem("userRefreshToken", res?.data?.tokens?.refresh?.token)
       setItem("userInfo", JSON.stringify(res?.data?.user))
       successNotify("Login successfully.");
       // navigate("/home");
@@ -83,10 +84,8 @@ const LoginPage = () => {
       .post(apiUrls.login, loginPayload)
       .then((res) => {
         console.log("loginRes::", res?.data);
-
-        // localStorage.setItem("userToken", res?.data?.tokens?.access?.token);
-        // localStorage.setItem("userInfo", JSON.stringify(res?.data?.user));
         setItem("userToken", res?.data?.tokens?.access?.token)
+        setItem("userRefreshToken", res?.data?.tokens?.refresh?.token)
         setItem("userInfo", JSON.stringify(res?.data?.user))
 
         successNotify("Login successfully.");

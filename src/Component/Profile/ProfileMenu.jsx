@@ -72,7 +72,10 @@ const ProfileMenu = ({ closeMenu }) => {
                 <Dropdown.Divider />
 
                 <Dropdown.Item
-                    onClick={() => { logout(); close(); }}
+                    onClick={() => { 
+                        logout(); 
+                        close(); 
+                    }}
                     className="profile-item logout-item"
                 >
                     <AiOutlineLogout className="profile-item-icon" /> Logout

@@ -1,6 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { BsPerson, BsHouseDoor, BsBriefcaseFill, BsThreeDots, BsPencil, BsPlus, BsX, BsCheckCircleFill, BsGeoAlt } from "react-icons/bs";
 import "./Profile.css";
+import axiosInstance from "../../api/axiosInstance";
+import { apiUrls } from "../../Utils/apiUrls";
+import { errorNotify, successNotify } from "../../Utils/toastNotify";
+import { useDispatch } from "react-redux";
+import { setLoader } from "../../Store/LoaderSlice";
 
 const EMPTY_ADDRESS = {
   type: "home",
@@ -23,10 +28,10 @@ const TYPE_ICONS = {
 export default function Profile() {
   // ── User Info ──────────────────────────────────────────────
   const [profile, setProfile] = useState({
-    name: "John Doe",
-    email: "john@example.com",
-    mobile: "9876543210",
-    gender: "male",
+    name: "",
+    email: "",
+    mobile: "",
+    gender: "",
     profilePic: null,
   });
   const [profileSaved, setProfileSaved] = useState(false);
@@ -34,13 +39,14 @@ export default function Profile() {
 
   // ── Addresses ──────────────────────────────────────────────
   const [addresses, setAddresses] = useState([]);
-  const [selectedAddressId, setSelectedAddressId] = useState(null);
+  const [selectedAddressId, setSelectedAddressId] = useState(0);
 
   // ── Modal ──────────────────────────────────────────────────
   const [modalOpen, setModalOpen] = useState(false);
   const [editIndex, setEditIndex] = useState(null); // null = add new
   const [form, setForm] = useState(EMPTY_ADDRESS);
   const [errors, setErrors] = useState({});
+  const dispatch = useDispatch();
 
   // ── Profile handlers ───────────────────────────────────────
   const handleProfileChange = (e) => {
@@ -56,9 +62,10 @@ export default function Profile() {
     reader.readAsDataURL(file);
   };
 
-  const handleProfileSave = (e) => {
+  const handleProfileSave = async (e) => {
     e.preventDefault();
     // TODO: call API to save profile
+    await updateProfile();
     setProfileSaved(true);
     setTimeout(() => setProfileSaved(false), 2500);
   };
@@ -97,38 +104,128 @@ export default function Profile() {
     return errs;
   };
 
-  const handleAddressSubmit = (e) => {
+  const updateProfile = async () => {
+    dispatch(setLoader(true));
+    try {
+      const res = await axiosInstance.post(apiUrls.updateProfile, {
+        fullName: profile.name,
+        email: profile.email,
+        phoneNumber: profile.mobile,
+        gender: profile.gender,
+      });
+
+      console.log("Profile updated:", res);
+      const profileData = res?.data?.data;
+      setProfile({
+        name: profileData?.fullName || profile.name,
+        email: profileData?.email || profile.email,
+        mobile: profileData?.phoneNumber || profile.mobile,
+        gender: profileData?.gender || profile.gender,
+      });
+      successNotify("Profile updated successfully.");
+    } catch (er) {
+      console.error("Error updating profile:", er);
+      errorNotify("Error updating profile. Please try again.");
+    } finally {
+      dispatch(setLoader(false));
+    }
+  };
+
+  const getUserProfile = async () => {
+    return axiosInstance.get(apiUrls.getUserProfile)
+      .then((res) => {
+        console.log("User profile:", res);
+        const profileData = res?.data;
+        setProfile({
+          name: profileData?.fullName || "",
+          email: profileData?.email || "",
+          mobile: profileData?.phoneNumber || "",
+          gender: profileData?.gender || "",
+        });
+      })
+      .catch((er) => {
+        console.error("Error fetching profile:", er);
+      });
+  };
+
+  const createAddress = async (address) => {
+    dispatch(setLoader(true));
+    try {
+      const shallowCopyAddrss = { ...address };
+      delete shallowCopyAddrss._id;
+      const res = await axiosInstance.post(apiUrls.createAddress, shallowCopyAddrss);
+      console.log("Address created:", res);
+      await getAddress();
+    } catch (er) {
+      console.error("Error creating address:", er);
+      errorNotify("Error saving address. Please try again.");
+    } finally {
+      dispatch(setLoader(false));
+    }
+  };
+
+  const getAddress = async () => {
+    return axiosInstance.get(apiUrls.getAddress)
+      .then((res) => {
+        console.log("User addresses:", res);
+        const list = res?.data || [];
+        setAddresses(list);
+        const defaultIndex = list.findIndex((addr) => addr.isDefault);
+        setSelectedAddressId(defaultIndex >= 0 ? defaultIndex : 0);
+      })
+      .catch((er) => {
+        console.error("Error fetching addresses:", er);
+      });
+  };
+
+  const updateAddress = async (address) => {
+    dispatch(setLoader(true));
+    try {
+      const shallowCopyAddrss = { ...address };
+      delete shallowCopyAddrss._id;
+      const res = await axiosInstance.put(`${apiUrls.updateAddress}/${address?._id}`, shallowCopyAddrss);
+      console.log("Address updated:", res);
+      await getAddress();
+    } catch (er) {
+      console.error("Error updating address:", er);
+      errorNotify("Error updating address. Please try again.");
+    } finally {
+      dispatch(setLoader(false));
+    }
+  };
+
+  const deleteAddress = async (addressId) => {
+    dispatch(setLoader(true));
+    try {
+      const res = await axiosInstance.delete(`${apiUrls.deleteAddress}/${addressId}`);
+      console.log("Address deleted:", res);
+      successNotify("Address deleted successfully.");
+      await getAddress();
+    } catch (er) {
+      console.error("Error deleting address:", er);
+      errorNotify("Error deleting address. Please try again.");
+    } finally {
+      dispatch(setLoader(false));
+    }
+  };
+
+  const handleAddressSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length) { setErrors(errs); return; }
-
-    setAddresses((prev) => {
-      let updated;
-      if (editIndex !== null) {
-        updated = prev.map((a, i) => (i === editIndex ? { ...form } : a));
-      } else {
-        updated = [...prev, { ...form }];
-      }
-      // if new address is default, unset others
-      if (form.isDefault) {
-        updated = updated.map((a, i) => ({
-          ...a,
-          isDefault: editIndex !== null ? i === editIndex : i === updated.length - 1,
-        }));
-      }
-      return updated;
-    });
+    await editIndex !== null ? updateAddress({ ...form, _id: addresses[editIndex]._id }) : createAddress(form);
 
     // auto-select first address
     if (addresses.length === 0) setSelectedAddressId(0);
     closeModal();
   };
 
-  const handleDelete = (idx) => {
+  const handleDelete = async (idx) => {
     setAddresses((prev) => {
       const updated = prev.filter((_, i) => i !== idx);
       return updated;
     });
+    deleteAddress(addresses[idx]._id);
     if (selectedAddressId === idx) setSelectedAddressId(null);
   };
 
@@ -136,7 +233,14 @@ export default function Profile() {
     setAddresses((prev) =>
       prev.map((a, i) => ({ ...a, isDefault: i === idx }))
     );
+    const defaultAddress = addresses[idx];
+    updateAddress({ ...defaultAddress, isDefault: true }); // Update default status in backend
   };
+  
+  useEffect(() => {
+    getUserProfile();
+    getAddress();
+  }, []);
 
   const badgeClass = (type) =>
     type === "home" ? "badge-home" : type === "work" ? "badge-work" : "badge-other";
@@ -163,10 +267,10 @@ export default function Profile() {
                   <BsPerson />
                 </div>
               )}
-              <button className="profile-avatar-edit" onClick={() => fileRef.current.click()} title="Change photo">
+              {/* <button className="profile-avatar-edit" onClick={() => fileRef.current.click()} title="Change photo">
                 <BsPencil />
-              </button>
-              <input ref={fileRef} type="file" accept="image/*" hidden onChange={handlePicChange} />
+              </button> */}
+              {/* <input ref={fileRef} type="file" accept="image/*" hidden onChange={handlePicChange} /> */}
             </div>
             <div className="profile-header-info">
               <h2>{profile.name || "Your Name"}</h2>

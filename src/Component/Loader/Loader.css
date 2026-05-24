@@ -1,0 +1,49 @@
+.global-loader-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(10, 14, 30, 0.18);
+  backdrop-filter: blur(4px);
+  z-index: 2500;
+  pointer-events: none;
+}
+
+.global-loader-card {
+  width: 110px;
+  min-height: 110px;
+  padding: 16px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(253, 53, 13, 0.12);
+  box-shadow: 0 24px 44px rgba(15, 23, 61, 0.16);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.global-loader-spinner {
+  width: 34px;
+  height: 34px;
+  border: 4px solid rgba(237, 10, 44, 0.16);
+  border-top-color: #fd350d;
+  border-radius: 50%;
+  animation: loader-spin 0.85s linear infinite;
+}
+
+.global-loader-text {
+  font-size: 13px;
+  color: #2d2d38;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+@keyframes loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
