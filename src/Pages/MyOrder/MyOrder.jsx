@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiPackage, FiChevronRight, FiShoppingBag } from "react-icons/fi";
 import "./MyOrder.css";
+import axiosInstance from "../../api/axiosInstance";
+import { apiUrls } from "../../Utils/apiUrls";
 
 /* ── mock data — replace with API call ── */
 const MOCK_ORDERS = [
@@ -42,15 +44,35 @@ const MOCK_ORDERS = [
 ];
 
 const STATUS_COLOR = {
-  Delivered:  "status-delivered",
-  Shipped:    "status-shipped",
-  Processing: "status-processing",
-  Cancelled:  "status-cancelled",
+  delivered:  "status-delivered",
+  shipped:    "status-shipped",
+  processing: "status-processing",
+  cancelled:  "status-cancelled",
+  pending:    "status-pending",
 };
 
 export default function MyOrders() {
   const navigate = useNavigate();
-  const orders = MOCK_ORDERS;
+  const [orderedProducts, setOrderedProducts] = useState([]);
+
+  const getAllOrders = async () => {
+    try {
+      const res = await axiosInstance.get(apiUrls.getAllOrders);
+      // API shape may be { status,message,data: [...] } or direct array
+      const payload = res?.data?.data ?? res?.data ?? [];
+      setOrderedProducts(Array.isArray(payload) ? payload : []);
+    } catch (err) {
+      console.error("Failed to fetch orders", err);
+      setOrderedProducts([]);
+    }
+  };
+
+  useEffect(() => {
+    getAllOrders();
+  }, []);
+
+  // prefer API-loaded orders, otherwise fall back to local mock data
+  const orders = (orderedProducts && orderedProducts.length) ? orderedProducts : MOCK_ORDERS;
 
   return (
     <div className="mo-page">
@@ -66,7 +88,7 @@ export default function MyOrders() {
       {/* ── List ── */}
       <div className="mo-body">
         <div className="mo-list">
-          {orders.length === 0 ? (
+          {(orderedProducts.length === 0 && orders.length === 0) ? (
             <div className="mo-empty">
               <FiShoppingBag size={48} />
               <p>No orders yet. Start shopping!</p>
@@ -75,55 +97,60 @@ export default function MyOrders() {
               </button>
             </div>
           ) : (
-            orders.map((order) => (
-              <div className="mo-card" key={order.id}>
+            // prefer API orders; fall back to local mock
+            (orderedProducts.length ? orderedProducts : orders).map((order) => (
+              <div className="mo-card" key={order.id || order.orderNumber}>
 
                 {/* card top bar */}
                 <div className="mo-card-top">
                   <div className="mo-card-meta">
-                    <span className="mo-order-id">#{order.id}</span>
+                    <span className="mo-order-id">#{order.orderNumber || order.id}</span>
                     <span className="mo-dot" />
-                    <span className="mo-date">{order.date}</span>
+                    <span className="mo-date">{order.date || ""}</span>
                     <span className="mo-dot" />
-                    <span className="mo-pay">{order.paymentMethod}</span>
+                    <span className="mo-pay">{order.paymentMethod || order.paymentMethod}</span>
                   </div>
-                  <span className={`mo-status ${STATUS_COLOR[order.status] || ""}`}>
-                    {order.status}
+                  <span className={`mo-status ${STATUS_COLOR[String(order.status || "").toLowerCase()] || ""}`}>
+                    {String(order.status || "").charAt(0).toUpperCase() + String(order.status || "").slice(1)}
                   </span>
                 </div>
 
                 {/* product rows */}
                 <div className="mo-items">
-                  {order.items.map((item) => (
-                    <div className="mo-item" key={item.id}>
-                      {/* product image / placeholder */}
-                      <div className="mo-item-img">
-                        {item.img
-                          ? <img src={item.img} alt={item.name} />
-                          : <FiPackage size={22} />
-                        }
+                  {(order.products || order.items || []).map((item, idx) => {
+                    const title = item.productTitle || item.name || "Item";
+                    const qty = item.quantity ?? item.qty ?? 1;
+                    const pricePer = item.salePriceAtOrder ?? item.priceAtOrder ?? item.price ?? item.mrpAtOrder ?? 0;
+                    const img = item.productImage || item.img || null;
+                    const totalPrice = pricePer * qty;
+                    const key = item._id || item.id || idx;
+                    return (
+                      <div className="mo-item" key={key}>
+                        <div className="mo-item-img">
+                          {img ? <img src={img} alt={title} /> : <FiPackage size={22} />}
+                        </div>
+                        <div className="mo-item-info">
+                          <p className="mo-item-name">{title}</p>
+                          {item.variant && <p className="mo-item-variant">{item.variant}</p>}
+                        </div>
+                        <div className="mo-item-right">
+                          <span className="mo-item-qty">×{qty}</span>
+                          <span className="mo-item-price">₹{totalPrice}</span>
+                        </div>
                       </div>
-                      <div className="mo-item-info">
-                        <p className="mo-item-name">{item.name}</p>
-                        <p className="mo-item-variant">{item.variant}</p>
-                      </div>
-                      <div className="mo-item-right">
-                        <span className="mo-item-qty">×{item.qty}</span>
-                        <span className="mo-item-price">₹{item.price * item.qty}</span>
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
 
                 {/* card footer */}
                 <div className="mo-card-footer">
                   <div className="mo-total">
                     <span>Order Total</span>
-                    <strong>₹{order.total}</strong>
+                    <strong>₹{order.totalAmount ?? order.total ?? order.subtotal ?? 0}</strong>
                   </div>
                   <button
                     className="mo-detail-btn"
-                    onClick={() => navigate(`/my-order/${order.id}`, { state: { order } })}
+                    onClick={() => navigate(`/my-order/${order.id || order.orderNumber}`, { state: { order } })}
                   >
                     View Details <FiChevronRight size={14} />
                   </button>

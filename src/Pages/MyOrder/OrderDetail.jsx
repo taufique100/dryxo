@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { FiArrowLeft, FiPackage, FiMapPin, FiCreditCard, FiCheckCircle } from "react-icons/fi";
 import "./OrderDetail.css";
+import axiosInstance from "../../api/axiosInstance";
+import { apiUrls } from "../../Utils/apiUrls";
 
 const STEPS = ["Order Placed", "Processing", "Shipped", "Delivered"];
 
@@ -26,23 +28,65 @@ export default function OrderDetail() {
   const navigate  = useNavigate();
   const location  = useLocation();
   const { id }    = useParams();
+  const [orderData, setOrderData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  /* get order from navigation state or fallback */
-  const order = location.state?.order || null;
+  const getProduct = async () => {
+    setLoading(true);
+    try {
+      const res = await axiosInstance.get(`${apiUrls.getOrderById}/${id}`);
+      // API returns the order object in res.data
+      const payload = res?.data ?? null;
+      setOrderData(payload);
+    } catch (err) {
+      console.error(err);
+      setOrderData(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(()=>{
+    if(id){
+      getProduct()  
+    }
+  },[id])
+  /* prefer fetched order data, fall back to navigation state */
+  const order = orderData ?? location.state?.order ?? null;
+
+  if (loading) {
+    return (
+      <div className="od-page od-loading">
+        <p>Loading order…</p>
+      </div>
+    );
+  }
 
   if (!order) {
     return (
       <div className="od-page od-not-found">
         <p>Order not found.</p>
-        <button className="od-back-btn" onClick={() => navigate("/my-order")}>
+        <button className="od-back-btn" onClick={() => navigate("/my-order") }>
           <FiArrowLeft /> Back to Orders
         </button>
       </div>
     );
   }
 
-  const currentStep = STATUS_STEP[order.status] ?? 0;
-  const isCancelled = order.status === "Cancelled";
+  // normalize status to step label
+  const normalizeStatusLabel = (s) => {
+    if (!s) return "Order Placed";
+    const st = String(s).toLowerCase();
+    if (st === "pending" || st === "placed" || st === "order placed") return "Order Placed";
+    if (st.includes("process")) return "Processing";
+    if (st.includes("ship")) return "Shipped";
+    if (st.includes("deliver")) return "Delivered";
+    if (st.includes("cancel")) return "Cancelled";
+    return "Order Placed";
+  };
+
+  const statusLabel = normalizeStatusLabel(order.status);
+  const currentStep = STATUS_STEP[statusLabel] ?? 0;
+  const isCancelled = statusLabel === "Cancelled";
 
   return (
     <div className="od-page">
@@ -56,11 +100,11 @@ export default function OrderDetail() {
           <div className="od-hero-row">
             <div>
               <span className="od-tag">Order Details</span>
-              <h1 className="od-title">#{order.id}</h1>
-              <p className="od-meta">{order.date} &nbsp;·&nbsp; {order.paymentMethod}</p>
+              <h1 className="od-title">#{order.orderNumber || order.id}</h1>
+              <p className="od-meta">{order.date || ""} &nbsp;·&nbsp; {order.paymentMethod}</p>
             </div>
-            <span className={`od-status-badge ${STATUS_COLOR[order.status] || ""}`}>
-              {order.status}
+            <span className={`od-status-badge ${STATUS_COLOR[statusLabel] || ""}`}>
+              {statusLabel}
             </span>
           </div>
         </div>
@@ -111,40 +155,42 @@ export default function OrderDetail() {
         <div className="od-section">
           <h3 className="od-section-title"><FiPackage /> Items Ordered</h3>
           <div className="od-items">
-            {order.items.map((item) => (
-              <div className="od-item" key={item.id}>
-                <div className="od-item-img">
-                  {item.img
-                    ? <img src={item.img} alt={item.name} />
-                    : <FiPackage size={24} />
-                  }
+            {(order.products || order.items || []).map((item, idx) => {
+              const title = item.productTitle || item.name || "Item";
+              const qty = item.quantity ?? item.qty ?? 1;
+              const pricePer = item.salePriceAtOrder ?? item.priceAtOrder ?? item.price ?? item.mrpAtOrder ?? 0;
+              const img = item.productImage || item.img || null;
+              const key = item._id || item.id || idx;
+              return (
+                <div className="od-item" key={key}>
+                  <div className="od-item-img">
+                    {img ? <img src={img} alt={title} /> : <FiPackage size={24} />}
+                  </div>
+                  <div className="od-item-info">
+                    <p className="od-item-name">{title}</p>
+                    {item.variant && <p className="od-item-variant">{item.variant}</p>}
+                    <p className="od-item-qty">Quantity: {qty}</p>
+                  </div>
+                  <div className="od-item-price">₹{pricePer * qty}</div>
                 </div>
-                <div className="od-item-info">
-                  <p className="od-item-name">{item.name}</p>
-                  <p className="od-item-variant">{item.variant}</p>
-                  <p className="od-item-qty">Quantity: {item.qty}</p>
-                </div>
-                <div className="od-item-price">
-                  ₹{item.price * item.qty}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* price summary */}
           <div className="od-summary">
             <div className="od-summary-row">
               <span>Subtotal</span>
-              <span>₹{order.total}</span>
+              <span>₹{order.subtotal ?? 0}</span>
             </div>
             <div className="od-summary-row">
               <span>Delivery</span>
-              <span className="od-free">Free</span>
+              <span>₹{order.deliveryCharges ?? 0}</span>
             </div>
             <div className="od-summary-divider" />
             <div className="od-summary-row od-summary-total">
               <span>Total Paid</span>
-              <strong>₹{order.total}</strong>
+              <strong>₹{order.totalAmount ?? order.total ?? 0}</strong>
             </div>
           </div>
         </div>
@@ -154,8 +200,14 @@ export default function OrderDetail() {
           <div className="od-section">
             <h3 className="od-section-title"><FiMapPin /> Delivery Address</h3>
             <div className="od-info-box">
-              <p className="od-info-name">{order.address?.split(",")[0] || "Customer"}</p>
-              <p className="od-info-text">{order.address}</p>
+              <p className="od-info-name">{order.shippingAddress?.fullName || "Customer"}</p>
+              <p className="od-info-text">
+                {order.shippingAddress?.addressLine1}
+                {order.shippingAddress?.city ? ", " + order.shippingAddress.city : ""}
+                {order.shippingAddress?.state ? ", " + order.shippingAddress.state : ""}
+                {order.shippingAddress?.zipCode ? " - " + order.shippingAddress.zipCode : ""}
+              </p>
+              <p className="od-info-text">{order.shippingAddress?.phone}</p>
             </div>
           </div>
 
@@ -168,11 +220,11 @@ export default function OrderDetail() {
               </div>
               <div className="od-pay-row">
                 <span>Status</span>
-                <strong className="od-paid">Paid</strong>
+                <strong className="od-paid">{order.paymentStatus || "Pending"}</strong>
               </div>
               <div className="od-pay-row">
                 <span>Amount</span>
-                <strong>₹{order.total}</strong>
+                <strong>₹{order.totalAmount ?? order.total ?? 0}</strong>
               </div>
             </div>
           </div>

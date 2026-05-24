@@ -37,4 +37,9 @@ export const apiUrls = {
   getAddress: `${envUrl}/address/getAddress`, 
   updateAddress: `${envUrl}/address/updateAddress`,
   deleteAddress: `${envUrl}/address/deleteAddress`,
+
+  // order related
+  createOrder: `${envUrl}/orders/createOrder`,
+  getAllOrders: `${envUrl}/orders/getOrders`,
+  getOrderById: `${envUrl}/orders/getOrderById`
 };

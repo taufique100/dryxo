@@ -6,12 +6,15 @@ import { errorNotify } from "../../Utils/toastNotify";
 import { BsBoxSeam } from "react-icons/bs";
 import { HiArrowRight } from "react-icons/hi";
 import "./Orders.css";
+import axiosInstance from "../../api/axiosInstance";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(true);
+
+ 
 
   useEffect(() => {
     fetchOrders();

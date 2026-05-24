@@ -7,6 +7,7 @@ import { setOpenModal } from "../../Store/OrderSlice";
 import OrderModal from "./OrderModal";
 import LoginModal from "../../Component/LoginModal";
 import useAuth from "../../hooks/useAuth";
+import useLocalStorage from "../../Component/hooks/useLocalStorage";
 
 function ViewAddedProductBtn() {
   const dispatch = useDispatch();
@@ -17,7 +18,8 @@ function ViewAddedProductBtn() {
   const [showLoginModal, setShowLoginModal] = useState(false);
 
   const { cartItems } = useSelector((state) => state.orderSlice);
-  const { isLoggedIn, loading: authLoading } = useAuth();
+  const {isLoggedIn, loading: authLoading } = useAuth();
+  const {getItem} = useLocalStorage();
 
   useEffect(() => {
     if (cartItems.length > prevCartLength) {
@@ -41,8 +43,10 @@ function ViewAddedProductBtn() {
 
   const handleModalOpen = () => {
     if (authLoading) return; // Wait for auth check
+    const userToken = getItem("userToken");
+    const userInfo = getItem("userInfo");
 
-    if (!isLoggedIn) {
+    if (!userToken && !userInfo?.role) {
       setShowLoginModal(true);
     } else {
       dispatch(setOpenModal(true));

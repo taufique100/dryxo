@@ -8,15 +8,24 @@ import Loader from "./Component/Loader/Loader";
 import routeConfig from "./routes.jsx";
 import ProtectedRoute from "./ProtectedRoute";
 import usePageTitle from "./hooks/usePageTitle";
+import LoginModal from "./Component/LoginModal";
+import { useDispatch } from "react-redux";
+import { setShowLoginModal } from "./Store/AuthSlice";
 
 function App() {
   usePageTitle();
   const loading = useSelector((state) => state.loader.loading);
+  const showLogin = useSelector((state) => state.auth.showLoginModal);
+  const dispatch = useDispatch();
+
+  const handleLoginHide = () => dispatch(setShowLoginModal(false));
+  const handleLoginSuccess = () => dispatch(setShowLoginModal(false));
 
   return (
     <>
       <div className="app">
         <ToastContainer />
+        <LoginModal show={showLogin} onHide={handleLoginHide} onLoginSuccess={handleLoginSuccess} />
         {loading && <Loader />}
         <Routes>
           <Route path="/" element={<Layout />}>

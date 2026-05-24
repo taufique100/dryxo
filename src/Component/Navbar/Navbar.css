@@ -295,7 +295,7 @@ button.profile-toggle:focus {
   opacity: 0.75;
 }
 
-.profile-item {
+.profile-item, a.profile-item {
   display: flex;
   align-items: center;
   gap: 10px;

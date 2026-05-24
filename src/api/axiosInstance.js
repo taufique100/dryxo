@@ -1,5 +1,7 @@
 import axios from "axios";
 import useLocalStorage from "../Component/hooks/useLocalStorage";
+import store from "../Store/Store";
+import { setShowLoginModal } from "../Store/AuthSlice";
 
 const axiosInstance = axios.create({
   baseURL: "",
@@ -27,10 +29,15 @@ axiosInstance.interceptors.response.use(
   (response) => response.data,
   (error) => {
     if (error.response?.status === 401) {
-      localStorage.clear();
-      // window.location.href = "/login";
-      console.warn("Unauthorized, redirect to login");
-     
+      try{
+        localStorage.clear();
+        // open login modal via redux so app can show the login popup
+        store.dispatch(setShowLoginModal(true));
+      }catch(e){
+        console.warn('Error dispatching login modal', e);
+      }
+      console.warn("Unauthorized, showing login modal");
+
     }
     return Promise.reject(error);
   }

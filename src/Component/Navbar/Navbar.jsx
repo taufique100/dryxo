@@ -30,7 +30,7 @@ export default function Navbars() {
 
   const isUserLogin = () => {
     const u = JSON.parse(getItem("userInfo") || "{}");
-    return u?.role === "user";
+    return !!u?.role;
   };
 
   const close = () => setOpen(false);
