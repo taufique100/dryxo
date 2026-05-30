@@ -63,6 +63,32 @@
   gap: 12px;
 }
 
+.od-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.od-cancel-order-btn {
+  border: 1px solid rgba(255,68,0,0.3);
+  background: transparent;
+  color: #ffb58f;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.od-cancel-order-btn:hover {
+  background: rgba(255,68,0,0.1);
+  color: #fff;
+  border-color: rgba(255,68,0,0.5);
+}
+
 .od-tag {
   display: inline-block;
   font-size: 10px; font-weight: 600;
@@ -213,7 +239,6 @@
   background: linear-gradient(90deg, rgba(34,197,94,0.5), rgba(34,197,94,0.3));
 }
 
-/* cancelled banner */
 .od-cancelled-banner {
   display: flex; align-items: center; gap: 10px;
   background: rgba(255,80,80,0.08);
@@ -224,12 +249,13 @@
   font-size: 13px; font-weight: 600;
 }
 
-.od-cancelled-banner span {
+.od-cancelled-icon {
   width: 24px; height: 24px;
   background: rgba(255,80,80,0.15);
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-size: 12px; flex-shrink: 0;
+  flex-shrink: 0;
+  color: #ff7777;
 }
 
 /* ===== ITEMS ===== */

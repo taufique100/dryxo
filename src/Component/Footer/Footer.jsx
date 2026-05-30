@@ -104,11 +104,11 @@ const Footer = () => {
             <ul className="ft-contact-list">
               <li>
                 <FaPhoneAlt className="ft-ci" />
-                <a href="tel:+919315522533">+91 93155 22533</a>
+                <a href="tel:+919315522533">+91-93155-22533</a>
               </li>
               <li>
                 <FaEnvelope className="ft-ci" />
-                <a href="mailto:dryxo179@gmail.com">dryxo179@gmail.com</a>
+                <a href="mailto:dryxo179@gmail.com">dryxo.india@gmail.com</a>
               </li>
               <li>
                 <FaMapMarkerAlt className="ft-ci ft-ci--top" />

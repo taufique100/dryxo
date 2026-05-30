@@ -59,8 +59,9 @@ export default function MyOrders() {
     try {
       const res = await axiosInstance.get(apiUrls.getAllOrders);
       // API shape may be { status,message,data: [...] } or direct array
-      const payload = res?.data?.data ?? res?.data ?? [];
-      setOrderedProducts(Array.isArray(payload) ? payload : []);
+      const responseData = res?.data?.data ?? res?.data ?? [];
+      console.log('responseData', responseData)
+      setOrderedProducts(Array.isArray(responseData) ? responseData : []);
     } catch (err) {
       console.error("Failed to fetch orders", err);
       setOrderedProducts([]);
@@ -72,7 +73,7 @@ export default function MyOrders() {
   }, []);
 
   // prefer API-loaded orders, otherwise fall back to local mock data
-  const orders = (orderedProducts && orderedProducts.length) ? orderedProducts : MOCK_ORDERS;
+  const orders = (orderedProducts && orderedProducts.length) ? orderedProducts : [];
 
   return (
     <div className="mo-page">
@@ -106,9 +107,9 @@ export default function MyOrders() {
                   <div className="mo-card-meta">
                     <span className="mo-order-id">#{order.orderNumber || order.id}</span>
                     <span className="mo-dot" />
-                    <span className="mo-date">{order.date || ""}</span>
+                    <span className="mo-date">{order.orderDate?.split(':')?.[0] || ""}</span>
                     <span className="mo-dot" />
-                    <span className="mo-pay">{order.paymentMethod || order.paymentMethod}</span>
+                    <span className="mo-pay text-uppercase">{order.paymentMethod || order.paymentMethod} (Payment Mode)</span>
                   </div>
                   <span className={`mo-status ${STATUS_COLOR[String(order.status || "").toLowerCase()] || ""}`}>
                     {String(order.status || "").charAt(0).toUpperCase() + String(order.status || "").slice(1)}
@@ -123,18 +124,17 @@ export default function MyOrders() {
                     const pricePer = item.salePriceAtOrder ?? item.priceAtOrder ?? item.price ?? item.mrpAtOrder ?? 0;
                     const img = item.productImage || item.img || null;
                     const totalPrice = pricePer * qty;
-                    const key = item._id || item.id || idx;
                     return (
-                      <div className="mo-item" key={key}>
+                      <div className="mo-item" key={idx}>
                         <div className="mo-item-img">
                           {img ? <img src={img} alt={title} /> : <FiPackage size={22} />}
                         </div>
                         <div className="mo-item-info">
                           <p className="mo-item-name">{title}</p>
-                          {item.variant && <p className="mo-item-variant">{item.variant}</p>}
+                          {item.size && <p className="mo-item-variant">{item.size}</p>}
                         </div>
                         <div className="mo-item-right">
-                          <span className="mo-item-qty">×{qty}</span>
+                          <span className="mo-item-qty">Quantity: ×{qty}</span>
                           <span className="mo-item-price">₹{totalPrice}</span>
                         </div>
                       </div>

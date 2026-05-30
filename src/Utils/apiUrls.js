@@ -1,3 +1,5 @@
+import ChangePassword from "../Pages/ChangePassword/ChangePassword";
+
 const environment = import.meta.env.VITE_APP_ENVIRONMENT;
 // export const baseUrl = import.meta.env.VITE_APP_BASE_URL;
 
@@ -29,6 +31,8 @@ export const apiUrls = {
   login: `${envUrl}/auth/login`,
   logout: `${envUrl}/auth/logout`,
   register: `${envUrl}/auth/register`,
+  resetPassword:`${envUrl}/auth/reset-password`,
+  changePassword: `${envUrl}/auth/change-password`,
   googleLogin: `${envUrl}/auth/google-login`,
   getAllUserProducts: `${envUrl}/products/getAllUserProducts`,
   updateProfile: `${envUrl}/profile/updateProfile`,
@@ -41,5 +45,8 @@ export const apiUrls = {
   // order related
   createOrder: `${envUrl}/orders/createOrder`,
   getAllOrders: `${envUrl}/orders/getOrders`,
-  getOrderById: `${envUrl}/orders/getOrderById`
+  getOrderById: `${envUrl}/orders/getOrderById`,
+  cancelOrder: `${envUrl}/orders/cancelOrder`,
+  
+  
 };

@@ -5,6 +5,8 @@ import { apiUrls } from "../../Utils/apiUrls";
 import { errorNotify, successNotify } from "../../Utils/toastNotify";
 import "../../Pages/theme.css";
 import "./ChangePassword.css";
+import axiosInstance from "../../api/axiosInstance";
+import useLocalStorage from "../../Component/hooks/useLocalStorage";
 
 const ChangePassword = () => {
   const [formData, setFormData] = useState({ oldPassword: "", newPassword: "", confirmPassword: "" });
@@ -21,25 +23,27 @@ const ChangePassword = () => {
       return;
     }
     setLoading(true);
-    try {
-      const token = localStorage.getItem("userToken");
-      await axios.post(`${apiUrls.baseUrl}/auth/change-password`,
-        { oldPassword: formData.oldPassword, newPassword: formData.newPassword },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      successNotify("Password changed successfully.");
+    await axiosInstance.post(`${apiUrls.changePassword}`,
+      { 
+        oldPassword: formData.oldPassword, 
+        newPassword: formData.newPassword 
+      }
+    ).then((res) => {
+      successNotify("Password changed successfully.")
       setFormData({ oldPassword: "", newPassword: "", confirmPassword: "" });
-    } catch {
-      errorNotify("Failed to change password.");
-    } finally {
-      setLoading(false);
-    }
+    })
+      .catch((err) => {
+        errorNotify("Failed to change password.");
+      })
+      .finally(() => {
+        setLoading(false);
+      })
   };
 
   const fields = [
-    { key: "oldPassword",     label: "Current Password",  showKey: "old",     placeholder: "Enter current password" },
-    { key: "newPassword",     label: "New Password",       showKey: "new",     placeholder: "Enter new password" },
-    { key: "confirmPassword", label: "Confirm Password",   showKey: "confirm", placeholder: "Re-enter new password" },
+    { key: "oldPassword", label: "Current Password", showKey: "old", placeholder: "Enter current password" },
+    { key: "newPassword", label: "New Password", showKey: "new", placeholder: "Enter new password" },
+    { key: "confirmPassword", label: "Confirm Password", showKey: "confirm", placeholder: "Re-enter new password" },
   ];
 
   return (

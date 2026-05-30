@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { FiArrowLeft, FiPackage, FiMapPin, FiCreditCard, FiCheckCircle } from "react-icons/fi";
+import { FiArrowLeft, FiPackage, FiMapPin, FiCreditCard, FiCheckCircle, FiShoppingCart, FiSettings, FiTruck, FiCheck, FiX } from "react-icons/fi";
 import "./OrderDetail.css";
 import axiosInstance from "../../api/axiosInstance";
 import { apiUrls } from "../../Utils/apiUrls";
+import { errorNotify, successNotify } from "../../Utils/toastNotify";
+import CancelOrderModal from "../../Component/models/CancelOrderModal";
 
 const STEPS = ["Order Placed", "Processing", "Shipped", "Delivered"];
 
@@ -15,7 +17,12 @@ const STATUS_STEP = {
   "Cancelled":    -1,
 };
 
-const STEP_ICONS = ["🛒", "⚙️", "🚚", "✅"];
+const STEP_ICONS = [
+  <FiShoppingCart size={18} />,
+  <FiSettings size={18} />,
+  <FiTruck size={18} />,
+  <FiCheck size={18} />,
+];
 
 const STATUS_COLOR = {
   Delivered:  "od-badge-delivered",
@@ -30,6 +37,9 @@ export default function OrderDetail() {
   const { id }    = useParams();
   const [orderData, setOrderData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showCancelModal, setShowCancelModal] = useState(false);
+  const [cancelLoading, setCancelLoading] = useState(false);
+  const [cancelledByUser, setCancelledByUser] = useState(false);
 
   const getProduct = async () => {
     setLoading(true);
@@ -45,13 +55,37 @@ export default function OrderDetail() {
       setLoading(false);
     }
   };
+
+  const handleCancelConfirm = async () => {
+    if (!order?.orderNumber) return;
+    setCancelLoading(true);
+    try {
+      await axiosInstance.patch(`${apiUrls.cancelOrder}`, {
+        reason:"",
+        orderId: order?.orderNumber
+      });
+      setOrderData((prev) => (prev ? { ...prev, status: "Cancelled" } : prev));
+      setCancelledByUser(true);
+      successNotify("Order cancelled successfully.");
+      setShowCancelModal(false);
+    } catch (err) {
+      const message = err?.response?.data?.message || "Unable to cancel order.";
+      errorNotify(message);
+    } finally {
+      setCancelLoading(false);
+    }
+  };
+
   useEffect(()=>{
     if(id){
       getProduct()  
     }
   },[id])
   /* prefer fetched order data, fall back to navigation state */
-  const order = orderData ?? location.state?.order ?? null;
+  const baseOrder = orderData ?? location.state?.order ?? null;
+  const order = baseOrder
+    ? { ...baseOrder, status: cancelledByUser ? "Cancelled" : baseOrder.status }
+    : null;
 
   if (loading) {
     return (
@@ -78,13 +112,15 @@ export default function OrderDetail() {
     const st = String(s).toLowerCase();
     if (st === "pending" || st === "placed" || st === "order placed") return "Order Placed";
     if (st.includes("process")) return "Processing";
-    if (st.includes("ship")) return "Shipped";
-    if (st.includes("deliver")) return "Delivered";
+    if (st.includes('confirme')) return "Shipped";
+    if (st.includes("deliver") || st.includes('shippe')) return "Delivered";
     if (st.includes("cancel")) return "Cancelled";
     return "Order Placed";
   };
 
+  const orderDate = order?.orderDate || order?.date || order?.createdAt || "";
   const statusLabel = normalizeStatusLabel(order.status);
+  console.log('statusLabel', statusLabel)
   const currentStep = STATUS_STEP[statusLabel] ?? 0;
   const isCancelled = statusLabel === "Cancelled";
 
@@ -101,14 +137,33 @@ export default function OrderDetail() {
             <div>
               <span className="od-tag">Order Details</span>
               <h1 className="od-title">#{order.orderNumber || order.id}</h1>
-              <p className="od-meta">{order.date || ""} &nbsp;·&nbsp; {order.paymentMethod}</p>
+              <p className="od-meta text-uppercase">{orderDate} &nbsp;·&nbsp; <span className="text-capitalize">Payment Mode:</span> {order.paymentMethod}</p>
             </div>
-            <span className={`od-status-badge ${STATUS_COLOR[statusLabel] || ""}`}>
-              {statusLabel}
-            </span>
+            <div className="od-hero-actions">
+              {!isCancelled && (
+                <button
+                  type="button"
+                  className="od-cancel-order-btn"
+                  onClick={() => setShowCancelModal(true)}
+                >
+                  Cancel Order
+                </button>
+              )}
+              <span className={`od-status-badge ${STATUS_COLOR[statusLabel] || ""}`}>
+                {statusLabel}
+              </span>
+            </div>
           </div>
         </div>
       </div>
+
+      <CancelOrderModal
+        show={showCancelModal}
+        onHide={() => setShowCancelModal(false)}
+        onConfirm={handleCancelConfirm}
+        order={order}
+        processing={cancelLoading}
+      />
 
       <div className="od-body">
 
@@ -118,7 +173,7 @@ export default function OrderDetail() {
 
           {isCancelled ? (
             <div className="od-cancelled-banner">
-              <span>✕</span> This order has been cancelled.
+              <span className="od-cancelled-icon"><FiX size={14} /></span> This order has been cancelled.
             </div>
           ) : (
             <div className="od-stepper">
@@ -168,7 +223,7 @@ export default function OrderDetail() {
                   </div>
                   <div className="od-item-info">
                     <p className="od-item-name">{title}</p>
-                    {item.variant && <p className="od-item-variant">{item.variant}</p>}
+                    {item.size && <p className="od-item-variant">{item?.size || item.variant}</p>}
                     <p className="od-item-qty">Quantity: {qty}</p>
                   </div>
                   <div className="od-item-price">₹{pricePer * qty}</div>

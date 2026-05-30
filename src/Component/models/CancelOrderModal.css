@@ -1,0 +1,108 @@
+.cancel-order-modal .modal-dialog {
+  max-width: 520px;
+}
+
+.cancel-order-modal .modal-content {
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, #0f0e12, #191517 80%);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
+  color: #f4f4f5;
+  overflow: hidden;
+}
+
+.cancel-order-modal .modal-header {
+  border-bottom: none;
+  padding: 1.25rem 1.5rem 0.5rem;
+  background: transparent;
+}
+
+.cancel-order-modal .modal-title {
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  font-size: 1.1rem;
+}
+
+.cancel-order-modal .btn-close {
+  filter: brightness(0.96);
+  opacity: 0.74;
+}
+
+.cancel-order-modal .btn-close:hover {
+  opacity: 1;
+}
+
+.cancel-order-modal .modal-body {
+  padding: 1rem 1.5rem 1.5rem;
+  color: #d7d7db;
+}
+
+.cancel-order-modal .modal-body p {
+  color: #e7e7e9;
+  line-height: 1.75;
+}
+
+.cancel-order-modal .cancel-summary {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  padding: 1rem;
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.cancel-order-modal .cancel-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  color: #a3a3a8;
+  font-size: 0.94rem;
+}
+
+.cancel-order-modal .cancel-summary-row strong {
+  color: #f8f8f8;
+}
+
+.cancel-order-modal .modal-footer {
+  border-top: none;
+  padding: 0 1.5rem 1.4rem;
+  background: transparent;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.cancel-order-modal .btn-cancel-keep {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f4f4f5;
+}
+
+.cancel-order-modal .btn-cancel-keep:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.cancel-order-modal .btn-cancel-confirm {
+  background: linear-gradient(135deg, #ff5d1f, #ff8b4f);
+  border: none;
+  color: #fff;
+}
+
+.cancel-order-modal .btn-cancel-confirm:hover {
+  filter: brightness(1.05);
+}
+
+.cancel-order-backdrop.show {
+  background-color: rgba(9, 9, 15, 0.76);
+  backdrop-filter: blur(2px);
+}
+
+@media (max-width: 576px) {
+  .cancel-order-modal .modal-content {
+    margin: 0 0.75rem;
+  }
+}
