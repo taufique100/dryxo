@@ -1,8 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=Inter:wght@400;500;600&display=swap");
 
 .main-navbar {
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 1050;
   padding: 0 24px;
   height: 64px;

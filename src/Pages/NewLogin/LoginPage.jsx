@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./LoginPage.css";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { FcGoogle } from "react-icons/fc";
-import { useGoogleLogin } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
 import ForgotPassword from "./ForgotPassword";
 import SignUp from "./SignUp";
 import loginImage from "../../assets/NewLoginPage/image.jpg";
@@ -18,7 +17,7 @@ const LoginPage = () => {
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
 
-  const {setItem, getItem} = useLocalStorage();
+  const { setItem, getItem } = useLocalStorage();
 
 
   const [credentials, setCredentials] = useState({
@@ -27,45 +26,35 @@ const LoginPage = () => {
   });
   const [loading, setLoading] = useState(false);
   const [panel, setPanel] = useState("login");
-  const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+  const googleBtnRef = useRef(null);
+  const [googleBtnWidth, setGoogleBtnWidth] = useState(400);
 
-  const handleGoogleCredentialResponse = async (response) => {
+  useEffect(() => {
+    if (!googleBtnRef.current) return;
+    const observer = new ResizeObserver(([entry]) => {
+      setGoogleBtnWidth(Math.floor(entry.contentRect.width));
+    });
+    observer.observe(googleBtnRef.current);
+    return () => observer.disconnect();
+  }, []);
+  const googleClientId = import.meta.env.VITE_CLIENT_ID;
+
+  const handleGoogleLogin = async (credentialResponse) => {
     setLoading(true);
-
-    const token = response?.credential;
-    if (!token) {
-      setLoading(false);
-      errorNotify("Google login failed. Please try again.");
-      return;
-    }
-
     try {
-      const res = await axios.post(apiUrls.googleLogin, { token });
-      // localStorage.setItem("userToken", res?.data?.tokens?.access?.token);
-      // localStorage.setItem("userInfo", JSON.stringify(res?.data?.user));
-      setItem("userToken", res?.data?.tokens?.access?.token)
-      setItem("userRefreshToken", res?.data?.tokens?.refresh?.token)
-      setItem("userInfo", JSON.stringify(res?.data?.user))
+      const { credential } = credentialResponse;
+      const res = await axios.post(apiUrls.googleLogin, { credential: credential });
+      setItem("userToken", res?.data?.tokens?.access?.token);
+      setItem("userRefreshToken", res?.data?.tokens?.refresh?.token);
+      setItem("userInfo", JSON.stringify(res?.data?.user));
       successNotify("Login successfully.");
-      // navigate("/home");
+      navigate("/products");
     } catch (err) {
-      console.error("Google login error", err);
-      errorNotify(
-        err?.response?.data?.message || "Google login failed. Please try again."
-      );
+      errorNotify(err?.response?.data?.message || "Google login failed. Please try again.");
     } finally {
       setLoading(false);
     }
   };
-
-  const loginWithGoogle = useGoogleLogin({
-    onSuccess: handleGoogleCredentialResponse,
-    onError: () => {
-      setLoading(false);
-      errorNotify("Google login failed. Please try again.");
-    },
-    flow: "implicit",
-  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -89,7 +78,7 @@ const LoginPage = () => {
         setItem("userInfo", JSON.stringify(res?.data?.user))
 
         successNotify("Login successfully.");
-        navigate("/home");
+        navigate("/products");
       })
       .catch((er) => {
         console.log(er);
@@ -134,7 +123,17 @@ const LoginPage = () => {
                       </a>
 
                       <h3 className="login_heading">Welcome back!</h3>
-
+                      <div className="social_login_wrap mt-3">
+                        <GoogleLogin
+                          onSuccess={handleGoogleLogin}
+                          onError={() => errorNotify("Google login failed. Please try again.")}
+                          useOneTap
+                          theme="filled_black"
+                          shape="pill"
+                          text="continue_with"
+                          width="100%"
+                        />
+                      </div>
                       <form onSubmit={handleSubmit}>
                         <div className="form_group">
                           <label htmlFor="username" className="form_label">
@@ -214,23 +213,6 @@ const LoginPage = () => {
                           {loading ? "Signing in..." : "Login"}
                         </button>
                       </form>
-
-                      {/* Remember me + Forgot password */}
-                      <div className="social_login_wrap mt-3">
-                        <button
-                          type="button"
-                          className="btn_social btn_google"
-                          onClick={() => loginWithGoogle()}
-                          disabled={loading}
-                        >
-                          <FcGoogle className="btn_social_icon" />
-                          Continue with Google
-                        </button>
-
-                        {/* <div className="social_separator">
-                          <span>or use your email</span>
-                        </div> */}
-                      </div>
 
                       <p className="signup_text ">
                         Don’t have an account?{" "}

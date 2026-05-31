@@ -244,7 +244,21 @@
 }
 
 /* ===== GOOGLE BUTTON ===== */
-.social_login_wrap { margin-bottom: 16px; }
+.social_login_wrap { 
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+/* Force GoogleLogin iframe to full width */
+.social_login_wrap > div,
+.social_login_wrap iframe,
+.social_login_wrap > div > div {
+  width: 100% !important;
+}
+
+.social_login_wrap_modal { 
+  margin-bottom: 16px; 
+}
 
 .btn_social {
   display: inline-flex;

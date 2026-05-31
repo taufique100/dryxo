@@ -11,6 +11,8 @@ import { RiMenuLine, RiCloseLine } from "react-icons/ri";
 import useAuth from "../../hooks/useAuth";
 import ProfileMenu from "../Profile/ProfileMenu";
 import useLocalStorage from "../hooks/useLocalStorage";
+import { useDispatch } from "react-redux";
+import { setContactBarHide } from "../../Store/LoaderSlice";
 
 const NAV_LINKS = [
   { to: "/home", label: "Home" },
@@ -27,15 +29,22 @@ export default function Navbars() {
   const { getItem } = useLocalStorage();
   const { logout } = useAuth();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const isUserLogin = () => {
     const u = JSON.parse(getItem("userInfo") || "{}");
     return !!u?.role;
   };
 
-  const close = () => setOpen(false);
+  const close = () => {
+    setOpen(false)
+    dispatch(setContactBarHide(false))
+  };
 
-  const goTo = (path) => { close(); navigate(path); };
+  const goTo = (path) => { 
+    close(); 
+    navigate(path); 
+  };
 
   /* ── user info for mobile drawer ── */
   const userInfo = JSON.parse(getItem("userInfo") || "{}");
@@ -84,7 +93,10 @@ export default function Navbars() {
           {/* Mobile right — hamburger only */}
           <button
             className={`nav-hamburger ${open ? "open" : ""}`}
-            onClick={() => setOpen(!open)}
+            onClick={() =>{
+               setOpen(!open)
+               dispatch(setContactBarHide(true))
+            }}
             aria-label="Toggle menu"
           >
             {open ? <RiCloseLine size={22} /> : <RiMenuLine size={22} />}

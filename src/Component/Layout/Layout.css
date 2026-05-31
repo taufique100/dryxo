@@ -1,7 +1,6 @@
 .layou_main {
   background-color: #e7f7fd80;
-  height: 100vh;
-  overflow-y: auto;
+  min-height: 100vh;
 }
 
 .header_position{

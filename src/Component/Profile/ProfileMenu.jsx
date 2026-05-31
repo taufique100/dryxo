@@ -73,8 +73,9 @@ const ProfileMenu = ({ closeMenu }) => {
 
                 <Dropdown.Item
                     onClick={() => { 
-                        logout(); 
-                        close(); 
+                        logout();
+                        close();
+                        navigate("/products");
                     }}
                     className="profile-item logout-item"
                 >

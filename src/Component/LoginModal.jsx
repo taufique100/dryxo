@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Form, Row, Col } from "react-bootstrap";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { FcGoogle } from "react-icons/fc";
-import { useGoogleLogin } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { apiUrls } from "../Utils/apiUrls.js";
 import { errorNotify, successNotify } from "../Utils/toastNotify.js";
@@ -28,46 +27,24 @@ const LoginModal = ({ show, onHide, onLoginSuccess }) => {
     confirmPassword: "",
   });
 
-  const handleGoogleCredentialResponse = async (response) => {
+  const handleGoogleLogin = async (credentialResponse) => {
     setLoading(true);
-
-    const token = response?.credential;
-    if (!token) {
-      setLoading(false);
-      errorNotify("Google login failed. Please try again.");
-      return;
-    }
-
     try {
-      const res = await axios.post(apiUrls.googleLogin, { token });
-      // localStorage.setItem("userToken", res?.data?.tokens?.access?.token);
-      // localStorage.setItem("userRefreshToken", res?.data?.tokens?.refresh?.token);
-      // localStorage.setItem("userInfo", JSON.stringify(res?.data?.user));
-
+      const { credential } = credentialResponse;
+      const res = await axios.post(apiUrls.googleLogin, { credential: credential });
       setItem("userToken", res?.data?.tokens?.access?.token);
       setItem("userRefreshToken", res?.data?.tokens?.refresh?.token);
       setItem("userInfo", JSON.stringify(res?.data?.user));
+      window.dispatchEvent(new Event("auth:login"));
       successNotify("Login successful!");
       onLoginSuccess && onLoginSuccess();
       onHide();
-    } catch (error) {
-      console.error("Google login error:", error);
-      errorNotify(
-        error?.response?.data?.message || "Google login failed. Please try again."
-      );
+    } catch (err) {
+      errorNotify(err?.response?.data?.message || "Google login failed. Please try again.");
     } finally {
       setLoading(false);
     }
   };
-
-  const loginWithGoogle = useGoogleLogin({
-    onSuccess: handleGoogleCredentialResponse,
-    onError: () => {
-      setLoading(false);
-      errorNotify("Google login failed. Please try again.");
-    },
-    flow: "implicit",
-  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -89,10 +66,10 @@ const LoginModal = ({ show, onHide, onLoginSuccess }) => {
 
     try {
       const res = await axios.post(apiUrls.login, loginPayload);
-      // localStorage.setItem("userToken", res?.data?.tokens?.access?.token);
-      // localStorage.setItem("userInfo", JSON.stringify(res?.data?.user));
-      setItem("userToken", res?.data?.tokens?.access?.token)
-      setItem("userInfo", JSON.stringify(res?.data?.user))
+      setItem("userToken", res?.data?.tokens?.access?.token);
+      setItem("userRefreshToken", res?.data?.tokens?.refresh?.token);
+      setItem("userInfo", JSON.stringify(res?.data?.user));
+      window.dispatchEvent(new Event("auth:login"));
       successNotify("Login successful!");
       onLoginSuccess && onLoginSuccess();
       onHide();
@@ -198,20 +175,19 @@ const LoginModal = ({ show, onHide, onLoginSuccess }) => {
                   </h3>
 
                   {panel === "login" && (
-                    <div className="social_login_wrap">
-                      <button
-                        type="button"
-                        className="btn_social btn_google mb-1"
-                        onClick={() => loginWithGoogle()}
-                        disabled={loading}
-                      >
-                        <FcGoogle className="btn_social_icon" />
-                        Continue with Google
-                      </button>
-                      <div className="social_separator">
-                        <span>or login with email</span>
+                      <div className="social_login_wrap_modal">
+                        <GoogleLogin
+                          onSuccess={handleGoogleLogin}
+                          onError={() => errorNotify("Google login failed. Please try again.")}
+                          theme="filled_black"
+                          shape="pill"
+                          text="continue_with"
+                          width="100%"
+                        />
+                        <div className="social_separator">
+                          <span>or login with email</span>
+                        </div>
                       </div>
-                    </div>
                   )}
 
                   {panel === "login" ? (
@@ -429,15 +405,16 @@ const LoginModal = ({ show, onHide, onLoginSuccess }) => {
               </p>
 
               {/* Google CTA */}
-              <button
-                className="lm-google-btn"
-                onClick={() => loginWithGoogle()}
-                disabled={loading}
-                type="button"
-              >
-                <FcGoogle size={20} />
-                <span>Continue with Google</span>
-              </button>
+              <div className="pb-2" style={{transform: "scale(1.05)", transformOrigin: "left"}}>
+                <GoogleLogin
+                  onSuccess={handleGoogleLogin}
+                  onError={() => errorNotify("Google login failed. Please try again.")}
+                  theme="filled_black"
+                  shape="pill"
+                  text="continue_with"
+                  width="100%"
+                />
+              </div>
 
               {/* Divider */}
               <div className="lm-divider">

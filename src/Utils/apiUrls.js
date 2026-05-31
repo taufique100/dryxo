@@ -33,7 +33,7 @@ export const apiUrls = {
   register: `${envUrl}/auth/register`,
   resetPassword:`${envUrl}/auth/reset-password`,
   changePassword: `${envUrl}/auth/change-password`,
-  googleLogin: `${envUrl}/auth/google-login`,
+  googleLogin: `${envUrl}/auth/social-login`,
   getAllUserProducts: `${envUrl}/products/getAllUserProducts`,
   updateProfile: `${envUrl}/profile/updateProfile`,
   getUserProfile: `${envUrl}/profile/getProfile`,

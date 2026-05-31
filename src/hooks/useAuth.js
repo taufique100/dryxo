@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import useLocalStorage from "../Component/hooks/useLocalStorage";
-import { errorNotify, successNotify } from "../Utils/toastNotify";
+import { successNotify } from "../Utils/toastNotify";
 import axios from "axios";
 import { apiUrls } from "../Utils/apiUrls";
 
 const useAuth = () => {
-  const { getItem, setItem } = useLocalStorage();
+  const { getItem } = useLocalStorage();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -14,7 +14,6 @@ const useAuth = () => {
     try {
       const token = getItem("userToken");
       const user = getItem("userInfo");
-
       if (token && user) {
         setIsLoggedIn(true);
         setUserInfo(JSON.parse(user));
@@ -22,8 +21,7 @@ const useAuth = () => {
         setIsLoggedIn(false);
         setUserInfo(null);
       }
-    } catch (error) {
-      console.error("Error checking auth status:", error);
+    } catch {
       setIsLoggedIn(false);
       setUserInfo(null);
     } finally {
@@ -33,24 +31,28 @@ const useAuth = () => {
 
   useEffect(() => {
     checkAuthStatus();
+    window.addEventListener("auth:login", checkAuthStatus);
+    window.addEventListener("auth:logout", checkAuthStatus);
+    return () => {
+      window.removeEventListener("auth:login", checkAuthStatus);
+      window.removeEventListener("auth:logout", checkAuthStatus);
+    };
   }, []);
 
   const logout = () => {
     axios
-      .post(apiUrls.logout, {
-        refreshToken: getItem("userRefreshToken"),
-      })
+      .post(apiUrls.logout, { refreshToken: getItem("userRefreshToken") })
       .then(() => {
-        console.log("Logged out successfully");
         successNotify("Logged out successfully");
+      })
+      .catch(() => {})
+      .finally(() => {
         localStorage.removeItem("userToken");
+        localStorage.removeItem("userRefreshToken");
         localStorage.removeItem("userInfo");
         setIsLoggedIn(false);
         setUserInfo(null);
-      })
-      .catch((error) => {
-        console.error("Error during logout:", error);
-        errorNotify("Error during logout. Please try again.");
+        window.dispatchEvent(new Event("auth:logout"));
       });
   };
 
@@ -59,6 +61,7 @@ const useAuth = () => {
     userInfo,
     loading,
     logout,
+    refreshAuth: checkAuthStatus,
   };
 };
 
